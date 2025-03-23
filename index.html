@@ -1,36 +1,55 @@
 <!DOCTYPE html>
 
-<!-- TODO Read text content -->
-<!-- TODO Own image, same aspect ratios for each -->
-<!-- TODO preload font -->
+<!-- TODO Proper content -->
+<!-- TODO Proper images -->
 <!-- TODO images: smaller, optimised, <picture>: avif, webp -->
-<!-- TODO meta tags -->
 <!-- TODO (fav)icon -->
+<!-- TODO Make sure there are no TBD left -->
+<!-- TODO Remove noindex -->
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clay Stories Berlin</title>
+
+    <link rel="preload" href="./fonts/NotoSans-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="./style.css">
+
+    <meta name="og:type" content="website">
+    <title>Clay Stories Berlin</title>
+    <meta name="og:site_name" content="Clay Stories Berlin">
+    <meta name="og:title" content="Clay Stories Berlin">
+    <meta name="description" content="TBD">
+    <meta name="og:description" content="TBD">
+
+    <meta name="og:image" content="./images/stock/maggie-markel-oRbtEWw_l04-unsplash.jpg">
+    <meta name="og:url" content="https://TBD.com">
+    <meta name="keywords" content="pottery, ceramics, classes, studio, membership, markets, sales">
+    <meta name="author" content="Clay Stories Berlin">
+
+    <meta name="robots" content="noindex">
 </head>
 <body>
-    <div class="root">
-
+    <div class="root h-card" itemscope itemtype="https://schema.org/LocalBusiness">
         <h1>
+            <meta itemprop="name" content="Clay Stories Berlin" />
             <img
+                itemprop="name"
                 alt="Clay Stories Berlin"
                 src="./images/logo.svg"
                 width="126"
                 height="23"
                 loading="eager"
-                class="logo"
+                class="logo u-logo"
             >
         </h1>
 
         <p class="intro">
-            <strong>Clay Stories Berlin</strong> is a pottery studio in Berlin.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+            <strong class="p-name p-org">Clay Stories Berlin</strong> is a
+            <span itemprop="description"><span class="p-category">pottery studio</span> in Berlin</span>.
+            <span class="p-note">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+            </span>
         </p>
 
         <section class="section">
@@ -109,7 +128,7 @@
             <div class="footer__contact">
                 <ul aria-label="Find us on" class="footer__social-links">
                     <li>
-                        <a href="https://www.instagram.com/TBD" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/TBD" target="_blank" rel="noopener noreferrer" itemprop="sameAs">
                             <svg
                                 aria-label="Instagram"
                                 width="16"
@@ -124,21 +143,36 @@
                         </a>
                     </li>
                 </ul>
+                <data itemprop="telephone" content="TBD" class="p-tel" value="TBD" />
 
-                <!-- TODO microdata, schema.org -->
-                <address class="footer__address">
+                <!-- Schema.org microdata added -->
+                <address class="footer__address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
                     <p>
-                        <a href="#TBD">TBD@gmail.com</a>
+                        <a href="#TBD" itemprop="email" class="u-email">TBD@gmail.com</a>
                     </p>
                     <p>
-                        <a href="http://maps.google.com/?q=berlin" target="_blank" rel="noopener noreferrer">TBDStrasse 123, 12345 Berlin, Germany</a>
+                        <a href="http://maps.google.com/?q=berlin" target="_blank" rel="noopener noreferrer" class="p-adr">
+                            <span itemprop="streetAddress" class="p-street-address">TBDStrasse 123</span>,
+                            <span itemprop="postalCode" class="p-postal-code">12345</span>
+                            <span itemprop="addressLocality" class="p-locality">Berlin</span>,
+                            <span itemprop="addressCountry" class="p-country-name">Germany</span>
+                        </a>
+                        <span itemprop="geo" itemscope itemtype="https://schema.org/GeoCoordinates" class="h-geo">
+                            <data itemprop="latitude" content="TBD" class="p-longitude" value="TBD" />
+                            <data itemprop="longitude" content="TBD" class="p-longitude" value="TBD" />
+                        </span>
                     </p>
                 </address>
+                <meta itemprop="url" content="https://claystoriesberlin.com" />
             </div>
 
             <small class="footer__legal">
                 <p class="footer__copyright">
-                    &copy; Clay Stories Berlin
+                    &copy;
+                    <a
+                        href="https://TBD.com"
+                        class="p-url"
+                    >Clay Stories Berlin</a>
                 </p>
 
                 <ul class="footer__legal-links">
@@ -151,7 +185,6 @@
                 </ul>
             </small>
         </footer>
-
     </div>
 </body>
 </html>
