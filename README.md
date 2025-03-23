@@ -9,3 +9,4 @@
 - [ ] (fav)icon
 - [ ] Make sure there are no TBD left
 - [ ] Remove noindex
+- [ ] Set up 11ty
