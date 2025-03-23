@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+
+<!-- TODO Read text content -->
+<!-- TODO Own image, same aspect ratios for each -->
+<!-- TODO preload font -->
+<!-- TODO images: smaller, optimised, <picture>: avif, webp -->
+<!-- TODO meta tags -->
+<!-- TODO (fav)icon -->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +20,7 @@
         <h1>
             <img
                 alt="Clay Stories Berlin"
-                src="./logo.svg"
+                src="./images/logo.svg"
                 width="126"
                 height="23"
                 loading="eager"
@@ -20,41 +28,81 @@
             >
         </h1>
 
-        <p>
-            <strong>Clay Stories Berlin</strong> is a pottery studio in Berlin, Germany.
+        <p class="intro">
+            <strong>Clay Stories Berlin</strong> is a pottery studio in Berlin.
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
         </p>
 
         <section class="section">
-            <h2 class="section__heading">Join our ceramics classes</h2>
+            <img
+                alt=""
+                src="./images/stock/maggie-markel-oRbtEWw_l04-unsplash.jpg"
+                width="1440"
+                height="960"
+                class="section__image"
+            />
 
-            <p class="section__text">
-                We offer a range of ceramics classes for all levels, from beginner to advanced.
-            </p>
+            <div class="section__content">
+                <h2 class="section__heading">Join our ceramics classes</h2>
+
+                <p class="section__text">
+                    We offer a range of ceramics classes for all levels, from beginner to advanced.
+                </p>
+            </div>
         </section>
 
         <section class="section">
-            <h2 class="section__heading">Studio time and montly membership</h2>
+            <img
+                alt=""
+                src="./images/stock/ghost-patrick-swayze-pottery-scene.webp"
+                width="1440"
+                height="960"
+                class="section__image"
+            />
 
-            <p class="section__text">
-                We offer a range of studio time and montly membership options.
-            </p>
+            <div class="section__content">
+                <h2 class="section__heading">Studio time and montly membership</h2>
+
+                <p class="section__text">
+                    We offer a range of studio time and montly membership options.
+                </p>
+            </div>
         </section>
 
         <section class="section">
-            <h2 class="section__heading">Markets and sales</h2>
+            <img
+                alt=""
+                src="./images/stock/brooke-lark-sG-PR0BNwb4-unsplash.jpg"
+                width="1440"
+                height="960"
+                class="section__image"
+            />
 
-            <p class="section__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-            </p>
+            <div class="section__content">
+                <h2 class="section__heading">Markets and sales</h2>
+
+                <p class="section__text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                </p>
+            </div>
         </section>
 
         <section class="section">
-            <h2 class="section__heading">Contact us</h2>
+            <img
+                alt=""
+                src="./images/stock/manki-kim-ZOeyUJB6t_Y-unsplash.jpg"
+                width="1440"
+                height="960"
+                class="section__image"
+            />
 
-            <p class="section__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-            </p>
+            <div class="section__content">
+                <h2 class="section__heading">Contact us</h2>
+
+                <p class="section__text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                </p>
+            </div>
         </section>
 
         <footer class="footer">
@@ -68,6 +116,7 @@
                                 height="16"
                                 viewBox="0 0 305 305"
                             >
+                                <!-- TODO Simplify SVG -->
                                 <path
                                     fill="currentColor"
                                     d="M 76.845099,0 C 34.455139,0 0,34.455139 0,76.845099 V 227.865 c 0,42.38996 34.455139,76.8451 76.845099,76.8451 H 227.865 c 42.38996,0 76.8451,-34.45514 76.8451,-76.8451 V 76.845099 C 304.7101,34.455139 270.25496,0 227.865,0 Z m 0,33.156139 H 227.865 c 24.09998,0 43.68896,19.58898 43.68896,43.68896 V 227.865 c 0,24.09998 -19.58898,43.68896 -43.68896,43.68896 H 76.845099 c -24.09998,0 -43.68896,-19.58898 -43.68896,-43.68896 V 76.845099 c 0,-24.09998 19.58898,-43.68896 43.68896,-43.68896 z m 156.508841,19.80467 c -10.23999,0 -18.58079,8.3408 -18.58079,18.58079 0,10.23999 8.3408,18.5437 18.58079,18.5437 10.23999,0 18.58079,-8.30371 18.58079,-18.5437 0,-10.23999 -8.3408,-18.58079 -18.58079,-18.58079 z m -80.99889,20.9173 c -43.26996,0 -78.476941,35.206981 -78.476941,78.476941 0,43.27996 35.206981,78.47694 78.476941,78.47694 43.27996,0 78.47694,-35.19698 78.47694,-78.47694 0,-43.26996 -35.19698,-78.476941 -78.47694,-78.476941 z m 0,33.156131 c 24.98998,0 45.32081,20.34083 45.32081,45.32081 0,24.98998 -20.33083,45.32081 -45.32081,45.32081 -24.97998,0 -45.32081,-20.33083 -45.32081,-45.32081 0,-24.97998 20.34083,-45.32081 45.32081,-45.32081 z" />
@@ -82,7 +131,7 @@
                         <a href="#TBD">TBD@gmail.com</a>
                     </p>
                     <p>
-                        <a href="http://maps.google.com/?q=berlin" target="_blank" rel="noopener noreferrer">TBDStrasse 123, 12345 Berlin</a>
+                        <a href="http://maps.google.com/?q=berlin" target="_blank" rel="noopener noreferrer">TBDStrasse 123, 12345 Berlin, Germany</a>
                     </p>
                 </address>
             </div>

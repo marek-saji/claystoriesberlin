@@ -65,9 +65,11 @@
       */
       --_spacing-multiplier: 1.5;
 
-      --spacing-small: 1rem;
-      --spacing-medium: calc(var(--_spacing-multiplier) * var(--spacing-small));
+      --spacing-tiny: calc(var(--spacing-small) / var(--_spacing-multiplier));
+      --spacing-small: calc(var(--spacing-medium) / var(--_spacing-multiplier));
+      --spacing-medium: 1.5rem;
       --spacing-large: calc(var(--_spacing-multiplier) * var(--spacing-medium));
+      --spacing-huge: calc(var(--_spacing-multiplier) * var(--_spacing-multiplier) * var(--spacing-large));
 
       /**
        * THICKNESS
@@ -99,25 +101,40 @@ body
     color: var(--colour-canvas-text);
 }
 
-a
+@layer base
 {
-    color: var(--colour-accent);
-}
+    a
+    {
+        color: var(--colour-accent);
+    }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6
-{
-    text-wrap: balance;
-}
+    img,
+    svg
+    {
+        display: block;
+        max-inline-size: 100%;
+        max-block-size: 50lvb;
+        block-size: auto;
+        inline-size: auto;
+        object-fit: contain;
+        margin: auto;
+    }
 
-small
-{
-    font: var(--typo-small);
-    letter-spacing: var(--typo-small-letter-spacing);
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+    {
+        text-wrap: balance;
+    }
+
+    small
+    {
+        font: var(--typo-small);
+        letter-spacing: var(--typo-small-letter-spacing);
+    }
 }
 
 .root
@@ -130,27 +147,74 @@ small
 .logo
 {
     display: block;
-    max-width: 100%;
     height: 3em;
     width: auto;
     margin-inline: auto;
 }
 
-.section
+.intro
 {
     margin-block: var(--spacing-large);
+    text-align: center;
+    text-wrap: balance;
+
+    @media (width > 60em)
+    {
+        margin-block: var(--spacing-huge);
+    }
+}
+
+.section
+{
+    display: flex;
+    gap: var(--spacing-medium);
+    flex-direction: column;
+    margin-block: var(--spacing-large);
+}
+
+.section__image
+{
+    inline-size: 30em;
 }
 
 .section__heading
 {
+    margin-block: 0 var(--spacing-medium);
     font: var(--typo-heading);
     letter-spacing: var(--typo-heading-letter-spacing);
-    margin-block: 0 var(--spacing-medium);
+    text-align: center;
 }
 
 .section__text
 {
     margin-block: var(--spacing-medium);
+}
+
+@media (width > 45em)
+{
+    .section
+    {
+        flex-direction: row;
+        margin-block: var(--spacing-huge);
+    }
+
+    .section__image {
+        inline-size: 51%;
+
+        .section:nth-child(even) & {
+            order: 2;
+        }
+    }
+
+    .section__heading
+    {
+        text-align: start;
+    }
+
+    .section__text
+    {
+        text-wrap: balance;
+    }
 }
 
 .footer
@@ -175,15 +239,16 @@ small
 .footer__contact
 {
     display: flex;
-    gap: var(--spacing-medium);
+    gap: var(--spacing-small) var(--spacing-medium);
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .footer__legal
 {
     display: flex;
-    gap: 0 var(--spacing-medium);
+    gap: var(--spacing-small) var(--spacing-medium);
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -207,7 +272,7 @@ small
     {
         > :where(img, svg)
         {
-            --size: 3em;
+            --size: 4em;
             block-size: var(--size);
             inline-size: var(--size);
         }
@@ -217,7 +282,8 @@ small
 .footer__legal-links
 {
     display: flex;
-    gap: var(--spacing-medium);
+    gap: var(--spacing-tiny) var(--spacing-medium);
     justify-content: center;
     text-align: center;
+    flex-wrap: wrap;
 }
