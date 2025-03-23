@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "dev": "npx @11ty/eleventy-dev-server --dir=./static/"
+    "dev": "npx --yes @11ty/eleventy-dev-server --dir=./static/"
   }
 }
