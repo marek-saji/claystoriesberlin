@@ -132,6 +132,11 @@
         text-wrap: balance;
     }
 
+    strong
+    {
+        text-decoration: underline wavy var(--colour-accent);
+    }
+
     small
     {
         font: var(--typo-small);
