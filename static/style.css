@@ -77,32 +77,32 @@
        --thickness-thin: 1px;
 }
 
-:root
-{
-    color-scheme: light;
-    box-sizing: border-box;
-    accent-color: var(--colour-accent);
-}
-
-*,
-*::before,
-*::after
-{
-    box-sizing: inherit;
-}
-
-body
-{
-    margin: 0;
-    padding: 0;
-    font: var(--typo-body);
-    letter-spacing: var(--typo-body-letter-spacing);
-    background-color: var(--colour-canvas);
-    color: var(--colour-canvas-text);
-}
-
 @layer base
 {
+    :root
+    {
+        color-scheme: light;
+        box-sizing: border-box;
+        accent-color: var(--colour-accent);
+    }
+
+    *,
+    *::before,
+    *::after
+    {
+        box-sizing: inherit;
+    }
+
+    body
+    {
+        margin: 0;
+        padding: 0;
+        font: var(--typo-body);
+        letter-spacing: var(--typo-body-letter-spacing);
+        background-color: var(--colour-canvas);
+        color: var(--colour-canvas-text);
+    }
+
     a
     {
         color: var(--colour-accent);
@@ -127,6 +127,8 @@ body
     h5,
     h6
     {
+        font: var(--typo-heading);
+        letter-spacing: var(--typo-heading-letter-spacing);
         text-wrap: balance;
     }
 
