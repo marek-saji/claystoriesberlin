@@ -174,7 +174,7 @@
 .section
 {
     display: flex;
-    gap: var(--spacing-medium);
+    gap: var(--spacing-medium) var(--spacing-large);
     flex-direction: column;
     margin-block: var(--spacing-large);
 }
@@ -202,11 +202,13 @@
     .section
     {
         flex-direction: row;
+        justify-content: space-between;
         margin-block: var(--spacing-huge);
     }
 
     .section__image {
         inline-size: 51%;
+        margin: 0;
 
         .section:nth-child(even) & {
             order: 2;
