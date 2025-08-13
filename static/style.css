@@ -43,7 +43,7 @@
      --_typo-body-line-height: 1.5;
      --_typo-body-letter-spacing: 0.025em;
 
-     --_typo-heading-font-size: 2em;
+     --_typo-heading-font-size: clamp(1.2em, 2lvw + 1em, 2em);
      --_typo-heading-letter-spacing: 0.05em;
      --_typo-heading-line-height: 1.25;
 
@@ -153,24 +153,36 @@
     padding-inline: var(--spacing-small);
 }
 
-.logo
-{
-    display: block;
-    height: 3em;
-    width: auto;
-    margin-inline: auto;
-}
-
+.header__heading,
 .intro
 {
-    margin-block: var(--spacing-large);
-    text-align: center;
-    text-wrap: balance;
+    margin-block: var(--spacing-medium);
 
     @media (width > 60em)
     {
         margin-block: var(--spacing-huge);
     }
+}
+
+.logo
+{
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-inline: auto;
+
+    @media (width > 40em)
+    {
+        width: auto;
+        height: 3em;
+    }
+}
+
+.intro
+{
+    text-align: center;
+    text-wrap: balance;
+
 }
 
 .section
