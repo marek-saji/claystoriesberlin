@@ -231,7 +231,7 @@
         inline-size: 51%;
         margin: 0;
 
-        .section:nth-child(even) & {
+        .section:nth-child(odd) & {
             order: 2;
         }
     }
