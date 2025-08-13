@@ -20,7 +20,6 @@
     --_palette-orange: #fabc98;
     --_palette-brick: #dc8975;
     --_palette-brick-dark: #9b4e3b;
-    --_palette-white: #fff;
     --_palette-almost-white: #ffe5cd;
     --_palette-black: #000;
     --_palette-beige: #f1c2bb;
@@ -30,10 +29,7 @@
     /**
      * COLOURS
      */
-    --colour-canvas: var(--_palette-white);
-    @media (prefers-color-scheme: dark) {
-        --colour-canvas: var(--_palette-almost-white);
-    }
+    --colour-canvas: var(--_palette-almost-white);
     --colour-canvas-text: var(--_palette-black);
     --colour-accent: var(--_palette-brick-dark);
     --colour-separator: var(--_palette-light-beige);
