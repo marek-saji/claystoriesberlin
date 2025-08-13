@@ -134,11 +134,6 @@
         text-box: trim-both cap alphabetic;
     }
 
-    strong
-    {
-        text-decoration: underline wavy var(--colour-accent);
-    }
-
     small
     {
         font: var(--typo-small);
