@@ -17,22 +17,20 @@
     /**
      * PALETTE
      */
-    --_palette-orange: #fabc98;
-    --_palette-brick: #dc8975;
-    --_palette-brick-dark: #9b4e3b;
-    --_palette-almost-white: #ffe5cd;
-    --_palette-black: #000;
-    --_palette-beige: #f1c2bb;
-    --_palette-light-beige: #efe0de;
-    --_palette-green: #cfd4c2;
+    --_palette-chroma: 0.1;
+    --_palette-hue: 35;
+    --_palette-brick-dark:  oklch(50% var(--_palette-chroma) var(--_palette-hue));
+    --_palette-brick-light: oklch(90% var(--_palette-chroma) var(--_palette-hue));
+    --_palette-white:       oklch(99% var(--_palette-chroma) var(--_palette-hue));
+    --_palette-black:       oklch( 5% var(--_palette-chroma) var(--_palette-hue));
 
     /**
      * COLOURS
      */
-    --colour-canvas: var(--_palette-almost-white);
+    --colour-canvas: var(--_palette-white);
     --colour-canvas-text: var(--_palette-black);
     --colour-accent: var(--_palette-brick-dark);
-    --colour-separator: var(--_palette-light-beige);
+    --colour-separator: var(--_palette-brick-light);
 
     /**
      * TYPOGRAPHY
