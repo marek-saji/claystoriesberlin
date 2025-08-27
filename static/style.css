@@ -19,7 +19,7 @@
      */
     --_palette-chroma: 0.1;
     --_palette-hue: 35;
-    --_palette-brick-dark:  oklch(50% var(--_palette-chroma) var(--_palette-hue));
+    --_palette-brick-dark:  oklab(53% 0.03 0.06); /* FIXME contrast against background */
     --_palette-brick-light: oklch(90% var(--_palette-chroma) var(--_palette-hue));
     --_palette-white:       oklch(99% var(--_palette-chroma) var(--_palette-hue));
     --_palette-black:       oklch( 5% var(--_palette-chroma) var(--_palette-hue));
