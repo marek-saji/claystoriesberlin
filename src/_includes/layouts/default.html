@@ -24,59 +24,23 @@ title: ""
     </header>
 
     <nav aria-label="Main navigation" class="nav">
+        {% assign navPages = collections.all | eleventyNavigation %}
         <ul class="nav__list">
+            {%- for entry in navPages %}
             <li class="nav__item">
                 <a
-                    href="/pottery-courses-and-workshops/"
-                    {%- if page.url == "/pottery-courses-and-workshops/" -%}
+                    href="{{ entry.url }}"
+                    {% if entry.url == page.url %}
                     aria-current="page"
                     {%- else -%}
-                    style="view-transition-name: page-title--{{ 'pottery-courses-and-workshops' | slugify }}"
+                    style="view-transition-name: page-title--{{ entry.url | slugify }}"
                     {%- endif -%}
                     class="nav__link"
                 >
-                    Courses and Workshops
+                    {{ entry.title }}
                 </a>
             </li>
-            <li class="nav__item">
-                <a
-                    href="/wild-clay/"
-                    {%- if page.url == "/wild-clay/" -%}
-                    aria-current="page"
-                    {%- else -%}
-                    style="view-transition-name: page-title--{{ 'wild-clay' | slugify }}"
-                    {%- endif -%}
-                    class="nav__link"
-                >
-                    Wild Clay
-                </a>
-            </li>
-            <li class="nav__item">
-                <a
-                    href="/creative-content-photography/"
-                    {%- if page.url == "/creative-content-photography/" -%}
-                    aria-current="page"
-                    {%- else -%}
-                    style="view-transition-name: page-title--{{ 'creative-content-photography' | slugify }}"
-                    {%- endif -%}
-                    class="nav__link"
-                >
-                    Photography
-                </a>
-            </li>
-            <li class="nav__item">
-                <a
-                    href="/about/"
-                    {%- if page.url == "/about/" -%}
-                    aria-current="page"
-                    {%- else -%}
-                    style="view-transition-name: page-title--{{ 'about' | slugify }}"
-                    {%- endif -%}
-                    class="nav__link"
-                >
-                    About Us
-                </a>
-            </li>
+            {%- endfor %}
         </ul>
     </nav>
 

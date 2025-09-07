@@ -1,4 +1,5 @@
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img'
+import eleventyNavigationPlugin from '@11ty/eleventy-navigation'
 import { HtmlBasePlugin } from '@11ty/eleventy'
 
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
@@ -22,5 +23,6 @@ export default function createConfig (eleventyConfig) {
             },
         },
     });
+    eleventyConfig.addPlugin(eleventyNavigationPlugin);
     eleventyConfig.addPlugin(HtmlBasePlugin);
 }
