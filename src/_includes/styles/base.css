@@ -1,0 +1,71 @@
+@layer base
+{
+    @view-transition {
+      navigation: auto;
+    }
+
+    :root
+    {
+        color-scheme: light dark;
+        box-sizing: border-box;
+        accent-color: var(--colour-accent);
+        scrollbar-gutter: stable both-edges;
+    }
+
+    *,
+    *::before,
+    *::after
+    {
+        box-sizing: inherit;
+    }
+
+    body
+    {
+        display: flex;
+        flex-direction: column;
+        min-block-size: 100dvh;
+        margin: 0;
+        padding: 0;
+        font: var(--typo-body);
+        letter-spacing: var(--typo-body-letter-spacing);
+        background-color: var(--colour-canvas);
+        color: var(--colour-canvas-text);
+    }
+
+    a
+    {
+        color: var(--colour-accent);
+    }
+
+    img,
+    svg
+    {
+        display: block;
+        max-inline-size: 100%;
+        max-block-size: 50lvb;
+        block-size: auto;
+        inline-size: auto;
+        object-fit: contain;
+        object-position: top;
+        margin: auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+    {
+        font: var(--typo-heading);
+        letter-spacing: var(--typo-heading-letter-spacing);
+        text-wrap: balance;
+        text-box: trim-both cap alphabetic;
+    }
+
+    small
+    {
+        font: var(--typo-small);
+        letter-spacing: var(--typo-small-letter-spacing);
+    }
+}

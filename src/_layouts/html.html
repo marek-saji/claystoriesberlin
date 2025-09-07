@@ -11,8 +11,26 @@ og_image: "images/og-image.png"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="preload" href="/NotoSans.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/style.css">
-    <script type="module" src="/script.mjs"></script>
+    {% css %}
+    {% include 'styles/theme.css' %}
+    {% include 'styles/base.css' %}
+    {% include 'styles/layout.css' %}
+    {% include 'styles/components/section.css' %}
+    {% endcss %}
+    <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
+
+    {% mjs %}
+    const searchParams = new URLSearchParams(window.location.search);
+    const dev =
+        (searchParams.get('dev') ?? localStorage.getItem('dev')) === 'true'
+        || Array.from(document.getElementsByTagName('script')).some(s => s.src.includes('/.11ty/'));
+
+    if (dev) {
+        const { accented } = await import('https://esm.sh/accented');
+        accented()
+    }
+    {% endmjs %}
+    <script type="module" src="{% getBundleFileUrl "mjs" %}"></script>
 
     <meta property="og:type" content="website">
     <title>
@@ -37,7 +55,7 @@ og_image: "images/og-image.png"
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:alt" content="">
-    <meta name="author" content="{{ author }}">
+    <meta name="author" content="{{ site.author }}">
 
     <meta name="robots" content="noindex"> <!-- TODO Remove when ready for prime time -->
 

@@ -1,0 +1,34 @@
+---
+layout: html.html
+title: ""
+---
+
+<div class="root h-card" itemscope itemtype="https://schema.org/LocalBusiness">
+    <header class="header">
+        <h1 class="header__heading">
+            <meta itemprop="name" content="{{ site.name }}" />
+            {% if page.url != "/" -%}
+            <a href="/index.html">
+            {%- endif -%}
+            <img
+                itemprop="name"
+                alt="{{ site.name }}"
+                src="/assets//claystories logo.png"
+                loading="eager"
+                class="logo u-logo"
+                eleventy:widths="600"
+            >
+            {% if page.url != "/" -%}
+            </a>
+            {%- endif -%}
+        </h1>
+    </header>
+
+    {% include 'nav.html' %}
+
+    <main class="main" aria-label="{{ page.title }}">
+        {{ content }}
+    </main>
+
+    {% include 'footer.html' %}
+</div>

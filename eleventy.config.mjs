@@ -1,16 +1,23 @@
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img'
 import eleventyNavigationPlugin from '@11ty/eleventy-navigation'
-import { HtmlBasePlugin } from '@11ty/eleventy'
+import {
+    InputPathToUrlTransformPlugin,
+    HtmlBasePlugin,
+} from '@11ty/eleventy'
 
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
 export default function createConfig (eleventyConfig) {
     eleventyConfig.setInputDirectory('src');
-    eleventyConfig.setIncludesDirectory('_includes');
-    eleventyConfig.setDataDirectory('_data');
+    eleventyConfig.setLayoutsDirectory('_layouts');
+
+    eleventyConfig.addBundle('css', {
+        bundleHtmlContentFromSelector: 'style',
+    });
+    eleventyConfig.addBundle('mjs', {
+        bundleHtmlContentFromSelector: 'style',
+    });
 
     eleventyConfig.addPassthroughCopy('**/*.woff2');
-    // TODO Minimise CSS
-    eleventyConfig.addPassthroughCopy('**/*.css');
     eleventyConfig.addPassthroughCopy('**/*.mjs');
 
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
@@ -24,5 +31,6 @@ export default function createConfig (eleventyConfig) {
         },
     });
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
+    eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
     eleventyConfig.addPlugin(HtmlBasePlugin);
 }

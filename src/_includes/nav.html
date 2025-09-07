@@ -1,0 +1,42 @@
+<nav aria-label="Main navigation" class="nav">
+    {% assign navPages = collections.all | eleventyNavigation %}
+    <ul class="nav__list">
+        {%- for entry in navPages %}
+        <li class="nav__item">
+            <a
+                href="{{ entry.url }}"
+                {% if entry.url == page.url %}
+                aria-current="page"
+                {%- else -%}
+                style="view-transition-name: page-title--{{ entry.url | slugify }}"
+                {%- endif -%}
+                class="nav__link"
+            >
+                {{ entry.title }}
+            </a>
+        </li>
+        {%- endfor %}
+    </ul>
+</nav>
+
+<style>
+    .nav__list
+    {
+        list-style: none;
+        display: flex;
+        place-content: center;
+        gap: var(--spacing-small) var(--spacing-medium);
+        padding: 0;
+    }
+
+    .nav__link
+    {
+        text-decoration: none;
+
+        &[aria-current="page"]
+        {
+            text-decoration: underline;
+            text-decoration-thickness: var(--thickness-thin);
+        }
+    }
+</style>
