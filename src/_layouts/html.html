@@ -50,6 +50,7 @@ og_image: "images/og-image.png"
 
     <link rel="canonical" href="{{ page.url | htmlBaseUrl: site.url }}">
     <meta property="og:url" content="{{ page.url | htmlBaseUrl: site.url }}">
+    <!-- FIXME Use 11ty image plugin to get the URL and dimensions -->
     <meta property="og:image" content="{{ og_image | htmlBaseUrl: site.url }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
