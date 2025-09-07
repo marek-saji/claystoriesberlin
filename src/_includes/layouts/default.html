@@ -23,7 +23,64 @@ title: ""
         </h1>
     </header>
 
-    <main>
+    <nav aria-label="Main navigation" class="nav">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a
+                    href="/pottery-courses-and-workshops/"
+                    {%- if page.url == "/pottery-courses-and-workshops/" -%}
+                    aria-current="page"
+                    {%- else -%}
+                    style="view-transition-name: page-title--{{ 'pottery-courses-and-workshops' | slugify }}"
+                    {%- endif -%}
+                    class="nav__link"
+                >
+                    Courses and Workshops
+                </a>
+            </li>
+            <li class="nav__item">
+                <a
+                    href="/wild-clay/"
+                    {%- if page.url == "/wild-clay/" -%}
+                    aria-current="page"
+                    {%- else -%}
+                    style="view-transition-name: page-title--{{ 'wild-clay' | slugify }}"
+                    {%- endif -%}
+                    class="nav__link"
+                >
+                    Wild Clay
+                </a>
+            </li>
+            <li class="nav__item">
+                <a
+                    href="/creative-content-photography/"
+                    {%- if page.url == "/creative-content-photography/" -%}
+                    aria-current="page"
+                    {%- else -%}
+                    style="view-transition-name: page-title--{{ 'creative-content-photography' | slugify }}"
+                    {%- endif -%}
+                    class="nav__link"
+                >
+                    Photography
+                </a>
+            </li>
+            <li class="nav__item">
+                <a
+                    href="/about/"
+                    {%- if page.url == "/about/" -%}
+                    aria-current="page"
+                    {%- else -%}
+                    style="view-transition-name: page-title--{{ 'about' | slugify }}"
+                    {%- endif -%}
+                    class="nav__link"
+                >
+                    About Us
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main" aria-label="{{ page.title }}">
         {{ content }}
     </main>
 
