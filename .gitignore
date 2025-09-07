@@ -1,1 +1,8 @@
+# dependencies
+/node_modules
+
+# OS rubbish
 .DS_Store
+
+# build artifacts
+/_site

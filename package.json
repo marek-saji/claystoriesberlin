@@ -1,5 +1,12 @@
 {
   "scripts": {
-    "dev": "npx --yes @11ty/eleventy-dev-server --dir=./static/"
+    "dev": "eleventy --incremental --serve --port=8081",
+    "build": "eleventy"
+  },
+  "type": "module",
+  "dependencies": { },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-img": "^6.0.4"
   }
 }

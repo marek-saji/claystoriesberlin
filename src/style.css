@@ -91,6 +91,9 @@
 
     body
     {
+        display: flex;
+        flex-direction: column;
+        min-block-size: 100dvh;
         margin: 0;
         padding: 0;
         font: var(--typo-body);
@@ -118,7 +121,7 @@
     }
 
     h1,
-    h2, 
+    h2,
     h3,
     h4,
     h5,
@@ -139,9 +142,17 @@
 
 .root
 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     max-width: 100ch;
     margin-inline: auto;
     padding-inline: var(--spacing-small);
+}
+
+.main
+{
+    flex: 1;
 }
 
 .header__heading,
@@ -183,6 +194,11 @@
     gap: var(--spacing-medium) var(--spacing-large);
     flex-direction: column;
     margin-block: var(--spacing-huge);
+}
+
+.section__picture
+{
+    display: contents;
 }
 
 .section__image
@@ -295,7 +311,7 @@
 {
     > :where(li > a)
     {
-        > :where(img, svg)
+        :where(img, svg)
         {
             --size: 4em;
             block-size: var(--size);

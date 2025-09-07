@@ -1,0 +1,57 @@
+---
+title: ""
+description: "Pottery collective in Berlin"
+og_image: "images/og-image.png"
+---
+<!DOCTYPE html>
+
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preload" href="/NotoSans.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/style.css">
+    <script type="module" src="/script.mjs"></script>
+
+    <meta property="og:type" content="website">
+    <title>
+        {%- if title != "" and title != site.name -%}
+            {{ title }} — {{ site.name }}
+        {%- else -%}
+            {{ site.name }}
+        {%- endif -%}
+    </title>
+    <meta property="og:site_name" content="{{ site.name }}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:locale" content="en_GB">
+    {% if description != "" -%}
+    <meta name="description" content="{{ description }}">
+    <meta property="og:description" content="{{ description }}">
+    {%- endif %}
+
+    <link rel="canonical" href="{{ page.url | htmlBaseUrl: site.url }}">
+    <meta property="og:url" content="{{ page.url | htmlBaseUrl: site.url }}">
+    <meta property="og:image" content="{{ og_image | htmlBaseUrl: site.url }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="">
+    <meta name="author" content="{{ author }}">
+
+    <meta name="robots" content="noindex"> <!-- TODO Remove when ready for prime time -->
+
+    <!-- TODO Create an icon
+    <link rel="icon" href="/favicon.ico" sizes="48x48" >
+    <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+    -->
+
+    <!-- TODO Define all data in web manifest as well
+    <link rel="manifest" href="/site.webmanifest" />
+    -->
+</head>
+<body>
+    {{ content }}
+</body>
+</html>
