@@ -21,14 +21,14 @@ export default function createConfig (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('**/*.mjs');
 
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-        formats: ['avif', 'jpeg', 'png'],
-        widths: ['auto'],
-        htmlOptions: {
-            imgAttributes: {
-                loading: 'lazy',
-                decoding: 'async',
-            },
+      formats: ["svg", "avif", "jpeg", "png"],
+      widths: ["auto"],
+      htmlOptions: {
+        imgAttributes: {
+          loading: "lazy",
+          decoding: "async",
         },
+      },
     });
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
     eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);

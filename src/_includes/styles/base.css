@@ -59,8 +59,9 @@
     {
         font: var(--typo-heading);
         letter-spacing: var(--typo-heading-letter-spacing);
-        text-wrap: balance;
+        text-wrap: balance; /* TODO Only on narrow containers */
         text-box: trim-both cap alphabetic;
+        color: var(--colour-heading);
     }
 
     small

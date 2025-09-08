@@ -8,6 +8,13 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+    font-family: 'Jost';
+    font-weight: normal;
+    font-style: normal;
+    src: url(/Jost.woff2) format('woff2');
+}
+
 :root
 {
     /**
@@ -17,28 +24,31 @@
     /**
      * PALETTE
      */
-    --_palette-brick-dark:  oklch(52% 0.07    56.6);
+    --_palette-teracotta:   oklch(49% 0.08071 41.498);
+    --_palette-brick-dark:  oklch(52% 0.07000 56.600);
     --_palette-brick-light: oklch(80% 0.04266 64.941);
-    --_palette-white:       oklch(98% 0.04266 64.941);
-    --_palette-black:       oklch(10% 0.04266 64.941);
+    --_palette-white:       oklch(96% 0.02600 90.099);
+    --_palette-white:       oklch(98% 0.01292 82.334);
+    --_palette-leather:     oklch(28% 0.04580 42.735);
 
     /**
      * COLOURS
      */
     --colour-canvas: var(--_palette-white);
-    --colour-canvas-text: var(--_palette-black);
+    --colour-canvas-text: var(--_palette-leather);
     --colour-accent: var(--_palette-brick-dark);
     --colour-separator: var(--_palette-brick-light);
+    --colour-heading: var(--_palette-teracotta);
 
     /**
      * TYPOGRAPHY
      */
-     --_typo-font-family: 'Noto Sans', system-ui, sans-serif;
-
+     --_typo-body-font-family: 'Noto Sans', system-ui, sans-serif;
      --_typo-body-font-size: 1em;
      --_typo-body-line-height: 1.5;
      --_typo-body-letter-spacing: 0.025em;
 
+     --_typo-heading-font-family: 'Jost', system-ui, sans-serif;
      --_typo-heading-font-size: clamp(1.2em, 2lvw + 1em, 2em);
      --_typo-heading-letter-spacing: 0.05em;
      --_typo-heading-line-height: 1.25;
@@ -47,13 +57,13 @@
      --_typo-small-line-height: 1.25;
      --_typo-small-letter-spacing: 0.025em;
 
-     --typo-body: normal var(--_typo-body-font-size) / var(--_typo-body-line-height) var(--_typo-font-family);
+     --typo-body: normal var(--_typo-body-font-size) / var(--_typo-body-line-height) var(--_typo-body-font-family);
      --typo-body-letter-spacing: var(--_typo-body-letter-spacing);
 
-     --typo-small: normal var(--_typo-small-font-size) / var(--_typo-small-line-height) var(--_typo-font-family);
+     --typo-small: normal var(--_typo-small-font-size) / var(--_typo-small-line-height) var(--_typo-body-font-family);
      --typo-small-letter-spacing: var(--_typo-small-letter-spacing);
 
-     --typo-heading: bold var(--_typo-heading-font-size) / var(--_typo-heading-line-height) var(--_typo-font-family);
+     --typo-heading: normal var(--_typo-heading-font-size) / var(--_typo-heading-line-height) var(--_typo-heading-font-family);
      --typo-heading-letter-spacing: var(--_typo-heading-letter-spacing);
 
      /**
