@@ -27,7 +27,6 @@
     --_palette-teracotta:   oklch(49% 0.08071 41.498);
     --_palette-brick-dark:  oklch(52% 0.07000 56.600);
     --_palette-brick-light: oklch(80% 0.04266 64.941);
-    --_palette-white:       oklch(96% 0.02600 90.099);
     --_palette-white:       oklch(98% 0.01292 82.334);
     --_palette-leather:     oklch(28% 0.04580 42.735);
 
@@ -39,6 +38,11 @@
     --colour-accent: var(--_palette-brick-dark);
     --colour-separator: var(--_palette-brick-light);
     --colour-heading: var(--_palette-teracotta);
+
+    @media (prefers-color-scheme: dark) {
+        --colour-canvas: var(--_palette-leather);
+        --colour-canvas-text: var(--_palette-white);
+    }
 
     /**
      * TYPOGRAPHY
