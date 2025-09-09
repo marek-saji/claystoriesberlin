@@ -34,11 +34,11 @@
     /**
      * COLOURS
      */
-    --colour-canvas: var(--_palette-white);
+    --colour-canvas: var(--_palette-white); /* also uses in og:image generation */
     --colour-canvas-text: var(--_palette-leather);
     --colour-accent: var(--_palette-brick-dark);
     --colour-separator: var(--_palette-brick-light);
-    --colour-heading: var(--_palette-teracotta);
+    --colour-heading: var(--_palette-teracotta); /* also used in logo.svg */
 
     /**
      * TYPOGRAPHY

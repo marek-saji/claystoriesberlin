@@ -1,7 +1,6 @@
 ---
 title: ""
 description: "Pottery collective in Berlin"
-og_image: "images/og-image.png"
 ---
 <!DOCTYPE html>
 
@@ -50,12 +49,13 @@ og_image: "images/og-image.png"
 
     <link rel="canonical" href="{{ page.url | htmlBaseUrl: site.url }}">
     <meta property="og:url" content="{{ page.url | htmlBaseUrl: site.url }}">
-    <!-- FIXME Use 11ty image plugin to get the URL and dimensions -->
-    <meta property="og:image" content="{{ og_image | htmlBaseUrl: site.url }}">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:alt" content="">
+    {% if og_image != nil -%}
+        <meta property="og:image" content="{{ site.url }}{% og_image og_image %}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:alt" content="">
+    {% endif -%}
     <meta name="author" content="{{ site.author }}">
 
     <meta name="robots" content="{{ site.robots }}">
