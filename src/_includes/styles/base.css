@@ -42,7 +42,7 @@
     {
         display: block;
         max-inline-size: 100%;
-        max-block-size: 50lvb;
+        max-block-size: 80lvb;
         block-size: auto;
         inline-size: auto;
         object-fit: contain;
