@@ -1,3 +1,5 @@
+import path from 'node:path';
+import fs from 'node:fs';
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img'
 import eleventyNavigationPlugin from '@11ty/eleventy-navigation'
 import {
@@ -20,16 +22,29 @@ export default function createConfig (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('**/*.woff2');
     eleventyConfig.addPassthroughCopy('**/*.mjs');
 
-    eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-      formats: ["auto", "svg", "avif"],
-      widths: ["auto"],
-      htmlOptions: {
-        imgAttributes: {
-          loading: "lazy",
-          decoding: "async",
+    {
+      const urlPath = '/img/static/';
+      const outputDir = 'node_modules/.cache/@11ty/eleventy-img/out/';
+      eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+        urlPath,
+        outputDir,
+        formats: ["auto", "svg", "avif"],
+        widths: ["auto"],
+        htmlOptions: {
+          imgAttributes: {
+            loading: "lazy",
+            decoding: "async",
+          },
         },
-      },
-    });
+      });
+      eleventyConfig.on('eleventy.after', () => {
+        fs.cpSync(
+          outputDir,
+          path.join(eleventyConfig.directories.output, urlPath),
+          { recursive: true }
+        )
+      })
+    }
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
     eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
     eleventyConfig.addPlugin(HtmlBasePlugin);
