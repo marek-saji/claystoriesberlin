@@ -21,7 +21,7 @@ export default function createConfig (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('**/*.mjs');
 
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-      formats: ["svg", "avif", "jpeg", "png"],
+      formats: ["auto", "svg", "avif"],
       widths: ["auto"],
       htmlOptions: {
         imgAttributes: {
