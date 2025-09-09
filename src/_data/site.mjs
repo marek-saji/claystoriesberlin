@@ -7,11 +7,4 @@ const site = {
   robots: isPreview ? 'noindex, nofollow' : 'index, follow',
 }
 
-console.debug({
-  'CF_PAGES_BRANCH': process.env.CF_PAGES_BRANCH,
-  'CF_PAGES_URL': process.env.CF_PAGES_URL,
-  isPreview,
-  site,
-})
-
 export default site
