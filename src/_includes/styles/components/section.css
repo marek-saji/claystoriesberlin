@@ -51,6 +51,7 @@
     }
 
     .section__image {
+        flex-shrink: 0;
         inline-size: 51%;
         margin: 0;
 
