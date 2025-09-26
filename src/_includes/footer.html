@@ -20,7 +20,7 @@
         <address class="footer__address">
             <p><em>Berlin studio - coming soon</em></p>
             <p>
-                <a href="mailto:claystories.berlin@gmail.com" itemprop="email" class="u-email">claystories.berlin@gmail.com</a>
+                <a href="mailto:{{ site.author.email }}" itemprop="email" class="u-email">{{ site.author.email }}</a>
             </p>
             <!-- <p>
                 <a href="http://maps.google.com/?q=TODO" target="_blank" rel="noopener noreferrer" class="p-adr" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
@@ -44,7 +44,7 @@
             <a
                 href="{{ site.url }}"
                 class="p-url"
-            >{{ site.author }}</a>
+            >{{ site.author.name }}</a>
         </p>
 
         <ul class="footer__legal-links">
