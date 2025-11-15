@@ -50,18 +50,23 @@
         margin: auto;
     }
 
-    h1,
     h2,
-    h3,
-    h4,
-    h5,
-    h6
+    h3
     {
-        font: var(--typo-heading);
         letter-spacing: var(--typo-heading-letter-spacing);
         text-wrap: balance; /* TODO Only on narrow containers */
         text-box: trim-both cap alphabetic;
         color: var(--colour-heading);
+    }
+
+    h2
+    {
+        font: var(--typo-heading-2);
+    }
+
+    h3
+    {
+        font: var(--typo-heading-3);
     }
 
     small

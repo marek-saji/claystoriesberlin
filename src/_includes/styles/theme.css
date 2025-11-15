@@ -49,7 +49,8 @@
      --_typo-body-letter-spacing: 0.025em;
 
      --_typo-heading-font-family: 'Jost', system-ui, sans-serif;
-     --_typo-heading-font-size: clamp(1.2em, 2lvw + 1em, 2em);
+     --_typo-heading-2-font-size: clamp(1.2em, 2lvw + 1em, 2em);
+     --_typo-heading-3-font-size: clamp(1.1em, 1.5lvw + 1em, 1.8em);
      --_typo-heading-letter-spacing: 0.05em;
      --_typo-heading-line-height: 1.25;
 
@@ -63,7 +64,8 @@
      --typo-small: normal var(--_typo-small-font-size) / var(--_typo-small-line-height) var(--_typo-body-font-family);
      --typo-small-letter-spacing: var(--_typo-small-letter-spacing);
 
-     --typo-heading: normal var(--_typo-heading-font-size) / var(--_typo-heading-line-height) var(--_typo-heading-font-family);
+     --typo-heading-2: normal var(--_typo-heading-2-font-size) / var(--_typo-heading-line-height) var(--_typo-heading-font-family);
+     --typo-heading-3: normal var(--_typo-heading-3-font-size) / var(--_typo-heading-line-height) var(--_typo-heading-font-family);
      --typo-heading-letter-spacing: var(--_typo-heading-letter-spacing);
 
      /**

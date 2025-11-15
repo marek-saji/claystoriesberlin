@@ -34,11 +34,21 @@
         margin-block: 0;
     }
 
-    > h2
+    > h2,
+    > h3
     {
-        font: var(--typo-heading);
         letter-spacing: var(--typo-heading-letter-spacing);
         text-align: center;
+    }
+
+    > h2
+    {
+        font: var(--typo-heading-2);
+    }
+
+    > h3
+    {
+        font: var(--typo-heading-3);
     }
 }
 
