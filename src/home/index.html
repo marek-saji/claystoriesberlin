@@ -9,7 +9,7 @@ og_image: "./image.png"
     <strong class="p-name p-org">Clay Stories</strong> is a
     <span itemprop="description"><span class="p-category">pottery studio and collective based</span> in the heart of Berlin Prenzlauerberg.</span>
     <span class="p-note">
-     Our goal is to create meaningful connections through the art of ceramics. We believe that every piece of clay tells a story, and we are here to help you tell yours. 
+        Our goal is to create meaningful connections through the art of ceramics. We believe that every piece of clay tells a story, and we are here to help you tell yours.
     </span>
 </p>
 
@@ -21,142 +21,92 @@ og_image: "./image.png"
 }
 </style>
 
-<section class="section">
-    <img
-        alt=""
-        src="../studio-memberships/image.jpeg"
-        eleventy:pictureattr:class="section__picture"
-        class="section__image"
-    />
+{% capture content %}
+    <p>
+        Join our pottery studio in Prenzlauer Berg, Berlin.
+    </p>
+{% endcapture %}
+{%
+    include 'home/section.html'
+    id: 'studio-memberships',
+    imageSrc: '../studio-memberships/image.jpeg',
+    linkHref: './studio-memberships/index.html',
+    heading: 'Pottery studio memberships',
+    content: content,
+%}
 
-    <div class="section__content">
-        <h2>Pottery studio memberships</h2>
+{% capture content %}
+    <p>
+        Join our wheel&shy;throwing classes, hand&shy;building workshops, book a private session or a team event.
+    </p>
+{% endcapture %}
+{%
+    include 'home/section.html'
+    id: 'pottery-courses-and-workshops',
+    imageSrc: '../pottery-courses-and-workshops/claystories workshop.jpg',
+    linkHref: './pottery-courses-and-workshops/index.html',
+    heading: 'Pottery courses and ceramic workshops in Berlin',
+    content: content,
+%}
 
-        <p>
-        Join our pottery studio in Prenzlauer Berg, Berlin. 
-        </p>
+{% capture content %}
+    <p>
+        Visit our studio to buy unique handmade ceramics created by our collective of artists.
+    </p>
+{% endcapture %}
+{%
+    include 'home/section.html'
+    id: 'shop-handmade-ceramics',
+    imageSrc: '../shopceramics/handmadeceramicshop.jpg',
+    linkHref: './shopceramics/index.html',
+    heading: 'Shop handmade ceramics',
+    content: content,
+%}
 
-        
+{% capture content %}
+    <p>
+        Learn you how to search for wild clay and make pottery with a deep connection to your local environment.
+    </p>
+    <p>
+        Wild clay workshops coming soon!
+    </p>
+{% endcapture %}
+{%
+    include 'home/section.html'
+    id: 'wildclay-berlin',
+    imageSrc: '../wild-clay/wildclay berlin.jpg',
+    linkHref: './wild-clay/index.html',
+    heading: 'Wild clay: stories captured in clay',
+    content: content,
+%}
 
-        <a href="./studio-memberships/index.html">
-            Read more about studio memberships
-        </a>
-    </div>
-</section>
+{% capture content %}
+    <p>
+        We offer creative content and brand photography services tailored to your needs.
+    </p>
+{% endcapture %}
+{%
+    include 'home/section.html'
+    id: 'creative-content-photography',
+    imageSrc: '../creative-content-photography/image.jpeg',
+    linkHref: './creative-content-photography/index.html',
+    heading: 'Tell your story: creative brand photography',
+    content: content,
+%}
 
-
-<section class="section">
-    <img
-        alt=""
-        src="../pottery-courses-and-workshops/claystories workshop.jpg"
-        eleventy:pictureattr:class="section__picture"
-        class="section__image"
-    />
-
-    <div class="section__content">
-        <h2>Pottery courses and ceramic workshops in Berlin</h2>
-
-        <p>
-            Join our wheel&shy;throwing classes, hand&shy;building workshops, book a private session or a team event.
-        </p>
-        <p>
-            
-        </p>
-
-        <a href="./pottery-courses-and-workshops/index.html">
-            Read more about courses and workshops
-        </a>
-    </div>
-</section>
-
-<section class="section">
-    <img
-        alt=""
-        src="../shopceramics/handmadeceramicshop.jpg"
-        eleventy:pictureattr:class="section__picture"
-        class="section__image"
-    />
-
-    <div class="section__content">
-        <h2>Shop handmade ceramics</h2>
-
-        <p>
-            Visit our studio to buy unique handmade ceramics created by our collective of artists.
-            
-        </p>
-      
-        <a href="./shopceramics/index.html">
-            
-    Learn more</a>
-    </div>
-</section>
-
-<section class="section">
-    <img
-        alt=""
-        src="../wild-clay/wildclay berlin.jpg"
-        eleventy:pictureattr:class="section__picture"
-        class="section__image"
-    />
-
-    <div class="section__content">
-        <h2>Wild clay: stories captured in clay</h2>
-
-        <p>
-            Learn you how to search for wild clay and make pottery with a deep connection to your local environment. 
-        </p>
-        <p>
-            Wild clay workshops coming soon!
-        </p>
-
-        <a href="./wild-clay/index.html">
-            Read more about wild clay
-        </a>
-    </div>
-</section>
-
-<section class="section">
-    <img
-        alt=""
-        src="../creative-content-photography/image.jpeg"
-        eleventy:pictureattr:class="section__picture"
-        class="section__image"
-    />
-
-    <div class="section__content">
-        <h2>Tell your story: creative brand photography</h2>
-
-        <p>
-            
-            We offer creative content and brand photography services tailored to your needs.
-        </p>
-
-        <a href="./creative-content-photography/index.html">
-            Read more about brand photography
-        </a>
-    </div>
-</section>
-
-<section class="section">
-    <img
-        alt=""
-        src="../about/claystories aniarachel.jpg"
-        eleventy:pictureattr:class="section__picture"
-        class="section__image"
-    />
-
-    <div class="section__content">
-        <h2>About us</h2>
-
-        <p>
-            We're Rachel and Anna, two ceramic artists from Berlin, passionate about clay and storytelling. 
-        </p>
-        <p>
-            We're looking forward to welcoming you to our pottery studio and sharing our love for clay with you.
-        </p>
-
-        <a href="./about/index.html">
-            Read more about us
-        </a>
-    </div>
-</section>
+{% capture content %}
+    <p>
+        We’re Rachel and Anna, two ceramic artists from Berlin, passionate about clay and storytelling.
+    </p>
+    <p>
+        We’re looking forward to welcoming you to our pottery studio and sharing our love for clay with you.
+    </p>
+{% endcapture %}
+{%
+    include 'home/section.html'
+    id: 'about-us',
+    imageSrc: '../about/claystories aniarachel.jpg',
+    linkHref: './about/index.html',
+    heading: 'About us',
+    content: content,
+%}

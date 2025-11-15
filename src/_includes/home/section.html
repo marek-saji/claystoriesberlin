@@ -1,0 +1,27 @@
+<section
+    id="{{ id }}"
+    aria-labelledby="{{ id }}--heading"
+    class="section"
+>
+    <img
+        alt=""
+        src="{{ imageSrc }}"
+        eleventy:pictureattr:class="section__picture"
+        class="section__image"
+    />
+
+    <div class="section__content">
+        <h2 id="{{ id }}--heading">
+            {{ heading }}
+        </h2>
+
+        {{ content }}
+
+        <a
+            href="{{ linkHref }}"
+            aria-describedby="{{ id }}"
+        >
+            Learn more
+        </a>
+    </div>
+</section>
