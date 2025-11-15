@@ -1,0 +1,16 @@
+<address>
+    <p>
+        <strong>{{ site.business.address.name }}</strong>
+    </p>
+
+    <p>
+        {{ site.business.address.streetAddress }}<br />
+        {{ site.business.address.postalCode }}
+        {{ site.business.address.locality }}<br />
+        {{ site.business.address.countryName }}
+    </p>
+
+    <p>
+        Email: <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+    </p>
+</address>

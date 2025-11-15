@@ -9,7 +9,7 @@ title: "Data privacy"
 <p>We respect your privacy and are committed to protecting your personal data. This policy explains how we collect, use, and safeguard information when you become a member of our studio, book a class, or otherwise interact with us.</p>
 
 <h3>Who We Are</h3>
-<p>This policy applies to <strong>{{ site.author.name }}</strong> (“we”, “us”, “our”), operating in the European Union and subject to the General Data Protection Regulation (GDPR).</p>
+<p>This policy applies to <strong>{{ site.business.name }}</strong> (“we”, “us”, “our”), operating in the European Union and subject to the General Data Protection Regulation (GDPR).</p>
 
 <h3>Information We Collect</h3>
 <p>When you use our services, we may collect the following information:</p>
@@ -63,8 +63,5 @@ title: "Data privacy"
 <p>If cookies or analytics tools are used on our website, we will inform you and request your consent. These are only used to improve website functionality and user experience.</p>
 
 <h3>Contact Us</h3>
-<address>
-    <strong>{{ site.author.name }}</strong><br>
-    Email: <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a><br>
-    <!-- Address: TODO -->
-</address>
+
+{% include 'address.html' %}

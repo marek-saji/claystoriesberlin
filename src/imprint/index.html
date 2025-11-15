@@ -4,21 +4,17 @@ title: "Imprint"
 ---
 {% include 'page-title.html' %}
 
-<address>
-    <p><strong>{{ site.author.name }}</strong></p>
+{% include 'address.html' %}
 
-    <!-- TODO: Add business address -->
+<!-- TODO: Add VAT ID (USt-IdNr.), when we get it -->
 
-    <p>Email: <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></p>
-
-    <!-- TODO: Add VAT ID (USt-IdNr.) if applicable -->
-
-    <p>Legal form: Gesellschaft bürgerlichen Rechts (GbR)</p>
-</address>
+<p>
+    Legal form: Gesellschaft bürgerlichen Rechts (GbR)
+</p>
 
 <p>
     Responsible for content according to § 55 Abs. 2 RStV:
-    <strong>{{ site.author.name }}</strong>
+    <strong>{{ site.business.name }}</strong>
 </p>
 
 <h3>Photos</h3>
