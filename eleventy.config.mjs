@@ -10,10 +10,10 @@ export default function createConfig(eleventyConfig) {
   eleventyConfig.setLayoutsDirectory("_layouts");
 
   eleventyConfig.addBundle("css", {
-    bundleHtmlContentFromSelector: "style",
+    bundleHtmlContentFromSelector: "style[data-bundle]",
   });
   eleventyConfig.addBundle("mjs", {
-    bundleHtmlContentFromSelector: "style",
+    bundleHtmlContentFromSelector: "script[type='module'][data-bundle]",
   });
 
   eleventyConfig.addPassthroughCopy("**/*.woff2");

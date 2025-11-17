@@ -10,25 +10,25 @@ description: "Pottery collective in Berlin"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="preload" href="/NotoSans.woff2" as="font" type="font/woff2" crossorigin />
-    {% css %}
-    {% include 'styles/theme.css' %}
-    {% include 'styles/base.css' %}
-    {% include 'styles/layout.css' %}
-    {% include 'styles/components/section.css' %}
-    {% endcss %}
+    <style data-bundle>
+        {% include 'styles/theme.css' %}
+        {% include 'styles/base.css' %}
+        {% include 'styles/layout.css' %}
+        {% include 'styles/components/section.css' %}
+    </style>
     <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
 
-    {% mjs %}
-    const searchParams = new URLSearchParams(window.location.search);
-    const dev =
-        (searchParams.get('dev') ?? localStorage.getItem('dev')) === 'true'
-        || Array.from(document.getElementsByTagName('script')).some(s => s.src.includes('/.11ty/'));
+    <script type="module" data-bundle>
+        const searchParams = new URLSearchParams(window.location.search);
+        const dev =
+            (searchParams.get('dev') ?? localStorage.getItem('dev')) === 'true'
+            || Array.from(document.getElementsByTagName('script')).some(s => s.src.includes('/.11ty/'));
 
-    if (dev) {
-        const { accented } = await import('https://esm.sh/accented');
-        accented()
-    }
-    {% endmjs %}
+        if (dev) {
+            const { accented } = await import('https://esm.sh/accented');
+            accented()
+        }
+    </script>
     <script type="module" src="{% getBundleFileUrl "mjs" %}"></script>
 
     <meta property="og:type" content="website">
