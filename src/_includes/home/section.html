@@ -20,8 +20,29 @@
         <a
             href="{{ linkHref }}"
             aria-describedby="{{ id }}"
+            data-view-transition-name="page-title--{{ linkHref | slugify }}"
         >
             Learn more
         </a>
     </div>
 </section>
+
+<script type="module" data-bundle>
+    window.addEventListener('click', (event) => {
+        const anchor = event.target;
+        const viewTransitionName = anchor.dataset.viewTransitionName;
+        debugger;
+        if (!['', 'none'].includes(viewTransitionName))
+        {
+            anchor.style.viewTransitionName = viewTransitionName;
+        }
+        const allAnchors = Array.from(document.querySelectorAll(`[data-view-transition-name="${viewTransitionName}"]`))
+        for (const el of allAnchors)
+        {
+            if (el !== anchor)
+            {
+                el.style.viewTransitionName = 'none'
+            }
+        }
+    });
+</script>

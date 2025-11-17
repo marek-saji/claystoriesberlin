@@ -8,7 +8,16 @@
                 {% if entry.url == page.url %}
                 aria-current="page"
                 {%- else -%}
-                style="view-transition-name: page-title--{{ entry.url | slugify }}"
+                {% comment %}
+                In most cases we use just data-view-transition-name
+                which applies view-transition-name via JavaScript on
+                click, but here since these are main navigation linnks,
+                also include inline style.
+                {% endcomment %}
+                {% assign view-transition-name-suffix = entry.url | slugify %}
+                {% assign view-transition-name = "page-title--" | append: view-transition-name-suffix %}
+                style="view-transition-name: {{ view-transition-name }}"
+                data-view-transition-name="{{ view-transition-name }}"
                 {%- endif -%}
                 class="nav__link"
             >
