@@ -1,80 +1,68 @@
-.section
-{
-    display: flex;
-    gap: var(--spacing-medium) var(--spacing-large);
-    flex-direction: column;
-    margin-block: var(--spacing-huge);
+.section {
+  display: flex;
+  gap: var(--spacing-medium) var(--spacing-large);
+  flex-direction: column;
+  margin-block: var(--spacing-huge);
 }
 
-.section__picture
-{
-    display: contents;
+.section__picture {
+  display: contents;
 }
 
-.section__image
-{
-    inline-size: 30em;
+.section__image {
+  inline-size: 30em;
 }
 
-.section__content
-{
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-medium);
-    hyphens: auto;
-    hyphenate-limit-chars: 10 5 5;
+.section__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+  hyphens: auto;
+  hyphenate-limit-chars: 10 5 5;
 
-    > h2,
-    > h3,
-    > h4,
-    > h5,
-    > h6,
-    > p
-    {
-        margin-block: 0;
-    }
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6,
+  > p {
+    margin-block: 0;
+  }
 
-    > h2,
-    > h3
-    {
-        letter-spacing: var(--typo-heading-letter-spacing);
-        text-align: center;
-    }
+  > h2,
+  > h3 {
+    letter-spacing: var(--typo-heading-letter-spacing);
+    text-align: center;
+  }
 
-    > h2
-    {
-        font: var(--typo-heading-2);
-    }
+  > h2 {
+    font: var(--typo-heading-2);
+  }
 
-    > h3
-    {
-        font: var(--typo-heading-3);
-    }
+  > h3 {
+    font: var(--typo-heading-3);
+  }
 }
 
-@media (width > 45em)
-{
-    .section
-    {
-        flex-direction: row;
-        justify-content: space-between;
-    }
+@media (width > 45em) {
+  .section {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-    .section__image {
-        flex-shrink: 0;
-        inline-size: 51%;
-        margin: 0;
+  .section__image {
+    flex-shrink: 0;
+    inline-size: 51%;
+    margin: 0;
 
-        .section:nth-child(odd) & {
-            order: 2;
-        }
+    .section:nth-child(odd) & {
+      order: 2;
     }
+  }
 
-    .section__content
-    {
-        > h2
-        {
-            text-align: start;
-        }
+  .section__content {
+    > h2 {
+      text-align: start;
     }
+  }
 }

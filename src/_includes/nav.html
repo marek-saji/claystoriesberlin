@@ -1,52 +1,49 @@
 <nav aria-label="Main navigation" class="nav">
-    {% assign navPages = collections.all | eleventyNavigation %}
-    <ul class="nav__list">
-        {%- for entry in navPages %}
-        <li class="nav__item">
-            <a
-                href="{{ entry.url }}"
-                {% if entry.url == page.url %}
-                aria-current="page"
-                {%- else -%}
-                {% comment %}
-                In most cases we use just data-view-transition-name
-                which applies view-transition-name via JavaScript on
-                click, but here since these are main navigation linnks,
-                also include inline style.
-                {% endcomment %}
-                {% assign view-transition-name-suffix = entry.url | slugify %}
-                {% assign view-transition-name = "page-title--" | append: view-transition-name-suffix %}
-                style="view-transition-name: {{ view-transition-name }}"
-                data-view-transition-name="{{ view-transition-name }}"
-                {%- endif -%}
-                class="nav__link"
-            >
-                {{ entry.title }}
-            </a>
-        </li>
-        {%- endfor %}
-    </ul>
+  {% assign navPages = collections.all | eleventyNavigation %}
+  <ul class="nav__list">
+    {%- for entry in navPages %}
+      <li class="nav__item">
+        <a
+          href="{{ entry.url }}"
+          {% if entry.url == page.url %}
+            aria-current="page"
+          {%- else -%}
+            {% comment %}
+              In most cases we use just data-view-transition-name
+              which applies view-transition-name via JavaScript on
+              click, but here since these are main navigation linnks,
+              also include inline style.
+            {% endcomment %}
+            {% assign view-transition-name-suffix = entry.url | slugify %}
+            {% assign view-transition-name = 'page-title--' | append: view-transition-name-suffix %}
+            style="view-transition-name: {{ view-transition-name }}"
+            data-view-transition-name="{{ view-transition-name }}"
+          {%- endif -%}
+          class="nav__link"
+        >
+          {{ entry.title }}
+        </a>
+      </li>
+    {%- endfor %}
+  </ul>
 </nav>
 
 <style data-bundle>
-    .nav__list
-    {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        place-content: center;
-        gap: var(--spacing-small) var(--spacing-medium);
-        padding: 0;
-    }
+  .nav__list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+    gap: var(--spacing-small) var(--spacing-medium);
+    padding: 0;
+  }
 
-    .nav__link
-    {
-        text-decoration: none;
+  .nav__link {
+    text-decoration: none;
 
-        &[aria-current="page"]
-        {
-            text-decoration: underline;
-            text-decoration-thickness: var(--thickness-thin);
-        }
+    &[aria-current='page'] {
+      text-decoration: underline;
+      text-decoration-thickness: var(--thickness-thin);
     }
+  }
 </style>

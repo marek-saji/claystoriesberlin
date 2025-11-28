@@ -2,34 +2,31 @@
 layout: html.html
 title: ""
 ---
-
 <div class="root h-card" itemscope itemtype="https://schema.org/LocalBusiness">
-    <header class="header">
-        <h1 class="header__heading">
-            <meta itemprop="name" content="{{ site.name }}" />
-            {% if page.url != "/" -%}
-            <a href="/index.html">
-            {%- endif -%}
-            <img
-                itemprop="logo"
-                alt="{{ site.name }}"
-                src="/assets/logo.svg"
-                loading="eager"
-                class="logo u-logo"
-                eleventy:widths="600"
-                eleventy:formats="svg"
-            >
-            {% if page.url != "/" -%}
-            </a>
-            {%- endif -%}
-        </h1>
-    </header>
+  <header class="header">
+    <h1 class="header__heading">
+      <meta itemprop="name" content="{{ site.name }}">
+      {% if page.url != '/' -%}
+        <a href="/index.html">
+      {%- endif -%}
+      <img
+        itemprop="logo"
+        alt="{{ site.name }}"
+        src="/assets/logo.svg"
+        loading="eager"
+        class="logo u-logo"
+        eleventy:widths="600"
+        eleventy:formats="svg"
+      >
+      {% if page.url != '/' -%}
+        </a>
+      {%- endif -%}
+    </h1>
+  </header>
 
-    {% include 'nav.html' %}
+  {% include 'nav.html' %}
 
-    <main class="main" aria-label="{{ page.title }}">
-        {{ content }}
-    </main>
+  <main class="main" aria-label="{{ page.title }}">{{ content }}</main>
 
-    {% include 'footer.html' %}
+  {% include 'footer.html' %}
 </div>

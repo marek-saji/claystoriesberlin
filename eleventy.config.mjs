@@ -1,5 +1,5 @@
-import path from 'node:path';
-import fs from 'node:fs';
+import path from "node:path";
+import fs from "node:fs";
 import Image, { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
 import { InputPathToUrlTransformPlugin, HtmlBasePlugin } from "@11ty/eleventy";
@@ -64,7 +64,7 @@ export default function createConfig(eleventyConfig) {
           const scale = Math.min(
             1,
             OG_IMAGE_WIDTH / width,
-            OG_IMAGE_HEIGHT / height
+            OG_IMAGE_HEIGHT / height,
           );
           if (scale < 1) {
             width = Math.floor(width * scale);
@@ -90,7 +90,7 @@ export default function createConfig(eleventyConfig) {
       fs.cpSync(
         outputDir,
         path.join(eleventyConfig.directories.output, urlPath),
-        { recursive: true }
+        { recursive: true },
       );
     });
   }

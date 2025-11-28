@@ -1,132 +1,154 @@
 <footer class="footer">
-    <div class="footer__contact">
-        <ul aria-label="Find us on" class="footer__social-links">
-            <li>
-                <a href="https://www.instagram.com/claystories.berlin" target="_blank" rel="me noopener noreferrer" itemprop="sameAs">
-                    <svg
-                        aria-label="Instagram"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 305 305"
-                    >
-                        <path
-                            fill="currentColor"
-                            d="M 76.845099,0 C 34.455139,0 0,34.455139 0,76.845099 V 227.865 c 0,42.38996 34.455139,76.8451 76.845099,76.8451 H 227.865 c 42.38996,0 76.8451,-34.45514 76.8451,-76.8451 V 76.845099 C 304.7101,34.455139 270.25496,0 227.865,0 Z m 0,33.156139 H 227.865 c 24.09998,0 43.68896,19.58898 43.68896,43.68896 V 227.865 c 0,24.09998 -19.58898,43.68896 -43.68896,43.68896 H 76.845099 c -24.09998,0 -43.68896,-19.58898 -43.68896,-43.68896 V 76.845099 c 0,-24.09998 19.58898,-43.68896 43.68896,-43.68896 z m 156.508841,19.80467 c -10.23999,0 -18.58079,8.3408 -18.58079,18.58079 0,10.23999 8.3408,18.5437 18.58079,18.5437 10.23999,0 18.58079,-8.30371 18.58079,-18.5437 0,-10.23999 -8.3408,-18.58079 -18.58079,-18.58079 z m -80.99889,20.9173 c -43.26996,0 -78.476941,35.206981 -78.476941,78.476941 0,43.27996 35.206981,78.47694 78.476941,78.47694 43.27996,0 78.47694,-35.19698 78.47694,-78.47694 0,-43.26996 -35.19698,-78.476941 -78.47694,-78.476941 z m 0,33.156131 c 24.98998,0 45.32081,20.34083 45.32081,45.32081 0,24.98998 -20.33083,45.32081 -45.32081,45.32081 -24.97998,0 -45.32081,-20.33083 -45.32081,-45.32081 0,-24.97998 20.34083,-45.32081 45.32081,-45.32081 z" />
-                    </svg>
-                </a>
-            </li>
-        </ul>
+  <div class="footer__contact">
+    <ul aria-label="Find us on" class="footer__social-links">
+      <li>
+        <a
+          href="https://www.instagram.com/claystories.berlin"
+          target="_blank"
+          rel="me noopener noreferrer"
+          itemprop="sameAs"
+        >
+          <svg
+            aria-label="Instagram"
+            width="16"
+            height="16"
+            viewBox="0 0 305 305"
+          >
+            <path
+              fill="currentColor"
+              d="M 76.845099,0 C 34.455139,0 0,34.455139 0,76.845099 V 227.865 c 0,42.38996 34.455139,76.8451 76.845099,76.8451 H 227.865 c 42.38996,0 76.8451,-34.45514 76.8451,-76.8451 V 76.845099 C 304.7101,34.455139 270.25496,0 227.865,0 Z m 0,33.156139 H 227.865 c 24.09998,0 43.68896,19.58898 43.68896,43.68896 V 227.865 c 0,24.09998 -19.58898,43.68896 -43.68896,43.68896 H 76.845099 c -24.09998,0 -43.68896,-19.58898 -43.68896,-43.68896 V 76.845099 c 0,-24.09998 19.58898,-43.68896 43.68896,-43.68896 z m 156.508841,19.80467 c -10.23999,0 -18.58079,8.3408 -18.58079,18.58079 0,10.23999 8.3408,18.5437 18.58079,18.5437 10.23999,0 18.58079,-8.30371 18.58079,-18.5437 0,-10.23999 -8.3408,-18.58079 -18.58079,-18.58079 z m -80.99889,20.9173 c -43.26996,0 -78.476941,35.206981 -78.476941,78.476941 0,43.27996 35.206981,78.47694 78.476941,78.47694 43.27996,0 78.47694,-35.19698 78.47694,-78.47694 0,-43.26996 -35.19698,-78.476941 -78.47694,-78.476941 z m 0,33.156131 c 24.98998,0 45.32081,20.34083 45.32081,45.32081 0,24.98998 -20.33083,45.32081 -45.32081,45.32081 -24.97998,0 -45.32081,-20.33083 -45.32081,-45.32081 0,-24.97998 20.34083,-45.32081 45.32081,-45.32081 z"
+            />
+          </svg>
+        </a>
+      </li>
+    </ul>
 
-        <address class="footer__address">
-            <p>
-                <a href="mailto:{{ site.author.email }}" itemprop="email" class="u-email">{{ site.author.email }}</a>
-            </p>
-            <p>
-                <!-- TODO Change the link once business is added to Google Maps -->
-                <a href="http://maps.google.com/?q=Kollwitzstraße 82, Berlin-Pankow, Germany" target="_blank" rel="noopener noreferrer" class="p-adr" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                    <span itemprop="streetAddress" class="p-street-address">{{ site.business.address.streetAddress }}</span>,
-                    <span itemprop="postalCode" class="p-postal-code">{{ site.business.address.postalCode }}</span>
-                    <span itemprop="addressLocality" class="p-locality">{{ site.business.address.locality }}</span>
-                    <span itemprop="addressCountry" class="p-country-name" hidden>, {{ site.business.address.countryName }}</span>
-                </a>
-                <span itemprop="geo" itemscope itemtype="https://schema.org/GeoCoordinates" class="h-geo">
-                    <data itemprop="latitude" content="{{ site.coordinates.latitude }}" class="p-latitude" value="{{ site.coordinates.latitude }}" />
-                    <data itemprop="longitude" content="{{ site.coordinates.longitude }}" class="p-longitude" value="{{ site.coordinates.longitude }}" />
-                </span>
-            </p>
-        </address>
-        <meta itemprop="url" content="{{ site.url }}" />
-    </div>
+    <address class="footer__address">
+      <p>
+        <a
+          href="mailto:{{ site.author.email }}"
+          itemprop="email"
+          class="u-email"
+        >
+          {{- site.author.email -}}
+        </a>
+      </p>
+      <p>
+        <!-- TODO Change the link once business is added to Google Maps -->
+        <a
+          href="http://maps.google.com/?q=Kollwitzstraße 82, Berlin-Pankow, Germany"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-adr"
+          itemprop="address"
+          itemscope
+          itemtype="https://schema.org/PostalAddress"
+        >
+          <span itemprop="streetAddress" class="p-street-address">{{ site.business.address.streetAddress }}</span>,
+          <span itemprop="postalCode" class="p-postal-code">{{ site.business.address.postalCode }}</span>
+          <span itemprop="addressLocality" class="p-locality">{{ site.business.address.locality }}</span>
+          <span itemprop="addressCountry" class="p-country-name" hidden>, {{ site.business.address.countryName }}</span>
+        </a>
+        <span
+          itemprop="geo"
+          itemscope
+          itemtype="https://schema.org/GeoCoordinates"
+          class="h-geo"
+        >
+          <data
+            itemprop="latitude"
+            content="{{ site.coordinates.latitude }}"
+            class="p-latitude"
+            value="{{ site.coordinates.latitude }}"
+          />
+          <data
+            itemprop="longitude"
+            content="{{ site.coordinates.longitude }}"
+            class="p-longitude"
+            value="{{ site.coordinates.longitude }}"
+          />
+        </span>
+      </p>
+    </address>
+    <meta itemprop="url" content="{{ site.url }}">
+  </div>
 
-    <small class="footer__legal">
-        <p class="footer__copyright">
-            &copy;
-            <a
-                href="{{ site.url }}"
-                class="p-url"
-            >{{ site.author.name }}</a>
-        </p>
+  <small class="footer__legal">
+    <p class="footer__copyright">
+      &copy;
+      <a href="{{ site.url }}" class="p-url">{{ site.author.name }}</a>
+    </p>
 
-        <ul class="footer__legal-links">
-            <li>
-                <a href="/imprint/index.html">Imprint</a>
-            </li>
-            <li>
-                <a href="/data-privacy/index.html">Data privacy</a>
-            </li>
-        </ul>
-    </small>
+    <ul class="footer__legal-links">
+      <li>
+        <a href="/imprint/index.html">Imprint</a>
+      </li>
+      <li>
+        <a href="/data-privacy/index.html">Data privacy</a>
+      </li>
+    </ul>
+  </small>
 </footer>
 
 <style data-bundle>
-    .footer
-    {
-        --spacing: var(--spacing-medium);
+  .footer {
+    --spacing: var(--spacing-medium);
 
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
 
-        margin-block: var(--spacing-large) var(--spacing);
-        border-block-start: var(--thickness-thin) solid var(--colour-separator);
-        padding-block-start: var(--spacing);
+    margin-block: var(--spacing-large) var(--spacing);
+    border-block-start: var(--thickness-thin) solid var(--colour-separator);
+    padding-block-start: var(--spacing);
 
-        :where(p),
-        :where(ul)
-        {
-            margin: 0;
-        }
+    :where(p),
+    :where(ul) {
+      margin: 0;
     }
+  }
 
-    .footer__contact
-    {
-        display: flex;
-        gap: var(--spacing-small) var(--spacing-medium);
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
+  .footer__contact {
+    display: flex;
+    gap: var(--spacing-small) var(--spacing-medium);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer__legal {
+    display: flex;
+    gap: var(--spacing-small) var(--spacing-medium);
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .footer__social-links,
+  .footer__legal-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    > :where(li) {
+      display: inline-block;
     }
+  }
 
-    .footer__legal
-    {
-        display: flex;
-        gap: var(--spacing-small) var(--spacing-medium);
-        justify-content: space-between;
-        flex-wrap: wrap;
+  .footer__social-links {
+    > :where(li > a) {
+      :where(img, svg) {
+        --size: 4em;
+        block-size: var(--size);
+        inline-size: var(--size);
+      }
     }
+  }
 
-    .footer__social-links,
-    .footer__legal-links
-    {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-
-        > :where(li)
-        {
-            display: inline-block;
-        }
-    }
-
-    .footer__social-links
-    {
-        > :where(li > a)
-        {
-            :where(img, svg)
-            {
-                --size: 4em;
-                block-size: var(--size);
-                inline-size: var(--size);
-            }
-        }
-    }
-
-    .footer__legal-links
-    {
-        display: flex;
-        gap: var(--spacing-tiny) var(--spacing-medium);
-        justify-content: center;
-        text-align: center;
-        flex-wrap: wrap;
-    }
+  .footer__legal-links {
+    display: flex;
+    gap: var(--spacing-tiny) var(--spacing-medium);
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
 </style>

@@ -1,48 +1,39 @@
-<section
-    id="{{ id }}"
-    aria-labelledby="{{ id }}--heading"
-    class="section"
->
-    <img
-        alt=""
-        src="{{ imageSrc }}"
-        eleventy:pictureattr:class="section__picture"
-        class="section__image"
-    />
+<section id="{{ id }}" aria-labelledby="{{ id }}--heading" class="section">
+  <img
+    alt=""
+    src="{{ imageSrc }}"
+    eleventy:pictureattr:class="section__picture"
+    class="section__image"
+  >
 
-    <div class="section__content">
-        <h2 id="{{ id }}--heading">
-            {{ heading }}
-        </h2>
+  <div class="section__content">
+    <h2 id="{{ id }}--heading">{{ heading }}</h2>
 
-        {{ content }}
+    {{ content }}
 
-        <a
-            href="{{ linkHref }}"
-            aria-describedby="{{ id }}"
-            data-view-transition-name="page-title--{{ linkHref | slugify }}"
-        >
-            Learn more
-        </a>
-    </div>
+    <a
+      href="{{ linkHref }}"
+      aria-describedby="{{ id }}"
+      data-view-transition-name="page-title--{{ linkHref | slugify }}"
+    >
+      Learn more
+    </a>
+  </div>
 </section>
 
 <script type="module" data-bundle>
-    window.addEventListener('click', (event) => {
-        const anchor = event.target;
-        const viewTransitionName = anchor.dataset.viewTransitionName;
-        debugger;
-        if (!['', 'none'].includes(viewTransitionName))
-        {
-            anchor.style.viewTransitionName = viewTransitionName;
-        }
-        const allAnchors = Array.from(document.querySelectorAll(`[data-view-transition-name="${viewTransitionName}"]`))
-        for (const el of allAnchors)
-        {
-            if (el !== anchor)
-            {
-                el.style.viewTransitionName = 'none'
-            }
-        }
-    });
+  window.addEventListener('click', (event) => {
+    const anchor = event.target;
+    const viewTransitionName = anchor.dataset.viewTransitionName;
+    debugger;
+    if (!['', 'none'].includes(viewTransitionName)) {
+      anchor.style.viewTransitionName = viewTransitionName;
+    }
+    const allAnchors = Array.from(document.querySelectorAll(`[data-view-transition-name="${viewTransitionName}"]`));
+    for (const el of allAnchors) {
+      if (el !== anchor) {
+        el.style.viewTransitionName = 'none';
+      }
+    }
+  });
 </script>
