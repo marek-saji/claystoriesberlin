@@ -25,6 +25,7 @@ const site = {
         latitude: 52.5376384,
         longitude: 13.4173513,
       },
+      mapUrl: 'http://maps.google.com/?q=Kollwitzstraße 82, Berlin-Pankow, Germany',
     },
   },
 };
