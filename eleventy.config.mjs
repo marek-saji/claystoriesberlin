@@ -37,6 +37,10 @@ export default function createConfig(eleventyConfig) {
       },
     });
 
+    eleventyConfig.addShortcode("url_encode", function (value) {
+      return encodeURIComponent(value);
+    });
+
     // source: https://danburzo.ro/notes/eleventy-og-images/
     eleventyConfig.addShortcode("og_image", async function (src) {
       const dir = path.dirname(this.page.inputPath);

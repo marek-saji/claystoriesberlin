@@ -1,0 +1,37 @@
+---
+layout: default.html
+title: "Gift Voucher"
+# description: "TODO"
+og_image: "./image.jpeg"
+---
+{% include 'page-title.html' %}
+
+<img
+  alt=""
+  src="./image.jpeg"
+  style="view-transition-name: page-image--{{ page.url | slugify }}"
+>
+
+<p>
+  [TODO description]
+</p>
+
+<div class="shop-actions">
+  {%- capture subject -%}
+    Booking {{ title }}
+  {%- endcapture -%}
+  {%- capture body -%}
+  {%- endcapture -%}
+  <a
+    href="mailto:{{ site.author.email }}?subject={{ subject | url_encode }}&body={{ body | url_encode }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="shop-action-button"
+  >
+    book by e-mail
+  </a>
+</div>
+
+<style data-bundle>
+  {% include 'styles/components/shop.css' %}
+</style>
