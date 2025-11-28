@@ -11,7 +11,7 @@ const site = {
   name: siteName,
   author: {
     name,
-    email: "claystories.berlin@gmail.com",
+    email: "hello@claystoriesberlin.com",
   },
   business: {
     name: companyName,
