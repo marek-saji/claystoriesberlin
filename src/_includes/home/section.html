@@ -1,9 +1,12 @@
 <section id="{{ id }}" aria-labelledby="{{ id }}--heading" class="section">
+  {% assign pageId = linkHref | slugify %}
   <img
     alt=""
-    src="{{ imageSrc }}"
+    src="{{ linkHref }}/image.jpeg"
     eleventy:pictureattr:class="section__picture"
     class="section__image"
+    {% assign defaultViewTransitionName = 'page-image--' | append: pageId %}
+    style="view-transition-name: {{ imageViewTransitionName | default: defaultViewTransitionName }}"
   >
 
   <div class="section__content">
@@ -14,7 +17,7 @@
     <a
       href="{{ linkHref }}"
       aria-describedby="{{ id }}"
-      data-view-transition-name="page-title--{{ linkHref | slugify }}"
+      data-view-transition-name="page-title--{{ pageId }}"
       class="section__link"
     >
       Learn more
@@ -26,7 +29,6 @@
   window.addEventListener('click', (event) => {
     const anchor = event.target;
     const viewTransitionName = anchor.dataset.viewTransitionName;
-    debugger;
     if (!['', 'none'].includes(viewTransitionName)) {
       anchor.style.viewTransitionName = viewTransitionName;
     }

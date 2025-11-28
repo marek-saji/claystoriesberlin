@@ -10,11 +10,7 @@ eleventyNavigation:
 ---
 {% include 'page-title.html' %}
 
-<img
-  alt=""
-  src="{{ og_image }}"
-  style="view-transition-name: page-image--{{ page.url | slugify }}"
->
+{% include 'page-image.html' %}
 
 <p>
   <strong>November & December special: book a private class for the price of a group class!</strong>

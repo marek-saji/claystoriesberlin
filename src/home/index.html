@@ -28,7 +28,6 @@ og_image: "./image.png"
 {% endcapture %}
 {% include 'home/section.html',
   id: 'studio-memberships',
-  imageSrc: '../studio-memberships/image.jpeg',
   linkHref: '/studio-memberships/',
   heading: 'Pottery studio memberships',
   content: content
@@ -42,10 +41,9 @@ og_image: "./image.png"
 {% endcapture %}
 {% include 'home/section.html',
   id: 'pottery-courses-and-workshops',
-  imageSrc: '../pottery-courses-and-workshops/image.jpeg',
   linkHref: '/pottery-courses-and-workshops/',
-  heading: 'Pottery courses and ceramic
-workshops in Berlin',
+  imageViewTransitionName: 'page-image--pottery-courses-and-workshops-wheelthrowing',
+  heading: 'Pottery courses and ceramic workshops in Berlin',
   content: content
 %}
 
@@ -57,8 +55,9 @@ workshops in Berlin',
 {% endcapture %}
 {%
   include 'home/section.html' id: 'shop-handmade-ceramics',
-  imageSrc: '../shopceramics/image.jpeg', linkHref: '/shopceramics/',s heading:
-  'Shop handmade ceramics', content: content,
+  linkHref: '/shopceramics/',
+  heading: 'Shop handmade ceramics',
+  content: content,
 %}
 
 {% capture content %}
@@ -70,10 +69,8 @@ workshops in Berlin',
 {% endcapture %}
 {% include 'home/section.html',
   id: 'wildclay-berlin',
-  imageSrc: '../wild-clay/wildclay berlin.jpg',
   linkHref: '/wild-clay/',
-  heading: 'Wild
-clay: stories captured in clay',
+  heading: 'Wild clay: stories captured in clay',
   content: content
 %}
 
@@ -89,7 +86,6 @@ clay: stories captured in clay',
 {% endcapture %}
 {% include 'home/section.html',
   id: 'about-us',
-  imageSrc: '../about/claystories aniarachel.jpg',
   linkHref: '/about/',
   heading: 'About us',
   content: content

@@ -6,11 +6,7 @@ og_image: "./image.jpeg"
 ---
 {% include 'page-title.html' %}
 
-<img
-  alt=""
-  src="{{ og_image }}"
-  style="view-transition-name: page-image--{{ page.url | slugify }}"
->
+{% include 'page-image.html' %}
 
 <p>
   [TODO description]
