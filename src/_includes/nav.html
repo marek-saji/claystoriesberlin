@@ -31,11 +31,15 @@
 <style data-bundle>
   .nav__list {
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    place-content: center;
-    gap: var(--spacing-small) var(--spacing-medium);
     padding: 0;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .nav__item {
+    display: inline-block;
+    margin-block: calc(var(--spacing-small) / 2);
+    margin-inline: calc(var(--spacing-medium) / 2);
   }
 
   .nav__link {
