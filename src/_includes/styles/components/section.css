@@ -17,6 +17,7 @@
 .section__content {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   gap: var(--spacing-medium);
   hyphens: auto;
   hyphenate-limit-chars: 10 5 5;
