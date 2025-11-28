@@ -1,4 +1,5 @@
 .section {
+  position: relative;
   display: flex;
   gap: var(--spacing-medium) var(--spacing-large);
   flex-direction: column;
@@ -42,6 +43,12 @@
   > h3 {
     font: var(--typo-heading-3);
   }
+}
+
+.section__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 
 @media (width > 45em) {
