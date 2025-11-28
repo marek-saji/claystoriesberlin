@@ -19,12 +19,12 @@ Gift vouchers can be used for classes, clay dates or to buy handmade ceramics at
   {%- capture body -%}
   {%- endcapture -%}
   <a
-    href="mailto:{{ site.author.email }}?subject={{ subject | url_encode }}&body={{ body | url_encode }}"
+    href="{{ site.business.address.mapUrl }}"
     target="_blank"
     rel="noopener noreferrer"
     class="shop-action-button"
   >
-    book via e-mail
+    buy at our studio
   </a>
 </div>
 
