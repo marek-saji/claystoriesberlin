@@ -1,10 +1,7 @@
-.shop-section {
-  margin-block: var(--spacing-large);
-}
-
 .shop-items {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  margin-block: var(--spacing-large);
   padding: 0;
   list-style: none;
   gap: var(--spacing-large);

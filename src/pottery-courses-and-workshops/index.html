@@ -16,55 +16,55 @@ eleventyNavigation:
   <strong>November & December special: book a private class for the price of a group class!</strong>
 </p>
 
-<section aria-labelledby="shop-heading" class="shop-section">
-  <ul class="shop-items">
-    <li class="shop-item">
-      {% assign url = page.url | append: 'wheel/' %}
-      <img
-        alt=""
-        src="{{ url }}/image.jpeg"
-        style="view-transition-name: page-image--{{ url | slugify }}"
+<ul class="shop-items">
+  <li class="shop-item">
+    {% assign url = page.url | append: 'wheel/' %}
+    <img
+      alt=""
+      src="{{ url }}/image.jpeg"
+      style="view-transition-name: page-image--{{ url | slugify }}"
       >
       <a
         href="{{ url }}"
         class="shop-item__link"
         style="view-transition-name: page-title--{{ url | slugify }}"
-      >
+        >
         Pottery wheel course
       </a>
-    </li>
-    <li class="shop-item">
-      {% assign url = page.url | append: 'handbuilding/' %}
-      <img
-        alt=""
-        src="{{ url }}/image.jpeg"
-        style="view-transition-name: page-image--{{ url | slugify }}"
+  </li>
+
+  <li class="shop-item">
+    {% assign url = page.url | append: 'handbuilding/' %}
+    <img
+      alt=""
+      src="{{ url }}/image.jpeg"
+      style="view-transition-name: page-image--{{ url | slugify }}"
       >
       <a
         href="{{ url }}"
         class="shop-item__link"
         style="view-transition-name: page-title--{{ url | slugify }}"
-      >
+        >
         Handbuilding course
       </a>
-    </li>
-    <li class="shop-item">
-      {% assign url = page.url | append: 'gift-voucher/' %}
-      <img
-        alt=""
-        src="{{ url }}/image.jpeg"
-        style="view-transition-name: page-image--{{ url | slugify }}"
+  </li>
+
+  <li class="shop-item">
+    {% assign url = page.url | append: 'gift-voucher/' %}
+    <img
+      alt=""
+      src="{{ url }}/image.jpeg"
+      style="view-transition-name: page-image--{{ url | slugify }}"
       >
       <a
         href="{{ url }}"
         class="shop-item__link"
         style="view-transition-name: page-title--{{ url | slugify }}"
-      >
+        >
         Gift voucher
       </a>
-    </li>
-  </ul>
-  <style data-bundle>
-    {% include 'styles/components/shop.css' %}
-  </style>
-</section>
+  </li>
+</ul>
+<style data-bundle>
+{% include 'styles/components/shop.css' %}
+</style>
