@@ -6,3 +6,6 @@
 
 # build artifacts
 /_site
+
+# cache
+/.cache
