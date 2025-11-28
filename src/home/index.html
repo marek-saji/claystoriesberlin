@@ -6,93 +6,102 @@ description: "Pottery collective in Berlin"
 og_image: "./image.png"
 ---
 <p class="intro">
-    <strong class="p-name p-org">Clay Stories</strong> is a
-    <span itemprop="description"><span class="p-category">pottery studio and collective based</span> in the heart of Berlin Prenzlauerberg.</span>
-    <span class="p-note">
-        Our goal is to create meaningful connections through the art of ceramics. We believe that every piece of clay tells a story, and we are here to help you tell yours.
-    </span>
+  <strong class="p-name p-org">Clay Stories</strong> is a
+  <span itemprop="description">
+    <span class="p-category">pottery studio and collective based</span>
+    in the
+    <a href="{{ site.business.address.mapUrl }}" target="_blank" rel="noopener noreferrer"
+    >heart of Berlin Prenzlauerberg</a>.
+  </span>
+  <span class="p-note">
+    Our goal is to create meaningful connections through the art of ceramics. We believe that every piece of clay tells
+    a story, and we are here to help you tell yours.
+  </span>
 </p>
 
 <style data-bundle>
-    .intro
-    {
-        text-align: center;
-        text-wrap: balance;
-    }
+  .intro {
+    text-align: center;
+    text-wrap: balance;
+  }
 </style>
 
 {% capture content %}
-    <p>
-        Join our pottery studio in Prenzlauer Berg, Berlin.
-    </p>
+<p>Join our pottery studio in Prenzlauer Berg, Berlin.</p>
 {% endcapture %}
-{%
-    include 'home/section.html'
-    id: 'studio-memberships',
-    imageSrc: '../studio-memberships/image.jpeg',
-    linkHref: '/studio-memberships/',
-    heading: 'Pottery studio memberships',
-    content: content,
+{% include 'home/section.html',
+  id: 'studio-memberships',
+  linkHref: '/studio-memberships/',
+  heading: 'Pottery studio memberships',
+  content: content
 %}
 
 {% capture content %}
-    <p>
-        Join our wheel&shy;throwing classes, hand&shy;building workshops, book a private session or a team event.
-    </p>
+<p>
+  Join our wheel&shy;throwing classes, hand&shy;building workshops, book a
+  private session or a team event.
+</p>
 {% endcapture %}
-{%
-    include 'home/section.html'
-    id: 'pottery-courses-and-workshops',
-    imageSrc: '../pottery-courses-and-workshops/claystories workshop.jpg',
-    linkHref: '/pottery-courses-and-workshops/',
-    heading: 'Pottery courses and ceramic workshops in Berlin',
-    content: content,
+{% include 'home/section.html',
+  id: 'pottery-courses-and-workshops',
+  linkHref: '/pottery-courses-and-workshops/',
+  imageViewTransitionName: 'page-image--pottery-courses-and-workshops-wheelthrowing',
+  heading: 'Pottery courses and ceramic workshops in Berlin',
+  content: content
 %}
 
 {% capture content %}
-    <p>
-        Visit our studio to buy unique handmade ceramics created by our collective of artists.
-    </p>
+<p>
+  Visit our studio to buy unique handmade ceramics created by our collective of
+  artists.
+</p>
 {% endcapture %}
 {%
-    include 'home/section.html'
-    id: 'shop-handmade-ceramics',
-    imageSrc: '../shopceramics/image.jpeg',
-    linkHref: '/shopceramics/',s
-    heading: 'Shop handmade ceramics',
-    content: content,
+  include 'home/section.html' id: 'shop-handmade-ceramics',
+  linkHref: '/shopceramics/',
+  heading: 'Shop handmade ceramics',
+  content: content,
 %}
 
 {% capture content %}
-    <p>
-        Learn you how to search for wild clay and make pottery with a deep connection to your local environment.
-    </p>
-    <p>
-        Wild clay workshops coming soon!
-    </p>
+<p>
+  Book a clay date for two and spend a cosy time creating together. 
+</p>
 {% endcapture %}
-{%
-    include 'home/section.html'
-    id: 'wildclay-berlin',
-    imageSrc: '../wild-clay/wildclay berlin.jpg',
-    linkHref: '/wild-clay/',
-    heading: 'Wild clay: stories captured in clay',
-    content: content,
+{% include 'home/section.html',
+  id: 'clay-date',
+  linkHref: '/clay-date/',
+  heading: 'Clay Date',
+  content: content
 %}
 
 {% capture content %}
-    <p>
-        We’re Rachel and Anna, two ceramic artists from Berlin, passionate about clay and storytelling.
-    </p>
-    <p>
-        We’re looking forward to welcoming you to our pottery studio and sharing our love for clay with you.
-    </p>
+<p>
+  Learn you how to search for wild clay and make pottery with a deep connection
+  to your local environment.
+</p>
+<p>Wild clay workshops coming soon!</p>
 {% endcapture %}
-{%
-    include 'home/section.html'
-    id: 'about-us',
-    imageSrc: '../about/claystories aniarachel.jpg',
-    linkHref: '/about/',
-    heading: 'About us',
-    content: content,
+{% include 'home/section.html',
+  id: 'wildclay-berlin',
+  linkHref: '/wild-clay/',
+  heading: 'Wild clay: stories captured in clay',
+  content: content
+%}
+
+{% capture content %}
+<p>
+  We’re Rachel and Anna, two ceramic artists from Berlin, passionate about clay
+  and storytelling.
+</p>
+<p>
+  We’re looking forward to welcoming you to our pottery studio and sharing our
+  love for clay with you.
+</p>
+{% endcapture %}
+{% include 'home/section.html',
+  id: 'about-us',
+  linkHref: '/about/',
+  heading: 'About us',
+  content: content
 %}

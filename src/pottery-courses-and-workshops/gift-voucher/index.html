@@ -1,0 +1,33 @@
+---
+layout: default.html
+title: "Gift Voucher"
+# description: "TODO"
+og_image: "./image.jpeg"
+---
+{% include 'page-title.html' %}
+
+{% include 'page-image.html' %}
+
+<p>
+Gift vouchers can be used for classes, clay dates or to buy handmade ceramics at our shop - a great way to treat someone to creativity and meaningful experiences.
+</p>
+
+<div class="shop-actions">
+  {%- capture subject -%}
+    Booking {{ title }}
+  {%- endcapture -%}
+  {%- capture body -%}
+  {%- endcapture -%}
+  <a
+    href="mailto:{{ site.author.email }}?subject={{ subject | url_encode }}&body={{ body | url_encode }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="shop-action-button"
+  >
+    book via e-mail
+  </a>
+</div>
+
+<style data-bundle>
+  {% include 'styles/components/shop.css' %}
+</style>

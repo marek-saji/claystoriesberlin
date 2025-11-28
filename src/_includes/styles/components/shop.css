@@ -1,0 +1,31 @@
+.shop-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  margin-block: var(--spacing-large);
+  padding: 0;
+  list-style: none;
+  gap: var(--spacing-large);
+}
+
+.shop-item {
+  position: relative;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 2;
+  gap: var(--spacing-tiny);
+  font-weight: bolder;
+}
+
+.shop-item__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.shop-actions {
+  text-align: center;
+}
+
+.shop-action-button {
+  font: var(--typo-heading-3);
+}

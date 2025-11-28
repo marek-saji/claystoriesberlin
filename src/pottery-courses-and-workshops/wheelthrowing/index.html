@@ -1,0 +1,56 @@
+---
+layout: default.html
+title: "Pottery wheel course"
+# description: "TODO"
+og_image: "../image.jpeg"
+eleventyNavigation:
+  key: pottery-wheel-course
+  title: "Pottery Wheel Course"
+  parent: pottery-courses-and-workshops
+---
+{% include 'page-title.html' %}
+
+{% include 'page-image.html' %}
+
+<p>
+  <strong>November & December special: book a private class for the price of a group class!</strong>
+</p>
+
+<p>
+  <b>Try the wheel - wheelthrowing class for beginners:</b>
+  <br>
+  2,5&nbsp;hours / 85&nbsp;eur per person <br>
+  Private wheelthrowing class: 2,5&nbsp;hours / 115&nbsp;eur
+</p>
+
+<p>
+  This class is perfect for anyone eager to experience working on the potter’s wheel for the first time. Over
+  2.5&nbsp;hours, you’ll be introduced to the essential techniques of wheel throwing, we’ll guide you through preparing
+  your clay, finding balance on the wheel and shaping simple vessels.
+</p>
+
+<p>
+  After the class, we will take care of the next steps: bisque firing, glazing, and the final firing. You will get to
+  choose two pieces that will be glazed by us in the glaze of your choice. Your pieces will be ready to pick up in about
+  3–4 weeks.
+</p>
+
+<div class="shop-actions">
+  {%- capture subject -%}
+    Booking {{ title }}
+  {%- endcapture -%}
+  {%- capture body -%}
+  {%- endcapture -%}
+  <a
+    href="mailto:{{ site.author.email }}?subject={{ subject | url_encode }}&body={{ body | url_encode }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="shop-action-button"
+  >
+    book via e-mail
+  </a>
+</div>
+
+<style data-bundle>
+  {% include 'styles/components/shop.css' %}
+</style>

@@ -1,0 +1,56 @@
+---
+layout: default.html
+title: "Handbuilding course"
+# description: "TODO"
+og_image: "./image.jpeg"
+eleventyNavigation:
+  key: handbuilding
+  title: "Handbuilding course"
+  parent: pottery-courses-and-workshops
+---
+{% include 'page-title.html' %}
+
+{% include 'page-image.html' %}
+
+<p>
+  <strong>November & December special: book a private class for the price of a group class!</strong>
+</p>
+
+<p>
+  <b>Handbuilding workshops for beginners:</b>
+  <br>
+  2,5&nbsp;hours / 85&nbsp;eur per person <br>
+  Private wheelthrowing class: 2,5&nbsp;hours / 115&nbsp;eur <br>
+</p>
+
+<p>
+  In this introduction to handbuilding you will learn techniques like slab building, making pinch pots and coiling to
+  shape your own distinctive pieces. You will also learn to experiment with surface decoration, including texturing and
+  working with engobes, to add depth and character to your creations. Finished pieces will be glazed by us in the glaze
+  of your choice and will be ready to pick up in about 3-4 weeks.
+</p>
+
+<p>
+  We invite you to explore the process with curiosity, enjoy the feel of the clay, and discover the unique pieces you
+  are capable of making.
+</p>
+
+<div class="shop-actions">
+  {%- capture subject -%}
+    Booking {{ title }}
+  {%- endcapture -%}
+  {%- capture body -%}
+  {%- endcapture -%}
+  <a
+    href="mailto:{{ site.author.email }}?subject={{ subject | url_encode }}&body={{ body | url_encode }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="shop-action-button"
+  >
+    book via e-mail
+  </a>
+</div>
+
+<style data-bundle>
+  {% include 'styles/components/shop.css' %}
+</style>
