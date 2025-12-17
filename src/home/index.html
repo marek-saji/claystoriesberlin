@@ -3,7 +3,7 @@ permalink: /
 layout: default.html
 title: ""
 description: "Pottery collective in Berlin"
-og_image: "./image.png"
+og_image: "./image.jpg"
 ---
 <p class="intro">
   <strong class="p-name p-org">Clay Stories</strong> is a
@@ -50,18 +50,6 @@ og_image: "./image.png"
   content: content
 %}
 
-{% capture content %}
-<p>
-  Visit our studio to buy unique handmade ceramics created by our collective of
-  artists.
-</p>
-{% endcapture %}
-{%
-  include 'home/section.html' id: 'shop-handmade-ceramics',
-  linkHref: '/shopceramics/',
-  heading: 'Shop handmade ceramics',
-  content: content,
-%}
 
 {% capture content %}
 <p>
@@ -73,6 +61,19 @@ og_image: "./image.png"
   linkHref: '/clay-date/',
   heading: 'Clay Date',
   content: content
+%}
+
+{% capture content %}
+<p>
+  Visit our studio to buy unique handmade ceramics created by our collective of
+  artists.
+</p>
+{% endcapture %}
+{%
+  include 'home/section.html' id: 'shop-handmade-ceramics',
+  linkHref: '/shopceramics/',
+  heading: 'Shop handmade ceramics',
+  content: content,
 %}
 
 {% capture content %}
