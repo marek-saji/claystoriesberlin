@@ -18,6 +18,7 @@ export default function createConfig(eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("**/*.woff2");
   eleventyConfig.addPassthroughCopy("**/*.mjs");
+  eleventyConfig.addPassthroughCopy("**/*.pdf")
 
   {
     const outputDir = "node_modules/.cache/@11ty/eleventy-img/out/";
