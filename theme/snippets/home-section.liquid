@@ -1,0 +1,26 @@
+<section id="{{ id }}" aria-labelledby="{{ id }}--heading" class="section">
+  {%- if image -%}
+    <img
+      alt=""
+      src="{{ image | asset_url }}"
+      class="section__image"
+      loading="lazy"
+    >
+  {%- endif -%}
+
+  <div class="section__content">
+    <h2 id="{{ id }}--heading">{{ heading }}</h2>
+
+    {{ content }}
+
+    {%- if link_href -%}
+      <a
+        href="{{ link_href }}"
+        aria-describedby="{{ id }}"
+        class="section__link"
+      >
+        Learn more
+      </a>
+    {%- endif -%}
+  </div>
+</section>

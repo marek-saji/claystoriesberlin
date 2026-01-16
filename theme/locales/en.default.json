@@ -1,0 +1,16 @@
+{
+  "general": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you requested does not exist."
+    }
+  },
+  "layout": {
+    "navigation": {
+      "menu": "Menu"
+    },
+    "footer": {
+      "copyright": "© {{ year }} {{ shop_name }}"
+    }
+  }
+}

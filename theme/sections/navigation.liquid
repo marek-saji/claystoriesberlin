@@ -1,0 +1,24 @@
+<nav aria-label="Main navigation" class="nav">
+  {%- if linklists.main.links.size > 0 -%}
+    <ul class="nav__list">
+      {%- for link in linklists.main.links -%}
+        <li class="nav__item">
+          <a
+            href="{{ link.url }}"
+            {% if link.active %}aria-current="page"{% endif %}
+            class="nav__link"
+          >
+            {{ link.title }}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</nav>
+
+{% schema %}
+{
+  "name": "Navigation",
+  "settings": []
+}
+{% endschema %}

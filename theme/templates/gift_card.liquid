@@ -1,0 +1,11 @@
+<h1>{{ gift_card.balance | money }}</h1>
+
+<p>Gift card code: <strong>{{ gift_card.code }}</strong></p>
+
+{%- if gift_card.expired -%}
+  <p>This gift card has expired.</p>
+{%- elsif gift_card.enabled -%}
+  <p>Use this code at checkout.</p>
+{%- else -%}
+  <p>This gift card is disabled.</p>
+{%- endif -%}

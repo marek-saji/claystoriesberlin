@@ -1,0 +1,36 @@
+{% render 'page-title' %}
+
+{% render 'page-image', image: page.image %}
+
+<img src="{{ 'claydate-claystories.jpg' | asset_url }}" alt="Clay Date">
+
+<p>
+  Looking for a unique and memorable experience to share with your friends? Our <em>clay date</em> is the perfect way to connect, create, and have fun together.
+</p>
+
+<p>Here's how it works:</p>
+<ul>
+  <li>Book a table for 2 people for up to 2&nbsp;hours.</li>
+  <li>Get clay, tools and a booklet with instructions and ideas.</li>
+  <li>Get creative - make a cup, vase or whatever you like, and spend a cosy time with your friend.</li>
+  <li>Pick up your finished pieces in about 2-3&nbsp;weeks, we will take care of the firing and glazing!</li>
+</ul>
+
+<p>
+  55 EUR per person. <br>*all materials and firing included. Book
+  <a
+    href="mailto:{{ settings.author_email }}?subject=Clay%20Date%20Booking"
+    target="_blank"
+    rel="noopener noreferrer"
+  >via email</a>
+  or
+  <a
+    href="{{ settings.map_url }}"
+    target="_blank"
+    rel="noopener noreferrer"
+  >at our studio</a>.
+</p>
+
+<br>
+
+<img src="{{ 'claydate2.jpg' | asset_url }}" alt="Clay Date">

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preload" href="{{ 'NotoSans.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <meta property="og:type" content="website">
+    <title>
+      {%- if page_title != blank and page_title != settings.site_name -%}
+        {{ page_title }} — {{ settings.site_name }}
+      {%- else -%}
+        {{ settings.site_name }}
+      {%- endif -%}
+    </title>
+    <meta property="og:site_name" content="{{ settings.site_name }}">
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:locale" content="en_GB">
+    {%- if page_description != blank -%}
+      <meta name="description" content="{{ page_description }}">
+      <meta property="og:description" content="{{ page_description }}">
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta name="author" content="{{ settings.author_name }}">
+
+    {{ content_for_header }}
+
+    <script>
+      window.Shopify = window.Shopify || {};
+      window.Shopify.customerPrivacy = window.Shopify.customerPrivacy || {};
+    </script>
+  </head>
+  <body>
+    <div class="root h-card" itemscope itemtype="https://schema.org/LocalBusiness">
+      {% section 'header' %}
+
+      {% section 'navigation' %}
+
+      <main class="main" aria-label="{{ page_title }}">
+        {{ content_for_layout }}
+      </main>
+
+      {% section 'footer' %}
+    </div>
+  </body>
+</html>

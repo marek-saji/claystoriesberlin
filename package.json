@@ -1,13 +1,15 @@
 {
+  "name": "claystoriesberlin-shopify-theme",
+  "version": "1.0.0",
+  "description": "Shopify theme for Clay Stories Berlin",
   "scripts": {
-    "dev": "eleventy --incremental --serve --port=8081",
-    "build": "eleventy"
+    "dev": "shopify theme dev --path=theme --store=test-store-1100000000000000000000000000000003496.myshopify.com",
+    "pull": "shopify theme pull --path=theme --store=test-store-1100000000000000000000000000000003496.myshopify.com",
+    "check": "shopify theme check --path=theme --store=test-store-1100000000000000000000000000000003496.myshopify.com",
+    "push": "shopify theme push --path=theme --store=test-store-1100000000000000000000000000000003496.myshopify.com"
   },
-  "type": "module",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2",
-    "@11ty/eleventy-img": "^6.0.4",
-    "@11ty/eleventy-navigation": "^1.0.4",
+    "@shopify/cli": "^3.88.1",
     "@shopify/prettier-plugin-liquid": "^1.10.0"
   }
 }

@@ -1,0 +1,9 @@
+{% render 'page-title' %}
+
+{%- if page.image -%}
+  {% render 'page-image', image: page.image %}
+{%- endif -%}
+
+<div class="page-content">
+  {{ page.content }}
+</div>

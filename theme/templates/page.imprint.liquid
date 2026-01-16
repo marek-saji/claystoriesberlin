@@ -1,0 +1,7 @@
+{% render 'page-title' %}
+
+{%- for policy in shop.policies -%}
+  {%- if policy.url == '/policies/legal-notice' -%}
+    {{ policy.body }}
+  {%- endif -%}
+{%- endfor -%}

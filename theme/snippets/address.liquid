@@ -1,0 +1,5 @@
+{%- for policy in shop.policies -%}
+  {%- if policy.url == '/policies/contact-information' -%}
+    {{ policy.body }}
+  {%- endif -%}
+{%- endfor -%}

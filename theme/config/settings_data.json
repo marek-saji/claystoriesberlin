@@ -1,0 +1,25 @@
+{
+  "current": {
+    "site_name": "Clay Stories Berlin",
+    "author_name": "Clay Stories",
+    "author_email": "hello@claystoriesberlin.com",
+    "business_name": "Selter & Margoszczyn GbR",
+    "street_address": "Kollwitzstraße 82",
+    "postal_code": "10435",
+    "city": "Berlin",
+    "country": "Germany",
+    "map_url": "https://maps.app.goo.gl/j8b8MTzyYrNSuMeP9",
+    "instagram_url": "https://www.instagram.com/claystories.berlin",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  }
+}

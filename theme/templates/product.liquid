@@ -1,0 +1,105 @@
+{% render 'page-title' %}
+
+{%- if product.description != blank -%}
+  <div class="product-description">
+    {{ product.description }}
+  </div>
+{%- endif -%}
+
+{%- if product.images.size > 0 -%}
+  <div class="product-images">
+    {%- for image in product.images -%}
+      <img
+        src="{{ image | image_url: width: 800 }}"
+        alt="{{ image.alt | escape }}"
+        loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+      >
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+<div class="product-info">
+  <p class="product-price">{{ product.selected_or_first_available_variant.price | money }}</p>
+
+  {%- if product.available -%}
+    <form action="/cart/add" method="post">
+      {%- if product.variants.size > 1 -%}
+        {%- for option in product.options_with_values -%}
+          <div class="product-option">
+            <label for="option-{{ option.name | handleize }}">{{ option.name }}</label>
+            <select 
+              id="option-{{ option.name | handleize }}" 
+              name="option-{{ option.name | handleize }}"
+              class="product-option__select"
+              onchange="updateVariant()"
+            >
+              {%- for value in option.values -%}
+                <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>
+                  {{ value }}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endfor -%}
+        <select name="id" id="variant-select" style="display: none;">
+          {%- for variant in product.variants -%}
+            <option 
+              value="{{ variant.id }}" 
+              data-options="{{ variant.options | join: ',' }}"
+              data-price="{{ variant.price | money }}"
+              data-available="{{ variant.available }}"
+              data-inventory="{{ variant.inventory_quantity }}"
+              {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+            >
+              {{ variant.title }}
+            </option>
+          {%- endfor -%}
+        </select>
+      {%- else -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      {%- endif -%}
+      <div class="product-option">
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.selected_or_first_available_variant.inventory_quantity }}" class="product-quantity">
+      </div>
+      <input type="hidden" name="return_to" value="/checkout">
+      <button type="submit" class="shop-action-button" id="buy-button">Buy now</button>
+    </form>
+
+    {%- if product.variants.size > 1 -%}
+      <script>
+        function updateVariant() {
+          const selects = document.querySelectorAll('.product-option__select');
+          const selectedOptions = Array.from(selects).map(s => s.value);
+          const variantSelect = document.getElementById('variant-select');
+          const priceEl = document.querySelector('.product-price');
+          const buyButton = document.getElementById('buy-button');
+          const quantityInput = document.getElementById('quantity');
+          
+          for (const option of variantSelect.options) {
+            const optionValues = option.dataset.options.split(',');
+            if (selectedOptions.every((val, i) => val === optionValues[i])) {
+              variantSelect.value = option.value;
+              priceEl.textContent = option.dataset.price;
+              const inventory = parseInt(option.dataset.inventory, 10);
+              quantityInput.max = inventory;
+              if (parseInt(quantityInput.value, 10) > inventory) {
+                quantityInput.value = inventory;
+              }
+              if (option.dataset.available === 'true') {
+                buyButton.disabled = false;
+                buyButton.textContent = 'Buy now';
+              } else {
+                buyButton.disabled = true;
+                buyButton.textContent = 'Sold out';
+              }
+              break;
+            }
+          }
+        }
+      </script>
+    {%- endif -%}
+  {%- else -%}
+    <p>Sold out</p>
+  {%- endif -%}
+</div>
