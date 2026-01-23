@@ -395,6 +395,12 @@ small {
   margin-block: var(--spacing-huge);
 }
 
+.product-form-fieldset {
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
 /* Product Options */
 .product-option {
   margin-block: var(--spacing-small);
@@ -407,8 +413,7 @@ small {
 }
 
 .product-option__select {
-  width: 100%;
-  max-width: 20em;
+  width: auto;
   padding: var(--spacing-tiny) var(--spacing-small);
   font: inherit;
   border: var(--thickness-thin) solid var(--colour-separator);

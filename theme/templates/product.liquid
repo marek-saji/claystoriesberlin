@@ -22,7 +22,8 @@
   <p class="product-price">{{ product.selected_or_first_available_variant.price | money }}</p>
 
   {%- if product.available -%}
-    <form action="/cart/add" method="post">
+    <form action="/cart/add" method="post" id="product-form">
+      <fieldset id="product-form-fieldset" class="product-form-fieldset" disabled>
       {%- if product.variants.size > 1 -%}
         {%- for option in product.options_with_values -%}
           <div class="product-option">
@@ -58,20 +59,62 @@
             </select>
           </div>
         {%- endfor -%}
-        <select name="id" id="variant-select" style="display: none;">
+        <input
+          type="hidden"
+          name="id"
+          id="variant-id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+        >
+        <script id="variant-data" type="application/json">
+          [
           {%- for variant in product.variants -%}
-            <option 
-              value="{{ variant.id }}" 
-              data-options="{{ variant.options | join: ',' }}"
-              data-price="{{ variant.price | money }}"
-              data-available="{{ variant.available }}"
-              data-inventory="{{ variant.inventory_quantity }}"
-              {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
-            >
-              {{ variant.title }}
-            </option>
+            {
+              "id": {{ variant.id }},
+              "options": {{ variant.options | json }},
+              "price": {{ variant.price | money | json }},
+              "available": {{ variant.available | json }},
+              "inventory_quantity": {{ variant.inventory_quantity | json }}
+            }{% unless forloop.last %},{% endunless %}
           {%- endfor -%}
-        </select>
+          ]
+        </script>
+        <script>
+          function updateVariant() {
+            const selects = document.querySelectorAll('.product-option__select');
+            const selectedOptions = Array.from(selects).map(s => s.value);
+            const variantInput = document.getElementById('variant-id');
+            const variantDataEl = document.getElementById('variant-data');
+            const variants = JSON.parse(variantDataEl.textContent);
+            const priceEl = document.querySelector('.product-price');
+            const buyButton = document.getElementById('buy-button');
+            const quantityInput = document.getElementById('quantity');
+            const quantityAvailableValue = document.getElementById('quantity-available-value');
+
+            for (const variant of variants) {
+              if (selectedOptions.every((val, i) => val === variant.options[i])) {
+                variantInput.value = variant.id;
+                priceEl.textContent = variant.price;
+                const inventory = Number(variant.inventory_quantity) || 0;
+                if (quantityInput && quantityAvailableValue) {
+                  quantityInput.min = Math.min(1, inventory);
+                  quantityInput.max = inventory;
+                  quantityAvailableValue.textContent = inventory;
+                  if (parseInt(quantityInput.value, 10) > inventory) {
+                    quantityInput.value = inventory;
+                  }
+                }
+                if (variant.available) {
+                  buyButton.disabled = false;
+                  buyButton.textContent = 'Buy now';
+                } else {
+                  buyButton.disabled = true;
+                  buyButton.textContent = 'Sold out';
+                }
+                break;
+              }
+            }
+          }
+        </script>
       {%- else -%}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
       {%- endif -%}
@@ -87,44 +130,17 @@
       {% endif %}
       <input type="hidden" name="return_to" value="/checkout" id="return-to">
       <button type="submit" class="shop-action-button" id="buy-button">Buy now</button>
+      </fieldset>
     </form>
-
-    {%- if product.variants.size > 1 -%}
-      <script>
-        function updateVariant() {
-          const selects = document.querySelectorAll('.product-option__select');
-          const selectedOptions = Array.from(selects).map(s => s.value);
-          const variantSelect = document.getElementById('variant-select');
-          const priceEl = document.querySelector('.product-price');
-          const buyButton = document.getElementById('buy-button');
-          const quantityInput = document.getElementById('quantity');
-          const quantityAvailableValue = document.getElementById('quantity-available-value');
-
-          for (const option of variantSelect.options) {
-            const optionValues = option.dataset.options.split(',');
-            if (selectedOptions.every((val, i) => val === optionValues[i])) {
-              variantSelect.value = option.value;
-              priceEl.textContent = option.dataset.price;
-              const inventory = parseInt(option.dataset.inventory, 10);
-              quantityInput.min = Math.min(1, inventory);
-              quantityInput.max = inventory;
-              quantityAvailableValue.textContent = inventory;
-              if (parseInt(quantityInput.value, 10) > inventory) {
-                quantityInput.value = inventory;
-              }
-              if (option.dataset.available === 'true') {
-                buyButton.disabled = false;
-                buyButton.textContent = 'Buy now';
-              } else {
-                buyButton.disabled = true;
-                buyButton.textContent = 'Sold out';
-              }
-              break;
-            }
-          }
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const fieldset = document.getElementById('product-form-fieldset');
+        if (typeof updateVariant === 'function') {
+          updateVariant();
         }
-      </script>
-    {%- endif -%}
+        if (fieldset) fieldset.disabled = false;
+      });
+    </script>
   {%- else -%}
     <p>Sold out</p>
   {%- endif -%}
