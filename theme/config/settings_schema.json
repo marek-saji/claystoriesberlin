@@ -71,12 +71,6 @@
       {
         "type": "header",
         "content": "Social Media"
-      },
-      {
-        "type": "text",
-        "id": "instagram_url",
-        "label": "Instagram URL",
-        "default": "https://www.instagram.com/claystories.berlin"
       }
     ]
   }
