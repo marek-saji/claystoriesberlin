@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "shopify theme dev --path=theme --store=test-store-1100000000000000000000000000000003496.myshopify.com",
     "pull": "shopify theme pull --path=theme --store=test-store-1100000000000000000000000000000003496.myshopify.com",
-    "check": "shopify theme check --path=theme --store=test-store-1100000000000000000000000000000003496.myshopify.com",
+    "check": "shopify theme check --path=theme",
     "push": "shopify theme push --path=theme --store=test-store-1100000000000000000000000000000003496.myshopify.com"
   },
   "devDependencies": {

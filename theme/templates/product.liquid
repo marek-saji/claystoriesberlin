@@ -75,7 +75,7 @@
           const priceEl = document.querySelector('.product-price');
           const buyButton = document.getElementById('buy-button');
           const quantityInput = document.getElementById('quantity');
-          
+
           for (const option of variantSelect.options) {
             const optionValues = option.dataset.options.split(',');
             if (selectedOptions.every((val, i) => val === optionValues[i])) {
