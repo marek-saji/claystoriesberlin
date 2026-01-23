@@ -84,7 +84,7 @@
 
 /* Base Styles */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   box-sizing: border-box;
   accent-color: var(--colour-accent);
   scrollbar-gutter: stable both-edges;
