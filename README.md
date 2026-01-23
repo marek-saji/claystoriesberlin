@@ -66,7 +66,3 @@ Create these pages in your Shopify admin with matching template assignments:
 ## Navigation
 
 Create a menu called "main-menu" in Shopify admin under Online Store > Navigation.
-
-## Legacy 11ty Source
-
-The original 11ty source files are preserved in `src/` for reference.
