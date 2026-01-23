@@ -427,3 +427,14 @@ small {
   color: var(--colour-canvas-text);
   text-align: center;
 }
+
+.product-gift-card__input {
+  width: 100%;
+  max-width: 20em;
+  padding: var(--spacing-tiny) var(--spacing-small);
+  font: inherit;
+  border: var(--thickness-thin) solid var(--colour-separator);
+  border-radius: 4px;
+  background: var(--colour-canvas);
+  color: var(--colour-canvas-text);
+}

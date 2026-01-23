@@ -60,9 +60,13 @@
       {%- endif -%}
       <div class="product-option">
         <label for="quantity">Quantity</label>
-        <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.selected_or_first_available_variant.inventory_quantity }}" class="product-quantity">
+        <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.selected_or_first_available_variant.inventory_quantity }}" class="product-quantity" aria-describedby="quantity-available">
+        <span id=quantity-available>
+          (<span id=quantity-available-value>{{ product.selected_or_first_available_variant.inventory_quantity }}</span>
+          available)
+        </span>
       </div>
-      <input type="hidden" name="return_to" value="/checkout">
+      <input type="hidden" name="return_to" value="/checkout" id="return-to">
       <button type="submit" class="shop-action-button" id="buy-button">Buy now</button>
     </form>
 
@@ -75,6 +79,7 @@
           const priceEl = document.querySelector('.product-price');
           const buyButton = document.getElementById('buy-button');
           const quantityInput = document.getElementById('quantity');
+          const quantityAvailableValue = document.getElementById('quantity-available-value');
 
           for (const option of variantSelect.options) {
             const optionValues = option.dataset.options.split(',');
@@ -82,7 +87,9 @@
               variantSelect.value = option.value;
               priceEl.textContent = option.dataset.price;
               const inventory = parseInt(option.dataset.inventory, 10);
+              quantityInput.min = Math.min(1, inventory);
               quantityInput.max = inventory;
+              quantityAvailableValue.textContent = inventory;
               if (parseInt(quantityInput.value, 10) > inventory) {
                 quantityInput.value = inventory;
               }
