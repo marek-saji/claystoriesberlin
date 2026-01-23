@@ -28,6 +28,13 @@
     <meta property="og:url" content="{{ canonical_url }}">
     <meta name="author" content="{{ settings.author_name }}">
 
+    {% if theme.role == 'development' %}
+      {% # Running in 127.0.0.1 requests that Accept/Decline cookies are broken. Hide the banner completely. %}
+      <style>
+        #shopify-pc__banner { display: none; }
+      </style>
+    {% endif %}
+
     {{ content_for_header }}
 
     <script>
