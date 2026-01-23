@@ -12,5 +12,9 @@
     "footer": {
       "copyright": "© {{ year }} {{ shop_name }}"
     }
+  },
+  "date_formats": {
+    "date_with_weekday": "%A, %B %d, %Y",
+    "time": "%H:%M"
   }
 }

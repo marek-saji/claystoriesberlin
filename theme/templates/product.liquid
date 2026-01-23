@@ -35,7 +35,24 @@
             >
               {%- for value in option.values -%}
                 <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>
-                  {{ value }}
+                  {%- if option.name != 'Date' -%}
+                    {{ value }}
+                  {%- else -%}
+                    {%- assign date_parts = value | split: ' - ' -%}
+                    {%- assign d1date = date_parts[0] | date: format: 'date_with_weekday' -%}
+                    {%- assign d2date = date_parts[1] | date: format: 'date_with_weekday' -%}
+                    {%- if date_parts.size != 2 or d1date == date_parts[0] or d2date == date_parts[1] -%}
+                      {{ value }}
+                    {%- else -%}
+                      {%- assign d1time = date_parts[0] | date: format: 'time' -%}
+                      {%- assign d2time = date_parts[1] | date: format: 'time' -%}
+                      {%- if d1date == d2date -%}
+                        {{ d1date }} {{ d1time }} – {{ d2time }}
+                      {%- else -%}
+                        {{ d1date }} {{ d1time }} – {{ d2date }} {{ d2time }}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endif -%}
                 </option>
               {%- endfor -%}
             </select>
