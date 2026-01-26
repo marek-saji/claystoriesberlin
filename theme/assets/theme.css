@@ -157,6 +157,7 @@ small {
 
 .main {
   flex: 1;
+  container-type: inline-size;
 }
 
 .header__heading,
@@ -414,6 +415,7 @@ small {
 
 .product-option__select {
   width: auto;
+  max-width: calc(100cqi);
   padding: var(--spacing-tiny) var(--spacing-small);
   font: inherit;
   border: var(--thickness-thin) solid var(--colour-separator);
