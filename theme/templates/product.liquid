@@ -135,10 +135,36 @@
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const fieldset = document.getElementById('product-form-fieldset');
+        const form = document.getElementById('product-form');
+        
         if (typeof updateVariant === 'function') {
           updateVariant();
         }
         if (fieldset) fieldset.disabled = false;
+
+        // Clear cart before adding product and going to checkout
+        if (form) {
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            try {
+              // Clear the cart first
+              await fetch('/cart/clear.js', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              });
+              
+              // Then submit the form normally
+              e.target.submit();
+            } catch (error) {
+              console.error('Error clearing cart:', error);
+              // Submit anyway if clearing fails
+              e.target.submit();
+            }
+          });
+        }
       });
     </script>
   {%- else -%}
