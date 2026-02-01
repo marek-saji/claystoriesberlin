@@ -10,15 +10,17 @@
   {%- endif -%}
 
   {%- if product.images.size > 0 -%}
-  <div class="product-images">
+  <ul class="product-images">
     {%- for image in product.images -%}
-    <img
-      src="{{ image | image_url: width: 800 }}"
-      alt="{{ image.alt | escape }}"
-    loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-      >
-      {%- endfor -%}
-  </div>
+    <li>
+      <img
+        src="{{ image | image_url: width: 800 }}"
+        alt="{{ image.alt | escape }}"
+        loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+        >
+    </li>
+    {%- endfor -%}
+  </ul>
   {%- endif -%}
 
   <div class="product-info">
