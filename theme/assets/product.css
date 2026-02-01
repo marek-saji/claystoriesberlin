@@ -39,6 +39,12 @@
   padding: 0;
 }
 
+.product-price {
+  margin: 0;
+  font-size: var(--_typo-heading-3-font-size);
+  font-weight: bold;
+}
+
 .product-form-fieldset {
   margin: 0;
   border: none;
