@@ -8,7 +8,11 @@
             {% if link.active %}aria-current="page"{% endif %}
             class="nav__link"
           >
-            {{ link.title }}
+            {%- if link.object and link.object.metafields.custom.menu_label -%}
+              {{ link.object.metafields.custom.menu_label }}
+            {%- else -%}
+              {{ link.title }}
+            {%- endif -%}
           </a>
         </li>
       {%- endfor -%}
