@@ -1,125 +1,103 @@
-{%- capture studio_content -%}
-<p>Join our pottery studio in Prenzlauer Berg, Berlin.</p>
-{%- endcapture -%}
-{% render 'home-section',
-  id: 'studio-memberships',
-  link_href: '/pages/ceramic-studio-memberships',
-  heading: 'Pottery studio memberships',
-  content: studio_content,
-  image: section.settings.studio_image
-%}
+<p class="intro">
+  <strong class="p-name p-org">Clay Stories</strong> is a
+  <span itemprop="description">
+    <span class="p-category">pottery studio and collective based</span>
+    in the
+    <a href="{{ settings.map_url }}" target="_blank" rel="noopener noreferrer">heart of Berlin Prenzlauerberg</a>.
+  </span>
+  <span class="p-note">
+    {{ section.settings.description }}
+  </span>
+</p>
 
-{%- capture courses_content -%}
-<p>
-  Join our wheel&shy;throwing classes, hand&shy;building workshops, book a
-  private session or a team event.
-</p>
-{%- endcapture -%}
-{% render 'home-section',
-  id: 'pottery-courses-and-workshops',
-  link_href: '/collections/pottery-courses-and-workshops',
-  heading: 'Pottery courses and ceramic workshops in Berlin',
-  content: courses_content,
-  image: section.settings.courses_image
-%}
+{%- for block in section.blocks -%}
+  {%- assign page = block.settings.page -%}
 
-{%- capture claydate_content -%}
-<p>
-  Book a clay date for two and spend a cosy time creating together. 
-</p>
-{%- endcapture -%}
-{% render 'home-section',
-  id: 'clay-date',
-  link_href: '/pages/clay-date',
-  heading: 'Clay Date',
-  content: claydate_content,
-  image: section.settings.claydate_image
-%}
+  {%- if page and page != "" -%}
+    {%- comment -%} Use page data if page is selected {%- endcomment -%}
+    {%- assign section_id = page.url -%}
+    {%- assign section_url = page.url -%}
+    {%- assign section_heading = page.metafields.custom.home_page_heading | default: page.title -%}
+    {%- assign section_image = page.metafields.custom.image -%}
+    {%- assign section_content = page.metafields.custom.home_page_description | metafield_tag -%}
+  {%- else -%}
+    {%- comment -%} Use manual data if no page selected {%- endcomment -%}
+    {%- assign section_id = block.settings.url | default: block.id -%}
+    {%- assign section_url = block.settings.url -%}
+    {%- assign section_heading = block.settings.heading -%}
+    {%- assign section_image = block.settings.image -%}
+    {%- assign section_content = block.settings.description -%}
+  {%- endif -%}
 
-{%- capture shop_content -%}
-<p>
-  Visit our studio to buy unique handmade ceramics created by our collective of
-  artists.
-</p>
-{%- endcapture -%}
-{% render 'home-section',
-  id: 'shop-handmade-ceramics',
-  link_href: '/pages/shop',
-  heading: 'Shop handmade ceramics',
-  content: shop_content,
-  image: section.settings.shop_image
-%}
-
-{%- capture wildclay_content -%}
-<p>
-  Learn you how to search for wild clay and make pottery with a deep connection
-  to your local environment.
-</p>
-<p>Wild clay workshops coming soon!</p>
-{%- endcapture -%}
-{% render 'home-section',
-  id: 'wildclay-berlin',
-  link_href: '/pages/wild-clay',
-  heading: 'Wild clay: stories captured in clay',
-  content: wildclay_content,
-  image: section.settings.wildclay_image
-%}
-
-{%- capture about_content -%}
-<p>
-  We're Rachel and Anna, two ceramic artists from Berlin, passionate about clay
-  and storytelling.
-</p>
-<p>
-  We're looking forward to welcoming you to our pottery studio and sharing our
-  love for clay with you.
-</p>
-{%- endcapture -%}
-{% render 'home-section',
-  id: 'about-us',
-  link_href: '/pages/about-us',
-  heading: 'About us',
-  content: about_content,
-  image: section.settings.about_image
-%}
+  {%- if section_heading -%}
+    {% render 'home-section',
+      id: section_id,
+      link_href: section_url,
+      heading: section_heading,
+      content: section_content,
+      image: section_image
+    %}
+  {%- endif -%}
+{%- endfor -%}
 
 {% schema %}
 {
   "name": "Home Content",
   "settings": [
     {
-      "type": "header",
-      "content": "Section Images"
-    },
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Our goal is to create meaningful connections through the art of ceramics. We believe that every piece of clay tells a story, and we are here to help you tell yours."
+    }
+  ],
+  "blocks": [
     {
-      "type": "image_picker",
-      "id": "studio_image",
-      "label": "Studio Memberships Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "courses_image",
-      "label": "Pottery Courses Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "claydate_image",
-      "label": "Clay Date Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "shop_image",
-      "label": "Shop Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "wildclay_image",
-      "label": "Wild Clay Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "about_image",
-      "label": "About Us Image"
+      "type": "page_section",
+      "name": "Page Section",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Select the page OR manually enter details (e.g. for link to product or collection)"
+        },
+        {
+          "type": "header",
+          "content": "Page"
+        },
+        {
+          "type": "paragraph",
+          "content": "You can set image, heading and description in the page's metafields"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page"
+        },
+        {
+          "type": "header",
+          "content": "Manual Settings"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
     }
   ]
 }
