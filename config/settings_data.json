@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "site_name": "Clay Stories Berlin",
@@ -17,6 +26,68 @@
       "footer": {
         "type": "footer",
         "settings": {}
+      },
+      "navigation": {
+        "type": "navigation",
+        "settings": {}
+      },
+      "home-content": {
+        "type": "home-content",
+        "blocks": {
+          "page_section_KKihTF": {
+            "type": "page_section",
+            "settings": {
+              "page": "ceramic-studio-memberships",
+              "collection": ""
+            }
+          },
+          "page_section_ah7gxR": {
+            "type": "page_section",
+            "settings": {
+              "page": "",
+              "collection": "pottery-courses-and-workshops"
+            }
+          },
+          "page_section_3wyBdf": {
+            "type": "page_section",
+            "settings": {
+              "page": "clay-date",
+              "collection": ""
+            }
+          },
+          "page_section_FAiHrz": {
+            "type": "page_section",
+            "settings": {
+              "page": "shop",
+              "collection": ""
+            }
+          },
+          "page_section_trUM9P": {
+            "type": "page_section",
+            "settings": {
+              "page": "wild-clay",
+              "collection": ""
+            }
+          },
+          "page_section_YWUVbR": {
+            "type": "page_section",
+            "settings": {
+              "page": "about-us",
+              "collection": ""
+            }
+          }
+        },
+        "block_order": [
+          "page_section_KKihTF",
+          "page_section_ah7gxR",
+          "page_section_3wyBdf",
+          "page_section_FAiHrz",
+          "page_section_trUM9P",
+          "page_section_YWUVbR"
+        ],
+        "settings": {
+          "description": "Our goal is to create meaningful connections through the art of ceramics. We believe that every piece of clay tells a story, and we are here to help you tell yours."
+        }
       }
     },
     "content_for_index": []
