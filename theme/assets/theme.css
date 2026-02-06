@@ -43,11 +43,16 @@
   --_typo-body-line-height: 1.5;
   --_typo-body-letter-spacing: 0.025em;
 
+  --_typo-input-font-family: var(--_typo-body-font-family);
+  --_typo-input-font-size: 1.2em;
+  --_typo-input-line-height: 1.25;
+  --_typo-input-letter-spacing: 0.025em;
+
   --_typo-heading-font-family: "Jost", system-ui, sans-serif;
   --_typo-heading-2-font-size: clamp(1.2em, 2lvw + 1em, 2em);
   --_typo-heading-3-font-size: clamp(1.1em, 1.5lvw + 1em, 1.8em);
-  --_typo-heading-letter-spacing: 0.05em;
   --_typo-heading-line-height: 1.25;
+  --_typo-heading-letter-spacing: 0.05em;
 
   --_typo-small-font-size: 0.875em;
   --_typo-small-line-height: 1.25;
@@ -56,6 +61,10 @@
   --typo-body: normal var(--_typo-body-font-size) /
     var(--_typo-body-line-height) var(--_typo-body-font-family);
   --typo-body-letter-spacing: var(--_typo-body-letter-spacing);
+
+  --typo-input: normal var(--_typo-input-font-size) /
+    var(--_typo-input-line-height) var(--_typo-input-font-family);
+  --typo-input-letter-spacing: var(--_typo-input-letter-spacing);
 
   --typo-small: normal var(--_typo-small-font-size) /
     var(--_typo-small-line-height) var(--_typo-body-font-family);
@@ -69,6 +78,7 @@
 
   /* Spacing */
   --_spacing-multiplier: 1.5;
+  --spacing-miniscule: calc(var(--spacing-tiny) / var(--_spacing-multiplier));
   --spacing-tiny: calc(var(--spacing-small) / var(--_spacing-multiplier));
   --spacing-small: calc(var(--spacing-medium) / var(--_spacing-multiplier));
   --spacing-medium: 1.5rem;
@@ -80,6 +90,15 @@
 
   /* Thickness */
   --thickness-thin: 1px;
+  --thickness-medium: 2px;
+
+  /* Shapes */
+  --border-radius: 0.5rem;
+
+  /* Animation */
+  --_animation-small-duration: 150ms;
+  --_animation-small-easing: ease-in-out;
+  --animation-small: var(--_animation-small-duration) var(--_animation-small-easing);
 }
 
 /* Base Styles */
@@ -309,14 +328,6 @@ small {
   content: "";
   position: absolute;
   inset: 0;
-}
-
-.shop-actions {
-  text-align: center;
-}
-
-.shop-action-button {
-  font: var(--typo-heading-3);
 }
 
 /* Footer */

@@ -4,176 +4,234 @@
   {% render 'page-title' %}
 
   {%- if product.description != blank -%}
-  <div class="product-description">
-    {{ product.description }}
-  </div>
+    <div class="product-description">
+      {{ product.description }}
+    </div>
   {%- endif -%}
 
   {%- if product.images.size > 0 -%}
-  <ul class="product-images">
-    {%- for image in product.images -%}
-    <li>
-      <img
-        src="{{ image | image_url: width: 800 }}"
-        alt="{{ image.alt | escape }}"
-        loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-        >
-    </li>
-    {%- endfor -%}
-  </ul>
+    <ul class="product-images">
+      {%- for image in product.images -%}
+        <li>
+          {%- if forloop.first -%}
+            {%- assign loading = 'eager' -%}
+          {%- else -%}
+            {%- assign loading = 'lazy' -%}
+          {%- endif -%}
+          {{- product | image_url: width: 1500 | image_tag: loading: loading, sizes: '(width > 42em): 50vw, 100vw' -}}
+        </li>
+      {%- endfor -%}
+    </ul>
   {%- endif -%}
 
   <div class="product-info">
     <p class="product-price">{{ product.selected_or_first_available_variant.price | money }}</p>
 
-    {%- if product.available -%}
-    <form action="/cart/add" method="post" id="product-form">
-      <fieldset id="product-form-fieldset" class="product-form-fieldset" disabled>
-        {%- if product.variants.size > 1 -%}
-        {%- for option in product.options_with_values -%}
-        <div class="product-option">
-          <label for="option-{{ option.name | handleize }}">{{ option.name }}</label>
-          <select 
-            id="option-{{ option.name | handleize }}" 
-            name="option-{{ option.name | handleize }}"
-            class="product-option__select"
-            onchange="updateVariant()"
-            >
-            {%- for value in option.values -%}
-            <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>
-            {%- if option.name != 'Date' -%}
-            {{ value }}
-            {%- else -%}
-            {%- assign date_parts = value | split: ' - ' -%}
-            {%- assign d1date = date_parts[0] | date: format: 'date_with_weekday' -%}
-            {%- assign d2date = date_parts[1] | date: format: 'date_with_weekday' -%}
-            {%- if date_parts.size != 2 or d1date == date_parts[0] or d2date == date_parts[1] -%}
-            {{ value }}
-            {%- else -%}
-            {%- assign d1time = date_parts[0] | date: format: 'time' -%}
-            {%- assign d2time = date_parts[1] | date: format: 'time' -%}
-            {%- if d1date == d2date -%}
-            {{ d1date }} {{ d1time }} – {{ d2time }}
-            {%- else -%}
-            {{ d1date }} {{ d1time }} – {{ d2date }} {{ d2time }}
-            {%- endif -%}
-            {%- endif -%}
-            {%- endif -%}
-            </option>
+    {%- if product.available == false -%}
+      <p class="product-not-available">{{ 'products.product.sold_out' | t }}</p>
+    {%- else -%}
+      <form
+        action="/cart/add"
+        method="post"
+        id="product-form"
+        class="product-form"
+      >
+        <fieldset role="presentation" id="product-form-fieldset" class="product-form-fieldset" disabled>
+          {%- if product.variants.size > 1 -%}
+            {%- for option in product.options_with_values -%}
+              <fieldset
+                role="radiogroup"
+                aria-labelledby="option-{{ option.name | handleize }}-legend"
+                class="product-option-group"
+              >
+               {%- # Not using <legend> here, because it has magic positioning -%}
+                <div
+                  id="option-{{ option.name | handleize }}-legend"
+                  class="product-option-group__legend"
+                >
+                  {{ option.name }}
+                </div>
+                {%- for value in option.values -%}
+                  <label class="product-option">
+                    <input
+                      type="radio"
+                      name="option-{{ option.name | handleize }}"
+                      value="{{ value }}"
+                      class="product-option__radio"
+                      onchange="updateVariant()"
+                      {% if forloop.first %}
+                        checked
+                      {% endif %}
+                    >
+                    {%- if option.name != 'Date' -%}
+                      {{ value }}
+                    {%- else -%}
+                      {%- assign date_parts = value | split: ' - ' -%}
+                      {%- assign d1date = date_parts[0] | date: format: 'date_with_weekday' -%}
+                      {%- assign d2date = date_parts[1] | date: format: 'date_with_weekday' -%}
+                      {%- if date_parts.size != 2 or d1date == date_parts[0] or d2date == date_parts[1] -%}
+                        {{ value }}
+                      {%- else -%}
+                        {%- assign d1time = date_parts[0] | date: format: 'time' -%}
+                        {%- assign d2time = date_parts[1] | date: format: 'time' -%}
+                        {%- if d1date == d2date -%}
+                          {{ d1date }}
+                          {{ d1time }} – {{ d2time }}
+                        {%- else -%}
+                          {{ d1date }}
+                          {{ d1time }} – {{ d2date }}
+                          {{ d2time }}
+                        {%- endif -%}
+                      {%- endif -%}
+                    {%- endif -%}
+                  </label>
+                {%- endfor -%}
+              </fieldset>
             {%- endfor -%}
-          </select>
-        </div>
-        {%- endfor -%}
-        <input
-          type="hidden"
-          name="id"
-          id="variant-id"
-          value="{{ product.selected_or_first_available_variant.id }}"
-          >
-          <script id="variant-data" type="application/json">
-            [
-              {%- for variant in product.variants -%}
-                {
-                  "id": {{ variant.id }},
-                  "options": {{ variant.options | json }},
-                  "price": {{ variant.price | money | json }},
-                  "available": {{ variant.available | json }},
-                  "inventory_quantity": {{ variant.inventory_quantity | json }}
-                }{% unless forloop.last %},{% endunless %}
-              {%- endfor -%}
-              ]
-          </script>
-          <script>
-            function updateVariant() {
-              const selects = document.querySelectorAll('.product-option__select');
-              const selectedOptions = Array.from(selects).map(s => s.value);
-              const variantInput = document.getElementById('variant-id');
-              const variantDataEl = document.getElementById('variant-data');
-              const variants = JSON.parse(variantDataEl.textContent);
-              const priceEl = document.querySelector('.product-price');
-              const buyButton = document.getElementById('buy-button');
-              const quantityInput = document.getElementById('quantity');
-              const quantityAvailableValue = document.getElementById('quantity-available-value');
+            <input
+              type="hidden"
+              name="id"
+              id="variant-id"
+              value="{{ product.selected_or_first_available_variant.id }}"
+            >
+            <script id="variant-data" type="application/json">
+              [
+                {%- for variant in product.variants -%}
+                  {
+                    "id": {{ variant.id }},
+                    "options": {{ variant.options | json }},
+                    "price": {{ variant.price | money | json }},
+                    "available": {{ variant.available | json }},
+                    "inventory_quantity": {{ variant.inventory_quantity | json }}
+                  }{% unless forloop.last %},{% endunless %}
+                {%- endfor -%}
+                ]
+            </script>
+            <script>
+              function updateVariant() {
+                const radios = document.querySelectorAll('.product-option__radio:checked');
+                const selectedOptions = Array.from(radios).map((r) => r.value);
+                const variantInput = document.getElementById('variant-id');
+                const variantDataEl = document.getElementById('variant-data');
+                const variants = JSON.parse(variantDataEl.textContent);
+                const priceEl = document.querySelector('.product-price');
+                const buyButton = document.getElementById('buy-button');
+                const quantityInput = document.getElementById('quantity');
+                const quantityAvailableValue = document.getElementById('quantity-available-value');
 
-              for (const variant of variants) {
-                if (selectedOptions.every((val, i) => val === variant.options[i])) {
-                  variantInput.value = variant.id;
-                  priceEl.textContent = variant.price;
-                  const inventory = Number(variant.inventory_quantity) || 0;
-                  if (quantityInput && quantityAvailableValue) {
-                    quantityInput.min = Math.min(1, inventory);
-                    quantityInput.max = inventory;
-                    quantityAvailableValue.textContent = inventory;
-                    if (parseInt(quantityInput.value, 10) > inventory) {
-                      quantityInput.value = inventory;
+                for (const variant of variants) {
+                  if (selectedOptions.every((val, i) => val === variant.options[i])) {
+                    variantInput.value = variant.id;
+                    priceEl.textContent = variant.price;
+                    const inventory = Number(variant.inventory_quantity) || 0;
+                    if (quantityInput && quantityAvailableValue) {
+                      quantityInput.min = Math.min(1, inventory);
+                      quantityInput.max = inventory;
+                      quantityAvailableValue.textContent = inventory;
+                      if (parseInt(quantityInput.value, 10) > inventory) {
+                        quantityInput.value = inventory;
+                      }
                     }
+                    if (variant.available) {
+                      buyButton.disabled = false;
+                      buyButton.textContent = buyButton.dataset.textAvailable;
+                    } else {
+                      buyButton.disabled = true;
+                      buyButton.textContent = buyButton.dataset.textSoldOut;
+                    }
+                    break;
                   }
-                  if (variant.available) {
-                    buyButton.disabled = false;
-                    buyButton.textContent = 'Buy now';
-                  } else {
-                    buyButton.disabled = true;
-                    buyButton.textContent = 'Sold out';
-                  }
-                  break;
                 }
               }
-            }
-          </script>
+            </script>
           {%- else -%}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
           {%- endif -%}
+
           {% if product.selected_or_first_available_variant.inventory_management %}
-            <div class="product-option">
-              <label for="quantity">Quantity</label>
-              <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.selected_or_first_available_variant.inventory_quantity }}" class="product-quantity" aria-describedby="quantity-available">
-              <span id=quantity-available>
-                (<span id=quantity-available-value>{{ product.selected_or_first_available_variant.inventory_quantity }}</span>
-                available)
+            <div class="product-option-group">
+              <label
+                for="quantity"
+                class="product-option-group__legend"
+              >
+                {{- 'products.product.quantity' | t -}}
+              </label>
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                value="1"
+                min="1"
+                max="{{ product.selected_or_first_available_variant.inventory_quantity }}"
+                class="product-quantity__value"
+                required
+                aria-describedby="quantity-available"
+              >
+              <span id="quantity-available" class="product-quantity__available">
+                (
+                {%- assign count = '<span id="quantity-available-value">'
+                  | append: product.selected_or_first_available_variant.inventory_quantity
+                  | append: '</span>'
+                -%}
+                {{- 'products.product.quantity_available' | t: count: '__COUNT__' | replace: '__COUNT__', count -}}
+                )
               </span>
             </div>
           {% endif %}
           <input type="hidden" name="return_to" value="/checkout" id="return-to">
-          <button type="submit" class="shop-action-button" id="buy-button">Buy now</button>
-      </fieldset>
-    </form>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const fieldset = document.getElementById('product-form-fieldset');
-        const form = document.getElementById('product-form');
+          <button
+            type="submit"
+            class="product-buy-button"
+            id="buy-button"
+            data-text-available="{{ 'products.product.buy_now' | t }}"
+            data-text-sold-out="{{ 'products.product.sold_out' | t }}"
+          >
+            {{ 'products.product.buy_now' | t }}
+          </button>
+        </fieldset>
+      </form>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const fieldset = document.getElementById('product-form-fieldset');
+          const form = document.getElementById('product-form');
 
-        if (typeof updateVariant === 'function') {
-          updateVariant();
-        }
-        if (fieldset) fieldset.disabled = false;
+          if (typeof updateVariant === 'function') {
+            updateVariant();
+          }
+          if (fieldset) fieldset.disabled = false;
 
-        // Clear cart before adding product and going to checkout
-        if (form) {
-          form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+          // Clear cart before adding product and going to checkout
+          if (form) {
+            form.addEventListener('submit', async (e) => {
+              e.preventDefault();
 
-            try {
-              // Clear the cart first
-              await fetch('/cart/clear.js', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-              });
+              if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+              }
 
-              // Then submit the form normally
-              e.target.submit();
-            } catch (error) {
-              console.error('Error clearing cart:', error);
-              // Submit anyway if clearing fails
-              e.target.submit();
-            }
-          });
-        }
-      });
-    </script>
-    {%- else -%}
-    <p>Sold out</p>
+              try {
+                // Clear the cart first
+                await fetch('/cart/clear.js', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                });
+              } catch (_error) {}
+
+              try {
+                // Then submit the form normally
+                e.target.submit();
+              } catch (error) {
+                console.error('Error clearing cart:', error);
+                // Submit anyway if clearing fails
+                e.target.submit();
+              }
+            });
+          }
+        });
+      </script>
     {%- endif -%}
   </div>
 </div>
