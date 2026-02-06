@@ -34,12 +34,11 @@ npm run check
 ## Theme Structure
 
 ```
-theme/
-├── assets/          # CSS, fonts, images
-├── config/          # Theme settings
-├── layout/          # Base layout (theme.liquid)
-├── locales/         # Translations
-├── sections/        # Header, footer, navigation
-├── snippets/        # Reusable partials
-└── templates/       # Page templates
+assets/          # CSS, fonts, images
+config/          # Theme settings
+layout/          # Base layout (theme.liquid)
+locales/         # Translations
+sections/        # Header, footer, navigation
+snippets/        # Reusable partials
+templates/       # Page templates
 ```
