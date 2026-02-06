@@ -44,7 +44,7 @@
                 aria-labelledby="option-{{ option.name | handleize }}-legend"
                 class="product-option-group"
               >
-               {%- # Not using <legend> here, because it has magic positioning -%}
+                {%- # Not using <legend> here, because it has magic positioning -%}
                 <div
                   id="option-{{ option.name | handleize }}-legend"
                   class="product-option-group__legend"
@@ -75,12 +75,22 @@
                         {%- assign d1time = date_parts[0] | date: format: 'time' -%}
                         {%- assign d2time = date_parts[1] | date: format: 'time' -%}
                         {%- if d1date == d2date -%}
-                          {{ d1date }}
-                          {{ d1time }} – {{ d2time }}
+                          <span class="time-part">{{ d1date }}</span>
+                          <span class="time-part">
+                            <span class="time-part">{{ d1time }}</span>
+                            –
+                            <span class="time-part">{{ d2time }}</span>
+                          </span>
                         {%- else -%}
-                          {{ d1date }}
-                          {{ d1time }} – {{ d2date }}
-                          {{ d2time }}
+                          <span class="time-part">
+                            <span class="time-part">{{ d1date }}</span>
+                            <span class="time-part">{{ d1time }}</span>
+                          </span>
+                          –
+                          <span class="time-part">
+                            <span class="time-part">{{ d2date }}</span>
+                            <span class="time-part">{{ d2time }}</span>
+                          </span>
                         {%- endif -%}
                       {%- endif -%}
                     {%- endif -%}
