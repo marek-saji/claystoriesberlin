@@ -1,11 +1,6 @@
 <section id="{{ id }}" aria-labelledby="{{ id }}--heading" class="section">
   {%- if image -%}
-    <img
-      alt=""
-      src="{{ image | asset_url }}"
-      class="section__image"
-      loading="lazy"
-    >
+    {{ image | image_url: width: 1200 | image_tag: class: 'section__image', loading: 'lazy', widths: '600, 900, 1200' }}
   {%- endif -%}
 
   <div class="section__content">

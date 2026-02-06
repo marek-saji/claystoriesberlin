@@ -1,0 +1,126 @@
+{%- capture studio_content -%}
+<p>Join our pottery studio in Prenzlauer Berg, Berlin.</p>
+{%- endcapture -%}
+{% render 'home-section',
+  id: 'studio-memberships',
+  link_href: '/pages/ceramic-studio-memberships',
+  heading: 'Pottery studio memberships',
+  content: studio_content,
+  image: section.settings.studio_image
+%}
+
+{%- capture courses_content -%}
+<p>
+  Join our wheel&shy;throwing classes, hand&shy;building workshops, book a
+  private session or a team event.
+</p>
+{%- endcapture -%}
+{% render 'home-section',
+  id: 'pottery-courses-and-workshops',
+  link_href: '/collections/pottery-courses-and-workshops',
+  heading: 'Pottery courses and ceramic workshops in Berlin',
+  content: courses_content,
+  image: section.settings.courses_image
+%}
+
+{%- capture claydate_content -%}
+<p>
+  Book a clay date for two and spend a cosy time creating together. 
+</p>
+{%- endcapture -%}
+{% render 'home-section',
+  id: 'clay-date',
+  link_href: '/pages/clay-date',
+  heading: 'Clay Date',
+  content: claydate_content,
+  image: section.settings.claydate_image
+%}
+
+{%- capture shop_content -%}
+<p>
+  Visit our studio to buy unique handmade ceramics created by our collective of
+  artists.
+</p>
+{%- endcapture -%}
+{% render 'home-section',
+  id: 'shop-handmade-ceramics',
+  link_href: '/pages/shop',
+  heading: 'Shop handmade ceramics',
+  content: shop_content,
+  image: section.settings.shop_image
+%}
+
+{%- capture wildclay_content -%}
+<p>
+  Learn you how to search for wild clay and make pottery with a deep connection
+  to your local environment.
+</p>
+<p>Wild clay workshops coming soon!</p>
+{%- endcapture -%}
+{% render 'home-section',
+  id: 'wildclay-berlin',
+  link_href: '/pages/wild-clay',
+  heading: 'Wild clay: stories captured in clay',
+  content: wildclay_content,
+  image: section.settings.wildclay_image
+%}
+
+{%- capture about_content -%}
+<p>
+  We're Rachel and Anna, two ceramic artists from Berlin, passionate about clay
+  and storytelling.
+</p>
+<p>
+  We're looking forward to welcoming you to our pottery studio and sharing our
+  love for clay with you.
+</p>
+{%- endcapture -%}
+{% render 'home-section',
+  id: 'about-us',
+  link_href: '/pages/about-us',
+  heading: 'About us',
+  content: about_content,
+  image: section.settings.about_image
+%}
+
+{% schema %}
+{
+  "name": "Home Content",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "studio_image",
+      "label": "Studio Memberships Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "courses_image",
+      "label": "Pottery Courses Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "claydate_image",
+      "label": "Clay Date Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "shop_image",
+      "label": "Shop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "wildclay_image",
+      "label": "Wild Clay Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "about_image",
+      "label": "About Us Image"
+    }
+  ]
+}
+{% endschema %}
