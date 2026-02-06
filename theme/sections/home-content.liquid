@@ -12,6 +12,7 @@
 
 {%- for block in section.blocks -%}
   {%- assign page = block.settings.page -%}
+  {%- assign collection = block.settings.collection -%}
 
   {%- if page and page != "" -%}
     {%- comment -%} Use page data if page is selected {%- endcomment -%}
@@ -20,13 +21,13 @@
     {%- assign section_heading = page.metafields.custom.home_page_heading | default: page.title -%}
     {%- assign section_image = page.metafields.custom.image -%}
     {%- assign section_content = page.metafields.custom.home_page_description | metafield_tag -%}
-  {%- else -%}
-    {%- comment -%} Use manual data if no page selected {%- endcomment -%}
-    {%- assign section_id = block.settings.url | default: block.id -%}
-    {%- assign section_url = block.settings.url -%}
-    {%- assign section_heading = block.settings.heading -%}
-    {%- assign section_image = block.settings.image -%}
-    {%- assign section_content = block.settings.description -%}
+  {%- elsif collection and collection != "" -%}
+    {%- comment -%} Use collection data if collection is selected {%- endcomment -%}
+    {%- assign section_id = collection.url -%}
+    {%- assign section_url = collection.url -%}
+    {%- assign section_heading = collection.metafields.custom.home_page_heading | default: collection.title -%}
+    {%- assign section_image = collection.featured_image -%}
+    {%- assign section_content = collection.metafields.custom.home_page_description | metafield_tag -%}
   {%- endif -%}
 
   {%- if section_heading -%}
@@ -58,15 +59,7 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "Select the page OR manually enter details (e.g. for link to product or collection)"
-        },
-        {
-          "type": "header",
-          "content": "Page"
-        },
-        {
-          "type": "paragraph",
-          "content": "You can set image, heading and description in the page's metafields"
+          "content": "Select the page OR collection"
         },
         {
           "type": "page",
@@ -75,27 +68,12 @@
         },
         {
           "type": "header",
-          "content": "Manual Settings"
+          "content": "OR"
         },
         {
-          "type": "url",
-          "id": "url",
-          "label": "URL"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading"
-        },
-        {
-          "type": "richtext",
-          "id": "description",
-          "label": "Description"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
         }
       ]
     }

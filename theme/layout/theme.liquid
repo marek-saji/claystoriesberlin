@@ -23,7 +23,7 @@
       <meta name="description" content="{{ page_description }}">
       <meta property="og:description" content="{{ page_description }}">
     {%- endif -%}
-    {%- assign og_image = page.metafields.custom.image | default: collection.metafields.custom.image -%}
+    {%- assign og_image = page.metafields.custom.image | default: collection.featured_image -%}
     {%- if og_image -%}
       <meta property="og:image" content="{{ og_image | image_url: width: 1200 }}">
       <meta property="og:image:width" content="1200">
