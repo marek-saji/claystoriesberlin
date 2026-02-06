@@ -1,8 +1,0 @@
-{%- if image -%}
-  <img
-    alt="{{ alt | default: '' }}"
-    src="{{ image | image_url: width: 1200 }}"
-    itemprop="image"
-    loading="lazy"
-  >
-{%- endif -%}
