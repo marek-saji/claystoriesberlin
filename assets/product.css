@@ -41,13 +41,11 @@
 
 .product-price {
   margin: 0;
-  font-size: var(--_typo-heading-2-font-size);
   font-weight: bold;
 }
 
 .product-not-available {
   margin-block: 0;
-  font-size: var(--_typo-heading-3-font-size);
   font-style: italic;
 }
 
@@ -99,7 +97,6 @@
     margin-block-start: var(--spacing-small);
     font: var(--typo-input);
     letter-spacing: var(--typo-input-letter-spacing);
-    font-size: var(--_typo-heading-3-font-size);
     border-color: var(--colour-accent);
     background-color: var(--colour-accent);
     color: var(--colour-canvas);
