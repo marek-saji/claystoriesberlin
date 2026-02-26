@@ -52,23 +52,32 @@
                   {{ option.name }}
                 </div>
                 {%- for value in option.values -%}
-                  <label class="product-option">
-                    <input
-                      type="radio"
-                      name="option-{{ option.name | handleize }}"
-                      value="{{ value }}"
-                      class="product-option__radio"
-                      onchange="updateVariant()"
-                      {% if forloop.first %}
-                        checked
-                      {% endif %}
-                    >
-                    {%- if option.name != 'Date' -%}
-                      {{ value }}
+                  {%- if option.name == 'Date' -%}
+                    {%- assign date_parts = value | split: ' - ' -%}
+                    {%- assign d1date = date_parts[0] | date: format: 'date_with_weekday' -%}
+                    {%- assign d2date = date_parts[1] | date: format: 'date_with_weekday' -%}
+                    {%- if option.position == 1 -%}
+                      {%- assign date_variants = product.variants | where: 'option1', value -%}
+                    {%- elsif option.position == 2 -%}
+                      {%- assign date_variants = product.variants | where: 'option2', value -%}
                     {%- else -%}
-                      {%- assign date_parts = value | split: ' - ' -%}
-                      {%- assign d1date = date_parts[0] | date: format: 'date_with_weekday' -%}
-                      {%- assign d2date = date_parts[1] | date: format: 'date_with_weekday' -%}
+                      {%- assign date_variants = product.variants | where: 'option3', value -%}
+                    {%- endif -%}
+                    {%- assign date_variants_available = date_variants | where: 'available', true -%}
+                    <label class="product-option" data-date-end="{{ date_parts[1] }}">
+                      <input
+                        type="radio"
+                        name="option-{{ option.name | handleize }}"
+                        value="{{ value }}"
+                        class="product-option__radio"
+                        onchange="updateVariant()"
+                        {% if forloop.first %}
+                          checked
+                        {% endif %}
+                        {% if date_variants_available.size == 0 %}
+                          disabled
+                        {% endif %}
+                      >
                       {%- if date_parts.size != 2 or d1date == date_parts[0] or d2date == date_parts[1] -%}
                         {{ value }}
                       {%- else -%}
@@ -93,8 +102,25 @@
                           </span>
                         {%- endif -%}
                       {%- endif -%}
-                    {%- endif -%}
-                  </label>
+                      {%- if date_variants_available.size == 0 %}
+                        <em>(sold out)</em>
+                      {%- endif -%}
+                    </label>
+                  {%- else -%}
+                    <label class="product-option">
+                      <input
+                        type="radio"
+                        name="option-{{ option.name | handleize }}"
+                        value="{{ value }}"
+                        class="product-option__radio"
+                        onchange="updateVariant()"
+                        {% if forloop.first %}
+                          checked
+                        {% endif %}
+                      >
+                      {{ value }}
+                    </label>
+                  {%- endif -%}
                 {%- endfor -%}
               </fieldset>
             {%- endfor -%}
@@ -119,7 +145,7 @@
             </script>
             <script>
               function updateVariant() {
-                const radios = document.querySelectorAll('.product-option__radio:checked');
+                const radios = document.querySelectorAll('.product-option__radio:checked:not([disabled])');
                 const selectedOptions = Array.from(radios).map((r) => r.value);
                 const variantInput = document.getElementById('variant-id');
                 const variantDataEl = document.getElementById('variant-data');
@@ -127,30 +153,36 @@
                 const priceEl = document.querySelector('.product-price');
                 const buyButton = document.getElementById('buy-button');
                 const quantityInput = document.getElementById('quantity');
+                const quantityFormField = quantityInput?.closest('.product-option-group');
                 const quantityAvailableValue = document.getElementById('quantity-available-value');
 
-                for (const variant of variants) {
-                  if (selectedOptions.every((val, i) => val === variant.options[i])) {
-                    variantInput.value = variant.id;
-                    priceEl.textContent = variant.price;
-                    const inventory = Number(variant.inventory_quantity) || 0;
-                    if (quantityInput && quantityAvailableValue) {
-                      quantityInput.min = Math.min(1, inventory);
-                      quantityInput.max = inventory;
-                      quantityAvailableValue.textContent = inventory;
-                      if (parseInt(quantityInput.value, 10) > inventory) {
-                        quantityInput.value = inventory;
-                      }
+                const variant = radios.length ? variants.find((v) => selectedOptions.every((val, i) => val === v.options[i])) : null;
+
+                if (variant) {
+                  variantInput.value = variant.id;
+                  priceEl.textContent = variant.price;
+                  const inventory = Number(variant.inventory_quantity) || 0;
+                  if (quantityInput && quantityAvailableValue) {
+                    quantityInput.min = Math.min(1, inventory);
+                    quantityInput.max = inventory;
+                    quantityAvailableValue.textContent = inventory;
+                    if (parseInt(quantityInput.value, 10) > inventory) {
+                      quantityInput.value = inventory;
                     }
-                    if (variant.available) {
-                      buyButton.disabled = false;
-                      buyButton.textContent = buyButton.dataset.textAvailable;
-                    } else {
-                      buyButton.disabled = true;
-                      buyButton.textContent = buyButton.dataset.textSoldOut;
-                    }
-                    break;
                   }
+                } else {
+                  variantInput.value = '';
+                  buyButton.disabled = true;
+                }
+
+                if (variant?.available) {
+                  buyButton.disabled = false;
+                  buyButton.textContent = buyButton.dataset.textAvailable;
+                  if (quantityFormField) quantityFormField.hidden = false;
+                } else {
+                  buyButton.disabled = true;
+                  buyButton.textContent = buyButton.dataset.textSoldOut;
+                  if (quantityFormField) quantityFormField.hidden = true;
                 }
               }
             </script>
@@ -204,6 +236,39 @@
         document.addEventListener('DOMContentLoaded', () => {
           const fieldset = document.getElementById('product-form-fieldset');
           const form = document.getElementById('product-form');
+
+          const dateLabels = document.querySelectorAll('label[data-date-end]');
+          if (dateLabels.length > 0) {
+            const now = new Date();
+            let visibleCount = 0;
+
+            dateLabels.forEach((label) => {
+              const dateEnd = new Date(label.dataset.dateEnd);
+
+              if (!isNaN(dateEnd) && dateEnd < now) {
+                label.hidden = true;
+                label.querySelector('input').disabled = true;
+                return;
+              }
+
+              visibleCount++;
+            });
+
+            const checkedRadio = document.querySelector('label[data-date-end] .product-option__radio:checked');
+            if (checkedRadio && checkedRadio.closest('label[data-date-end]').hidden) {
+              checkedRadio.checked = false;
+              const firstVisible = document.querySelector('label[data-date-end]:not([hidden]) .product-option__radio');
+              if (firstVisible) firstVisible.checked = true;
+            }
+
+            if (visibleCount === 0) {
+              const group = dateLabels[0].closest('.product-option-group');
+              if (group) {
+                group.insertAdjacentHTML('afterend', '<p class="product-no-dates">No dates at this time.</p>');
+                group.hidden = true;
+              }
+            }
+          }
 
           if (typeof updateVariant === 'function') {
             updateVariant();
