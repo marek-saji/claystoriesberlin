@@ -18,7 +18,7 @@
           {%- else -%}
             {%- assign loading = 'lazy' -%}
           {%- endif -%}
-          {{- product | image_url: width: 1500 | image_tag: loading: loading, sizes: '(width > 42em): 50vw, 100vw' -}}
+          {{- image | image_url: width: 1500 | image_tag: loading: loading, sizes: '(width > 42em): 50vw, 100vw' -}}
         </li>
       {%- endfor -%}
     </ul>
