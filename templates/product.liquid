@@ -83,7 +83,7 @@
                         {% endif %}
                       >
                       {%- if date_parts.size != 2 or d1date == date_parts[0] or d2date == date_parts[1] -%}
-                        {{ value }}
+                        <u class="time-invalid">{{ value }}</u>
                       {%- else -%}
                         {%- assign d1time = date_parts[0] | date: format: 'time' -%}
                         {%- assign d2time = date_parts[1] | date: format: 'time' -%}

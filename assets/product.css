@@ -142,3 +142,7 @@
 .time-part {
   display: inline-block;
 }
+
+.time-invalid {
+  text-decoration: wavy underline red;
+}
