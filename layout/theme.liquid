@@ -9,15 +9,14 @@
     {{ 'theme.css' | asset_url | stylesheet_tag }}
 
     <meta property="og:type" content="website">
-    <title>
-      {%- if page_title != blank and page_title != settings.site_name -%}
-        {{ page_title }} — {{ settings.site_name }}
-      {%- else -%}
-        {{ settings.site_name }}
-      {%- endif -%}
-    </title>
+    {%- if page_title != blank and page_title != settings.site_name -%}
+      {%- assign title = page_title | append: ' at ' | append: settings.site_name -%}
+    {%- else -%}
+      {%- assign title = settings.site_name -%}
+    {%- endif %}
+    <title>{{- title -}}</title>
     <meta property="og:site_name" content="{{ settings.site_name }}">
-    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:title" content="{{ title }}">
     <meta property="og:locale" content="en_GB">
     {%- if page_description != blank -%}
       <meta name="description" content="{{ page_description }}">
