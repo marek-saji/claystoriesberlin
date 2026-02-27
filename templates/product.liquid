@@ -37,7 +37,7 @@
         class="product-form"
       >
         <fieldset role="presentation" id="product-form-fieldset" class="product-form-fieldset" disabled>
-          {%- if product.variants.size > 1 -%}
+          {%- if product.variants.size > 1 or product.options contains 'Date' -%}
             {%- for option in product.options_with_values -%}
               <fieldset
                 role="radiogroup"
