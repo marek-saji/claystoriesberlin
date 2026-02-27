@@ -55,7 +55,11 @@
                   {%- if option.name == 'Date' -%}
                     {%- assign date_parts = value | split: ' - ' -%}
                     {%- assign d1date = date_parts[0] | date: format: 'date_with_weekday' -%}
-                    {%- assign d2date = date_parts[1] | date: format: 'date_with_weekday' -%}
+                    {%- if date_parts[1] contains ' ' -%}
+                      {%- assign d2date = date_parts[1] | date: format: 'date_with_weekday' -%}
+                    {% else -%}
+                      {%- assign d2date = d1date -%}
+                    {%- endif -%}
                     {%- if option.position == 1 -%}
                       {%- assign date_variants = product.variants | where: 'option1', value -%}
                     {%- elsif option.position == 2 -%}
