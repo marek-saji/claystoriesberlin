@@ -1,0 +1,28 @@
+{
+  "general": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you requested does not exist."
+    }
+  },
+  "layout": {
+    "navigation": {
+      "menu": "Menu"
+    },
+    "footer": {
+      "copyright": "© {{ year }} {{ shop_name }}"
+    }
+  },
+  "date_formats": {
+    "date_with_weekday": "%A, %B %d, %Y",
+    "time": "%H:%M"
+  },
+  "products": {
+    "product": {
+      "buy_now": "Buy now",
+      "sold_out": "Sold out",
+      "quantity": "Quantity",
+      "quantity_available": "{{ count }} available"
+    }
+  }
+}

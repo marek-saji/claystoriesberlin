@@ -1,0 +1,22 @@
+<h2>All Collections</h2>
+
+{%- if collections.size > 0 -%}
+  <ul class="shop-items">
+    {%- for collection in collections -%}
+      <li class="shop-item">
+        {%- if collection.image -%}
+          <img
+            src="{{ collection.image | image_url: width: 400 }}"
+            alt="{{ collection.image.alt | escape }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+        <a href="{{ collection.url }}" class="shop-item__link">
+          {{ collection.title }}
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+{%- else -%}
+  <p>No collections available.</p>
+{%- endif -%}

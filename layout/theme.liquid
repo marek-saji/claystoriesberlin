@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preload" href="{{ 'NotoSans.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <meta property="og:type" content="website">
+    {%- if page_title != blank and page_title != settings.site_name -%}
+      {%- assign title = page_title | append: ' at ' | append: settings.site_name -%}
+    {%- else -%}
+      {%- assign title = settings.site_name -%}
+    {%- endif %}
+    <title>{{- title -}}</title>
+    <meta property="og:site_name" content="{{ settings.site_name }}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:locale" content="en_GB">
+    {%- assign description = page_description | default: shop.brand.slogan | default: 'Cosy pottery studio in the heart of Prenzlauerberg' -%}
+    {%- if description != blank -%}
+      <meta name="description" content="{{ description }}">
+      <meta property="og:description" content="{{ description }}">
+    {%- endif -%}
+    {%- assign og_image = page.metafields.custom.image | default: collection.featured_image | default: shop.brand.cover_image -%}
+    {%- if og_image -%}
+      <meta property="og:image" content="{{ og_image | image_url: width: 1200 }}">
+      <meta property="og:image:width" content="1200">
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta name="author" content="{{ settings.author_name }}">
+
+    {% if theme.role == 'development' %}
+      {% # Running in 127.0.0.1 requests that Accept/Decline cookies are broken. Hide the banner completely. %}
+      <style>
+        #shopify-pc__banner { display: none; }
+      </style>
+    {% endif %}
+
+    {{ content_for_header }}
+
+    <script>
+      window.Shopify = window.Shopify || {};
+      window.Shopify.customerPrivacy = window.Shopify.customerPrivacy || {};
+    </script>
+  </head>
+  <body>
+    <div class="root h-card" itemscope itemtype="https://schema.org/LocalBusiness">
+      {% section 'header' %}
+
+      {% section 'navigation' %}
+
+      <main class="main" aria-label="{{ page_title }}">
+        {{ content_for_layout }}
+      </main>
+
+      {% section 'footer' %}
+    </div>
+  </body>
+</html>

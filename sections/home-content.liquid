@@ -1,0 +1,82 @@
+<p class="intro">
+  <strong class="p-name p-org">Clay Stories</strong> is a
+  <span itemprop="description">
+    <span class="p-category">pottery studio and collective based</span>
+    in the
+    <a href="{{ settings.map_url }}" target="_blank" rel="noopener noreferrer">heart of Berlin Prenzlauerberg</a>.
+  </span>
+  <span class="p-note">
+    {{ section.settings.description }}
+  </span>
+</p>
+
+{%- for block in section.blocks -%}
+  {%- assign page = block.settings.page -%}
+  {%- assign collection = block.settings.collection -%}
+
+  {%- if page and page != "" -%}
+    {%- comment -%} Use page data if page is selected {%- endcomment -%}
+    {%- assign section_id = page.url -%}
+    {%- assign section_url = page.url -%}
+    {%- assign section_heading = page.metafields.custom.home_page_heading | default: page.title -%}
+    {%- assign section_image = page.metafields.custom.image -%}
+    {%- assign section_content = page.metafields.custom.home_page_description | metafield_tag -%}
+  {%- elsif collection and collection != "" -%}
+    {%- comment -%} Use collection data if collection is selected {%- endcomment -%}
+    {%- assign section_id = collection.url -%}
+    {%- assign section_url = collection.url -%}
+    {%- assign section_heading = collection.metafields.custom.home_page_heading | default: collection.title -%}
+    {%- assign section_image = collection.featured_image -%}
+    {%- assign section_content = collection.metafields.custom.home_page_description | metafield_tag -%}
+  {%- endif -%}
+
+  {%- if section_heading -%}
+    {% render 'home-section',
+      id: section_id,
+      link_href: section_url,
+      heading: section_heading,
+      content: section_content,
+      image: section_image
+    %}
+  {%- endif -%}
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "Home Content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Our goal is to create meaningful connections through the art of ceramics. We believe that every piece of clay tells a story, and we are here to help you tell yours."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "page_section",
+      "name": "Page Section",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Select the page OR collection"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page"
+        },
+        {
+          "type": "header",
+          "content": "OR"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

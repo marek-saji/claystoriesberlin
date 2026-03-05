@@ -1,0 +1,148 @@
+.product {
+  @container (width > 42em) {
+    display: grid;
+    gap: var(--spacing-large) var(--spacing-medium);
+    grid-template:
+      "title title"
+      "images description"
+      "info info"
+      / 1fr 1fr;
+
+    .page-title {
+      grid-area: title;
+      margin-block-end: 0;
+    }
+
+    .product-images {
+      grid-area: images;
+    }
+
+    .product-description {
+      grid-area: description;
+
+      > :first-child {
+        margin-block-start: 0;
+      }
+    }
+
+    .product-info {
+      grid-area: info;
+    }
+  }
+}
+
+.product-images {
+  display: grid;
+  gap: var(--spacing-small);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.product-price {
+  margin: 0;
+  font-weight: bold;
+}
+
+.product-not-available {
+  margin-block: 0;
+  font-style: italic;
+}
+
+.product-form {
+  fieldset {
+    margin: 0;
+    border: none;
+    padding: 0;
+  }
+
+  .product-option-group {
+    display: flex;
+    gap: var(--spacing-miniscule) var(--spacing-tiny);
+    place-items: center;
+    flex-wrap: wrap;
+    margin-block: var(--spacing-small);
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  .product-option-group__legend {
+    display: block;
+    padding: 0;
+    inline-size: 100%;
+    font-weight: bold;
+  }
+
+  .product-option,
+  .product-quantity__value,
+  .product-buy-button {
+    cursor: pointer;
+    border: var(--thickness-medium) solid var(--colour-separator);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-miniscule) var(--spacing-tiny);
+    background-color: transparent;
+    transition: var(--animation-small);
+    transition-property: border-color, background-color, color, outline-offset;
+  }
+
+  .product-option,
+  .product-quantity__value {
+    font: var(--typo-input);
+    letter-spacing: var(--typo-input-letter-spacing);
+  }
+
+  .product-option {
+    text-align: center;
+  }
+
+  .product-buy-button {
+    margin-block-start: var(--spacing-small);
+    font: var(--typo-input);
+    letter-spacing: var(--typo-input-letter-spacing);
+    border-color: var(--colour-accent);
+    background-color: var(--colour-accent);
+    color: var(--colour-canvas);
+
+    &:focus-visible {
+      outline-offset: 4px;
+    }
+  }
+
+  .product-option:focus-within {
+    outline: Highlight auto 1px;
+    /* Try to use UAs default focus ring */
+    outline-color: -webkit-focus-ring-color;
+    outline-offset: 4px;
+  }
+
+  .product-option {
+    &:has(> :checked) {
+      border-color: var(--colour-canvas-text);
+      background-color: var(--colour-canvas-text);
+      color: var(--colour-canvas);
+    }
+  }
+
+  .product-option:has(input:disabled),
+  .product-buy-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  .product-option__radio {
+    inline-size: 0;
+    outline: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.time-part {
+  display: inline-block;
+}
+
+.time-invalid {
+  text-decoration: wavy underline red;
+}

@@ -1,0 +1,33 @@
+{% render 'page-title' %}
+
+{%- if collection.description != blank -%}
+  <p>{{ collection.description }}</p>
+{%- endif -%}
+
+{%- if collection.products.size > 0 -%}
+  <ul class="shop-items">
+    {%- for product in collection.products -%}
+      <li class="shop-item">
+        {%- if product.featured_image -%}
+          <img
+            src="{{ product.featured_image | image_url: width: 400 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+        <a href="{{ product.url }}" class="shop-item__link">
+          {{ product.title }}
+        </a>
+        <span class="product-price">
+          {%- if product.price_varies -%}
+            {{ product.price_min | money }} – {{ product.price_max | money }}
+          {%- else -%}
+            {{ product.price | money }}
+          {%- endif -%}
+        </span>
+      </li>
+    {%- endfor -%}
+  </ul>
+{%- else -%}
+  <p>No products in this collection.</p>
+{%- endif -%}

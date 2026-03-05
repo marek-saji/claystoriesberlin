@@ -1,0 +1,14 @@
+{% render 'page-title' %}
+
+{%- if page.metafields.custom.image -%}
+  <img
+    alt=""
+    src="{{ page.metafields.custom.image | image_url: width: 1200 }}"
+    class="page-image"
+    loading="eager"
+  >
+{%- endif -%}
+
+<div class="page-content">
+  {{ page.content }}
+</div>
