@@ -9,7 +9,7 @@
     "push": "shopify theme push --store=test-store-1100000000000000000000000000000003496.myshopify.com"
   },
   "devDependencies": {
-    "@shopify/cli": "^3.90.1",
-    "@shopify/prettier-plugin-liquid": "^1.10.0"
+    "@shopify/cli": "^3.93.2",
+    "@shopify/prettier-plugin-liquid": "^1.10.2"
   }
 }
