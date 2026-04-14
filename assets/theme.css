@@ -201,6 +201,14 @@ small {
   letter-spacing: var(--typo-small-letter-spacing);
 }
 
+hr {
+  margin-block: var(--spacing-large);
+  inline-size: 10em;
+  max-inline-size: 50%;
+  border: none;
+  border-block-start: var(--thickness-thin) solid var(--colour-separator);
+}
+
 /* Layout */
 .root {
   display: flex;
