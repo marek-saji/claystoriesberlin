@@ -1,20 +1,18 @@
 <header class="header">
-  <h1 class="header__heading">
-    <meta itemprop="name" content="{{ settings.site_name }}">
-    {%- if request.path != '/' -%}
-      <a href="/">
+  <meta itemprop="name" content="{{ settings.site_name }}">
+  {%- if request.path != '/' -%}
+  <a href="/">
     {%- endif -%}
     <img
-      itemprop="logo"
-      alt="{{ settings.site_name }}"
-      src="{{ 'logo.svg' | asset_url }}"
-      loading="eager"
-      class="logo u-logo"
+    itemprop="logo"
+    alt="{{ settings.site_name }}"
+    src="{{ 'logo.svg' | asset_url }}"
+    loading="eager"
+    class="logo u-logo"
     >
     {%- if request.path != '/' -%}
-      </a>
-    {%- endif -%}
-  </h1>
+  </a>
+  {%- endif -%}
 </header>
 
 {% schema %}
