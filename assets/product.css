@@ -1,4 +1,12 @@
 .product {
+  .product-images {
+    margin-block-start: var(--spacing-huge);
+  }
+
+  .product-description > :first-child {
+    margin-block-start: 0;
+  }
+
   @container (width > 42em) {
     display: grid;
     gap: var(--spacing-large) var(--spacing-medium);
@@ -15,14 +23,12 @@
 
     .product-images {
       grid-area: images;
+      margin-block-start: 0;
     }
 
     .product-description {
+      container-type: inline-size;
       grid-area: description;
-
-      > :first-child {
-        margin-block-start: 0;
-      }
     }
 
     .product-info {

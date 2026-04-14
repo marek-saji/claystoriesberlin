@@ -118,6 +118,7 @@
 
 /* Base Styles */
 :root {
+  container-type: inline-size;
   color-scheme: light;
   box-sizing: border-box;
   accent-color: var(--colour-accent);
