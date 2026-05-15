@@ -1,5 +1,6 @@
 .product {
-  .product-images {
+  .product-images,
+  .product-info {
     margin-block-start: var(--spacing-huge);
   }
 
@@ -23,6 +24,11 @@
 
     .product-images {
       grid-area: images;
+      margin-block-start: 0;
+    }
+
+    .product-info {
+      grid-area: info;
       margin-block-start: 0;
     }
 
