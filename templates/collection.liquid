@@ -20,9 +20,9 @@
         </a>
         <span class="product-price">
           {%- if product.price_varies -%}
-            {{ product.price_min | money }} – {{ product.price_max | money }}
+            {{ product.price_min | money_without_trailing_zeros }} – {{ product.price_max | money_without_trailing_zeros }}
           {%- else -%}
-            {{ product.price | money }}
+            {{ product.price | money_without_trailing_zeros }}
           {%- endif -%}
         </span>
       </li>

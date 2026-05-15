@@ -25,7 +25,7 @@
   {%- endif -%}
 
   <div class="product-info">
-    <p class="product-price">{{ product.selected_or_first_available_variant.price | money }}</p>
+    <p class="product-price">{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</p>
 
     {%- if product.available == false -%}
       <p class="product-not-available">{{ 'products.product.sold_out' | t }}</p>
@@ -140,7 +140,7 @@
                   {
                     "id": {{ variant.id }},
                     "options": {{ variant.options | json }},
-                    "price": {{ variant.price | money | json }},
+                    "price": {{ variant.price | money_without_trailing_zeros | json }},
                     "available": {{ variant.available | json }},
                     "inventory_quantity": {{ variant.inventory_quantity | json }}
                   }{% unless forloop.last %},{% endunless %}
