@@ -23,6 +23,22 @@
       "sold_out": "Sold out",
       "quantity": "Quantity",
       "quantity_available": "{{ count }} available"
+    },
+    "metafields": {
+      "duration": "Duration",
+      "hours": {
+        "one": "1 hour",
+        "other": "{{ count }} hours"
+      },
+      "group_size": "Group size",
+      "max_people": "Max {{ value }} people",
+      "level": "Level",
+      "language": "Language",
+      "materials": "Materials",
+      "materials_included": "All included",
+      "pieces_ready": "Pieces ready",
+      "pieces_ready_in": "4–6 weeks",
+      "languages": "Languages"
     }
   }
 }

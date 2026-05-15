@@ -3,9 +3,56 @@
 <div class="product">
   {% render 'page-title' %}
 
-  {%- if product.description != blank -%}
+  {%- liquid
+    assign mf = product.metafields.custom
+    assign has_metafields = false
+    if mf.duration != blank or mf.max_group_size != blank or mf.level != blank or mf.language != blank or mf.materials_included.value == true or mf.pieces_ready_in.value == true
+      assign has_metafields = true
+    endif
+  -%}
+  {%- if product.description != blank or has_metafields -%}
     <div class="product-description">
       {{ product.description }}
+      {%- if has_metafields -%}
+        <dl class="product-metafields">
+          {%- if mf.duration != blank -%}
+            <div class="product-metafields__item">
+              <dt>{{ 'products.metafields.duration' | t }}</dt>
+              <dd>{{ 'products.metafields.hours' | t: count: mf.duration }}</dd>
+            </div>
+          {%- endif -%}
+          {%- if mf.max_group_size != blank -%}
+            <div class="product-metafields__item">
+              <dt>{{ 'products.metafields.group_size' | t }}</dt>
+              <dd>{{ 'products.metafields.max_people' | t: value: mf.max_group_size }}</dd>
+            </div>
+          {%- endif -%}
+          {%- if mf.level != blank -%}
+            <div class="product-metafields__item">
+              <dt>{{ 'products.metafields.level' | t }}</dt>
+              <dd>{{ mf.level }}</dd>
+            </div>
+          {%- endif -%}
+          {%- if mf.language != blank -%}
+            <div class="product-metafields__item">
+              <dt>{% if mf.language.value.size > 1 %}{{ 'products.metafields.languages' | t }}{% else %}{{ 'products.metafields.language' | t }}{% endif %}</dt>
+              <dd>{{ mf.language.value | join: ', ' }}</dd>
+            </div>
+          {%- endif -%}
+          {%- if mf.materials_included.value == true -%}
+            <div class="product-metafields__item">
+              <dt>{{ 'products.metafields.materials' | t }}</dt>
+              <dd>{{ 'products.metafields.materials_included' | t }}</dd>
+            </div>
+          {%- endif -%}
+          {%- if mf.pieces_ready_in.value == true -%}
+            <div class="product-metafields__item">
+              <dt>{{ 'products.metafields.pieces_ready' | t }}</dt>
+              <dd>{{ 'products.metafields.pieces_ready_in' | t }}</dd>
+            </div>
+          {%- endif -%}
+        </dl>
+      {%- endif -%}
     </div>
   {%- endif -%}
 
@@ -26,6 +73,9 @@
 
   <div class="product-info">
     <p class="product-price">{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</p>
+    {%- if product.metafields.custom.price_note != blank -%}
+      <p class="product-price-note">{{ product.metafields.custom.price_note | newline_to_br }}</p>
+    {%- endif -%}
 
     {%- if product.available == false -%}
       <p class="product-not-available">{{ 'products.product.sold_out' | t }}</p>
