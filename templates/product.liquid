@@ -1,4 +1,6 @@
 {{ 'product.css' | asset_url | stylesheet_tag }}
+{{ 'product-date-calendar.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-date-calendar.js' | asset_url }}" defer></script>
 
 <div class="product">
   {% render 'page-title' %}
@@ -199,18 +201,30 @@
             </script>
             <script>
               function updateVariant() {
-                const radios = document.querySelectorAll('.product-option__radio:checked:not([disabled])');
-                const selectedOptions = Array.from(radios).map((r) => r.value);
+                const allRadios = document.querySelectorAll('.product-option__radio');
+                const checkedRadios = document.querySelectorAll('.product-option__radio:checked:not([disabled])');
+                const enabledRadios = document.querySelectorAll('.product-option__radio:not([disabled])');
+
+                // Date-product detection: any label[data-date-end] means this product
+                // exposes dates. We use that to distinguish "no dates left" from
+                // "single-variant product with no option groups".
+                const allDateLabels = document.querySelectorAll('label[data-date-end]');
+                const visibleDateLabels = Array.from(allDateLabels).filter((l) => !l.hidden);
+
                 const variantInput = document.getElementById('variant-id');
                 const variantDataEl = document.getElementById('variant-data');
                 const variants = JSON.parse(variantDataEl.textContent);
                 const priceEl = document.querySelector('.product-price');
                 const buyButton = document.getElementById('buy-button');
+                const noDatesMsg = document.getElementById('product-no-dates');
                 const quantityInput = document.getElementById('quantity');
                 const quantityFormField = quantityInput?.closest('.product-option-group');
                 const quantityAvailableValue = document.getElementById('quantity-available-value');
 
-                const variant = radios.length ? variants.find((v) => selectedOptions.every((val, i) => val === v.options[i])) : null;
+                const selectedOptions = Array.from(checkedRadios).map((r) => r.value);
+                const variant = checkedRadios.length
+                  ? variants.find((v) => selectedOptions.every((val, i) => val === v.options[i]))
+                  : null;
 
                 if (variant) {
                   variantInput.value = variant.id;
@@ -226,18 +240,39 @@
                   }
                 } else {
                   variantInput.value = '';
-                  buyButton.disabled = true;
                 }
 
-                if (variant?.available) {
-                  buyButton.disabled = false;
-                  buyButton.textContent = buyButton.dataset.textAvailable;
-                  if (quantityFormField) quantityFormField.hidden = false;
+                // Decide display state:
+                //   no-dates   — this is a date product but every date is gone
+                //   sold-out   — options exist, none are pickable (all disabled)
+                //   unselected — options exist with available choices, user hasn't picked yet
+                //   buy-now    — valid pick OR single-variant product with available stock
+                let state;
+                if (allDateLabels.length > 0 && visibleDateLabels.length === 0) {
+                  state = 'no-dates';
+                } else if (variant?.available) {
+                  state = 'buy-now';
+                } else if (allRadios.length === 0) {
+                  // Single-variant product, no option groups. Liquid only renders
+                  // the form when product.available is true, so trust that here.
+                  state = 'buy-now';
+                } else if (enabledRadios.length === 0) {
+                  state = 'sold-out';
+                } else if (checkedRadios.length === 0) {
+                  state = 'unselected';
                 } else {
-                  buyButton.disabled = true;
-                  buyButton.textContent = buyButton.dataset.textSoldOut;
-                  if (quantityFormField) quantityFormField.hidden = true;
+                  // Picked variant exists but isn't available (e.g. inventory hit 0).
+                  state = 'sold-out';
                 }
+
+                if (noDatesMsg) noDatesMsg.hidden = state !== 'no-dates';
+                buyButton.hidden = state === 'no-dates' || state === 'unselected';
+                if (!buyButton.hidden) {
+                  buyButton.disabled = state !== 'buy-now';
+                  buyButton.textContent =
+                    state === 'buy-now' ? buyButton.dataset.textAvailable : buyButton.dataset.textSoldOut;
+                }
+                if (quantityFormField) quantityFormField.hidden = state !== 'buy-now';
               }
             </script>
           {%- else -%}
@@ -275,6 +310,7 @@
             </div>
           {% endif %}
           <input type="hidden" name="return_to" value="/checkout" id="return-to">
+          <p id="product-no-dates" class="product-no-dates" hidden>No dates at the moment.</p>
           <button
             type="submit"
             class="product-buy-button"
@@ -291,38 +327,8 @@
           const fieldset = document.getElementById('product-form-fieldset');
           const form = document.getElementById('product-form');
 
-          const dateLabels = document.querySelectorAll('label[data-date-end]');
-          if (dateLabels.length > 0) {
-            const now = new Date();
-            let visibleCount = 0;
-
-            dateLabels.forEach((label) => {
-              const dateEnd = new Date(label.dataset.dateEnd);
-
-              if (!isNaN(dateEnd) && dateEnd < now) {
-                label.hidden = true;
-                label.querySelector('input').disabled = true;
-                return;
-              }
-
-              visibleCount++;
-            });
-
-            const checkedRadio = document.querySelector('label[data-date-end] .product-option__radio:checked');
-            if (checkedRadio && checkedRadio.closest('label[data-date-end]').hidden) {
-              checkedRadio.checked = false;
-              const firstVisible = document.querySelector('label[data-date-end]:not([hidden]) .product-option__radio');
-              if (firstVisible) firstVisible.checked = true;
-            }
-
-            if (visibleCount === 0) {
-              const group = dateLabels[0].closest('.product-option-group');
-              if (group) {
-                group.insertAdjacentHTML('afterend', '<p class="product-no-dates">No dates at this time.</p>');
-                group.hidden = true;
-              }
-            }
-          }
+          // Date-radio housekeeping (past-date hiding, calendar widget) runs
+          // in assets/product-date-calendar.js before this listener fires.
 
           if (typeof updateVariant === 'function') {
             updateVariant();
