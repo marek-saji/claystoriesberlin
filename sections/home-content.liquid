@@ -14,6 +14,8 @@
   {%- assign page = block.settings.page -%}
   {%- assign collection = block.settings.collection -%}
 
+  {%- assign product = block.settings.product -%}
+
   {%- if page and page != "" -%}
     {%- comment -%} Use page data if page is selected {%- endcomment -%}
     {%- assign section_id = page.url -%}
@@ -28,6 +30,12 @@
     {%- assign section_heading = collection.metafields.custom.home_page_heading | default: collection.title -%}
     {%- assign section_image = collection.featured_image -%}
     {%- assign section_content = collection.metafields.custom.home_page_description | metafield_tag -%}
+  {%- elsif product and product != "" -%}
+    {%- assign section_id = product.url -%}
+    {%- assign section_url = product.url -%}
+    {%- assign section_heading = product.metafields.custom.home_page_heading | default: product.title -%}
+    {%- assign section_image = product.metafields.custom.home_page_image | default: product.featured_image -%}
+    {%- assign section_content = product.metafields.custom.home_page_description | metafield_tag -%}
   {%- endif -%}
 
   {%- if section_heading -%}
@@ -74,6 +82,15 @@
           "type": "collection",
           "id": "collection",
           "label": "Collection"
+        },
+        {
+          "type": "header",
+          "content": "OR"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
         }
       ]
     }
