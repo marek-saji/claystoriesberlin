@@ -38,49 +38,55 @@
             "type": "page_section",
             "settings": {
               "page": "ceramic-studio-memberships",
-              "collection": ""
+              "collection": "",
+              "product": ""
             }
           },
           "page_section_ah7gxR": {
             "type": "page_section",
             "settings": {
               "page": "",
-              "collection": "pottery-courses-and-workshops"
+              "collection": "pottery-courses-and-workshops",
+              "product": ""
             }
           },
-          "page_section_3wyBdf": {
+          "page_section_AKxzCf": {
             "type": "page_section",
             "settings": {
-              "page": "clay-date",
-              "collection": ""
+              "page": "",
+              "collection": "",
+              "product": "clay-date"
             }
           },
           "page_section_FAiHrz": {
             "type": "page_section",
             "settings": {
               "page": "shop",
-              "collection": ""
+              "collection": "",
+              "product": ""
             }
           },
           "page_section_trUM9P": {
             "type": "page_section",
             "settings": {
               "page": "wild-clay",
-              "collection": ""
+              "collection": "",
+              "product": ""
             }
           },
           "page_section_YWUVbR": {
             "type": "page_section",
             "settings": {
               "page": "about-us",
-              "collection": ""
+              "collection": "",
+              "product": ""
             }
           }
         },
         "block_order": [
           "page_section_KKihTF",
           "page_section_ah7gxR",
-          "page_section_3wyBdf",
+          "page_section_AKxzCf",
           "page_section_FAiHrz",
           "page_section_trUM9P",
           "page_section_YWUVbR"
