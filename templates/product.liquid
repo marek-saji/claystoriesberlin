@@ -5,8 +5,16 @@
 {%- # Used to hide past dates -%}
 {%- assign now_date = "now" | date: "%Y-%m-%d 00:00" -%}
 
-<div class="product">
-  {% render 'page-title' %}
+<div class="product" itemscope itemtype="https://schema.org/Event" itemref="event-start-date">
+  {% render 'page-title', itemprop: 'name' %}
+  <span
+    itemprop="location"
+    itemscope
+    itemtype="https://schema.org/Place"
+    itemref=shop-address
+  >
+    <meta itemprop="name" itemref=shop-name>
+  </span>
 
   {%- liquid
     assign mf = product.metafields.custom
@@ -16,7 +24,7 @@
     endif
   -%}
   {%- if product.description != blank or has_metafields -%}
-    <div class="product-description">
+    <div class="product-description" itemprop="description">
       {{ product.description }}
       {%- if has_metafields -%}
         <dl class="product-metafields">
@@ -77,6 +85,11 @@
   {%- endif -%}
 
   <div class="product-info">
+    <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+      <meta itemprop="price" content="{{ product.selected_or_first_available_variant.price | divided_by: 100.0 }}">
+      <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+      <link itemprop="availability" href="https://schema.org/{% if product.available %}InStock{% else %}SoldOut{% endif %}">
+    </span>
     <p class="product-price">{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</p>
     {%- if product.metafields.custom.price_note != blank -%}
       <p class="product-price-note">{{ product.metafields.custom.price_note | newline_to_br }}</p>
@@ -106,6 +119,7 @@
                 >
                   {{ option.name }}
                 </div>
+                {%- assign emitted_parent_start = false -%}
                 {%- for value in option.values -%}
                   {%- if option.name == 'Date' -%}
                     {%- assign date_parts = value | split: ' - ' -%}
@@ -124,7 +138,23 @@
                         {%- assign date_variants = product.variants | where: 'option3', value -%}
                       {%- endif -%}
                       {%- assign date_variants_available = date_variants | where: 'available', true -%}
-                      <label class="product-option" data-date-end="{{ date_parts[1] }}">
+                      <label
+                        class="product-option"
+                        data-date-end="{{ date_parts[1] }}"
+                        itemprop="subEvent"
+                        itemscope
+                        itemtype="https://schema.org/Event"
+                      >
+                        <meta itemprop="name" content="{{ product.title | escape }}">
+                        <span
+                          itemprop="location"
+                          itemscope
+                          itemtype="https://schema.org/Place"
+                          itemref="shop-address"
+                        >
+                          <meta itemprop="name" itemref="shop-name">
+                        </span>
+
                         <input
                           type="radio"
                           name="option-{{ option.name | handleize }}"
@@ -146,20 +176,38 @@
                           {%- if d1date == d2date -%}
                             <span class="time-part">{{ d1date }}</span>
                             <span class="time-part">
-                              <span class="time-part">{{ d1time }}</span>
+                              <time
+                                datetime="{{ date_parts[0] | date: '%FT%T' }}"
+                                itemprop="startDate"
+                                {% if emitted_parent_start == false %}id="event-start-date"{% endif %}
+                                class="time-part"
+                              >{{ d1time }}</time>
                               –
-                              <span class="time-part">{{ d2time }}</span>
+                              <time
+                                datetime="{{ date_parts[1] | date: '%FT%T' }}"
+                                itemprop="endDate"
+                                class="time-part"
+                              >{{ d2time }}</span>
                             </span>
                           {%- else -%}
-                            <span class="time-part">
+                            <time
+                              datetime="{{ date_parts[0] | date: '%FT%T' }}"
+                              itemprop="startDate"
+                              {% if emitted_parent_start == false %}id="event-start-date"{% endif %}
+                              class="time-part"
+                            >
                               <span class="time-part">{{ d1date }}</span>
                               <span class="time-part">{{ d1time }}</span>
-                            </span>
+                            </time>
                             –
-                            <span class="time-part">
+                            <time
+                              datetime="{{ date_parts[1] | date: '%FT%T' }}"
+                              itemprop="endDate"
+                              class="time-part"
+                            >
                               <span class="time-part">{{ d2date }}</span>
                               <span class="time-part">{{ d2time }}</span>
-                            </span>
+                            </time>
                           {%- endif -%}
                         {%- endif -%}
                         {%- if date_variants_available.size == 0 %}

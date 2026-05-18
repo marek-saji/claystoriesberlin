@@ -40,6 +40,12 @@
       },
       {
         "type": "text",
+        "id": "business_price_range",
+        "label": "Price range",
+        "default": "$$"
+      },
+      {
+        "type": "text",
         "id": "street_address",
         "label": "Street Address",
         "default": "Kollwitzstraße 82"
