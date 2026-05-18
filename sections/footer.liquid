@@ -46,7 +46,14 @@
           <span itemprop="streetAddress" class="p-street-address">{{ settings.street_address }}</span>,
           <span itemprop="postalCode" class="p-postal-code">{{ settings.postal_code }}</span>
           <span itemprop="addressLocality" class="p-locality">{{ settings.city }}</span>
-          <span itemprop="addressCountry" class="p-country-name" hidden>, {{ settings.country }}</span>
+          <span hidden>
+            ,
+            <span class="p-country-name">
+              {{ settings.country }}
+              <meta itemprop="addressCountry" content="{{ settings.countryCode }}">
+            </span>
+            <span itemprop="" >, {{ settings.country }}</span>
+          </span>
         </a>
       </p>
     </address>

@@ -64,6 +64,12 @@
       },
       {
         "type": "text",
+        "id": "countryCode",
+        "label": "Country Code",
+        "default": "de"
+      },
+      {
+        "type": "text",
         "id": "map_url",
         "label": "Google Maps URL",
         "default": "https://maps.app.goo.gl/j8b8MTzyYrNSuMeP9"
