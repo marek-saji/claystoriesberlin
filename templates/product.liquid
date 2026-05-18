@@ -2,6 +2,9 @@
 {{ 'product-date-calendar.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'product-date-calendar.js' | asset_url }}" defer></script>
 
+{%- # Used to hide past dates -%}
+{%- assign now_date = "now" | date: "%Y-%m-%d 00:00" -%}
+
 <div class="product">
   {% render 'page-title' %}
 
@@ -112,56 +115,58 @@
                     {% else -%}
                       {%- assign d2date = d1date -%}
                     {%- endif -%}
-                    {%- if option.position == 1 -%}
-                      {%- assign date_variants = product.variants | where: 'option1', value -%}
-                    {%- elsif option.position == 2 -%}
-                      {%- assign date_variants = product.variants | where: 'option2', value -%}
-                    {%- else -%}
-                      {%- assign date_variants = product.variants | where: 'option3', value -%}
-                    {%- endif -%}
-                    {%- assign date_variants_available = date_variants | where: 'available', true -%}
-                    <label class="product-option" data-date-end="{{ date_parts[1] }}">
-                      <input
-                        type="radio"
-                        name="option-{{ option.name | handleize }}"
-                        value="{{ value }}"
-                        class="product-option__radio"
-                        onchange="updateVariant()"
-                        {% if forloop.first %}
-                          checked
-                        {% endif %}
-                        {% if date_variants_available.size == 0 %}
-                          disabled
-                        {% endif %}
-                      >
-                      {%- if date_parts.size != 2 or d1date == date_parts[0] or d2date == date_parts[1] -%}
-                        <u class="time-invalid">{{ value }}</u>
+                    {%- if date_parts[1] > now_date -%}
+                      {%- if option.position == 1 -%}
+                        {%- assign date_variants = product.variants | where: 'option1', value -%}
+                      {%- elsif option.position == 2 -%}
+                        {%- assign date_variants = product.variants | where: 'option2', value -%}
                       {%- else -%}
-                        {%- assign d1time = date_parts[0] | date: format: 'time' -%}
-                        {%- assign d2time = date_parts[1] | date: format: 'time' -%}
-                        {%- if d1date == d2date -%}
-                          <span class="time-part">{{ d1date }}</span>
-                          <span class="time-part">
-                            <span class="time-part">{{ d1time }}</span>
-                            –
-                            <span class="time-part">{{ d2time }}</span>
-                          </span>
+                        {%- assign date_variants = product.variants | where: 'option3', value -%}
+                      {%- endif -%}
+                      {%- assign date_variants_available = date_variants | where: 'available', true -%}
+                      <label class="product-option" data-date-end="{{ date_parts[1] }}">
+                        <input
+                          type="radio"
+                          name="option-{{ option.name | handleize }}"
+                          value="{{ value }}"
+                          class="product-option__radio"
+                          onchange="updateVariant()"
+                          {% if forloop.first %}
+                            checked
+                          {% endif %}
+                          {% if date_variants_available.size == 0 %}
+                            disabled
+                          {% endif %}
+                        >
+                        {%- if date_parts.size != 2 or d1date == date_parts[0] or d2date == date_parts[1] -%}
+                          <u class="time-invalid">{{ value }}</u>
                         {%- else -%}
-                          <span class="time-part">
+                          {%- assign d1time = date_parts[0] | date: format: 'time' -%}
+                          {%- assign d2time = date_parts[1] | date: format: 'time' -%}
+                          {%- if d1date == d2date -%}
                             <span class="time-part">{{ d1date }}</span>
-                            <span class="time-part">{{ d1time }}</span>
-                          </span>
-                          –
-                          <span class="time-part">
-                            <span class="time-part">{{ d2date }}</span>
-                            <span class="time-part">{{ d2time }}</span>
-                          </span>
+                            <span class="time-part">
+                              <span class="time-part">{{ d1time }}</span>
+                              –
+                              <span class="time-part">{{ d2time }}</span>
+                            </span>
+                          {%- else -%}
+                            <span class="time-part">
+                              <span class="time-part">{{ d1date }}</span>
+                              <span class="time-part">{{ d1time }}</span>
+                            </span>
+                            –
+                            <span class="time-part">
+                              <span class="time-part">{{ d2date }}</span>
+                              <span class="time-part">{{ d2time }}</span>
+                            </span>
+                          {%- endif -%}
                         {%- endif -%}
-                      {%- endif -%}
-                      {%- if date_variants_available.size == 0 %}
-                        <em>(sold out)</em>
-                      {%- endif -%}
-                    </label>
+                        {%- if date_variants_available.size == 0 %}
+                          <em>(sold out)</em>
+                        {%- endif -%}
+                      </label>
+                    {%- endif -%}
                   {%- else -%}
                     <label class="product-option">
                       <input

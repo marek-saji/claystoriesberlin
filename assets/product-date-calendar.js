@@ -36,7 +36,6 @@
   const allSlots = collectSlots(dateGroup, variantData);
   if (allSlots.length === 0) return;
 
-  hidePastSlots(allSlots);
   const visibleSlots = allSlots.filter((s) => !s.label.hidden);
 
   if (visibleSlots.length === 0) {
@@ -113,17 +112,6 @@
       });
     }
     return slots;
-  }
-
-  function hidePastSlots(slots) {
-    const now = new Date();
-    for (const s of slots) {
-      if (s.end < now) {
-        s.label.hidden = true;
-        s.radio.disabled = true;
-        s.available = false;
-      }
-    }
   }
 
   function parseDateTime(s) {
