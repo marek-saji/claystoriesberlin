@@ -369,4 +369,34 @@
       </script>
     {%- endif -%}
   </div>
+
+  {%- if product.metafields.custom.faq.value.size > 0 -%}
+    <section class="product-faq" aria-labelledby="product-faq-title">
+      <h2 class="product-faq__title" id="product-faq-title">{{ 'products.faq.title' | t }}</h2>
+      <ol class="product-faq__list">
+        {%- for item in product.metafields.custom.faq.value -%}
+          <li>
+            <details
+              name="product-faq"
+              class="product-faq__item"
+              itemscope
+              itemtype="https://schema.org/Question"
+            >
+              <summary class="product-faq__question" itemprop="name">
+                {{- item.question -}}
+              </summary>
+              <div
+                class="product-faq__answer"
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <div itemprop="text">{{ item.answer | metafield_tag }}</div>
+              </div>
+            </details>
+          </li>
+        {%- endfor -%}
+      </ol>
+    </section>
+  {%- endif -%}
 </div>
