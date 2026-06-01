@@ -169,11 +169,13 @@ h4 {
 }
 
 h1 {
-  &.page-title {
+  &.page-title,
+  .shopify-policy__title > & {
     font: var(--typo-heading-1);
+    text-align: start;
   }
 
-  &:not(.page-title)
+  :not(.shopify-policy__title) > &:not(.page-title)
   {
     font-family: Cursive;
 
