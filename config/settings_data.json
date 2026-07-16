@@ -52,6 +52,14 @@
               "product": ""
             }
           },
+          "page_section_9ezrM7": {
+            "type": "page_section",
+            "settings": {
+              "page": "",
+              "collection": "",
+              "product": "garden-clay-date"
+            }
+          },
           "page_section_AKxzCf": {
             "type": "page_section",
             "settings": {
@@ -88,6 +96,7 @@
         "block_order": [
           "page_section_KKihTF",
           "page_section_ah7gxR",
+          "page_section_9ezrM7",
           "page_section_AKxzCf",
           "page_section_FAiHrz",
           "page_section_trUM9P",
